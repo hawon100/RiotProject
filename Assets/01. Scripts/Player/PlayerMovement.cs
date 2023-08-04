@@ -15,21 +15,21 @@ public class PlayerMovement : MonoBehaviour
     
     private void Move()
     {
-        if(Input.GetKeyDown(KeyCode.UpArrow) && !isMoving)
+        if(Input.GetKeyDown(KeyCode.UpArrow))
         {
-            StartCoroutine(MovePlayer(Vector3.forward));
+            if(!isMoving) StartCoroutine(MovePlayer(Vector3.forward));
         }
-        if (Input.GetKeyDown(KeyCode.DownArrow) && !isMoving)
+        if (Input.GetKeyDown(KeyCode.DownArrow))
         {
-            StartCoroutine(MovePlayer(Vector3.back));
+            if (!isMoving) StartCoroutine(MovePlayer(Vector3.back));
         }
-        if (Input.GetKeyDown(KeyCode.RightArrow) && !isMoving)
+        if (Input.GetKeyDown(KeyCode.RightArrow))
         {
-            StartCoroutine(MovePlayer(Vector3.right));
+            if (!isMoving) StartCoroutine(MovePlayer(Vector3.right));
         }
-        if (Input.GetKeyDown(KeyCode.LeftArrow) && !isMoving)
+        if (Input.GetKeyDown(KeyCode.LeftArrow))
         {
-            StartCoroutine(MovePlayer(Vector3.left));
+            if (!isMoving) StartCoroutine(MovePlayer(Vector3.left));
         }
     }
 
