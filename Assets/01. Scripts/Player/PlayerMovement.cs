@@ -52,4 +52,12 @@ public class PlayerMovement : MonoBehaviour
 
         isMoving = false;
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.CompareTag("Enemy"))
+        {
+
+        }
+    }
 }

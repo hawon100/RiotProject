@@ -20,31 +20,37 @@ public class EnemyMovement : MonoBehaviour
 
     private void Update()
     {
-        Move();
+        LookAt();
     }
 
-    private void Move()
+    private void LookAt()
     {
         targetPos = new Vector3(target.position.x, transform.position.y, target.position.z);
         transform.LookAt(targetPos);
-        //if (!isMove) agent.SetDestination(target.position);
-        //else if (isMove) agent.SetDestination(transform.position);
-
     }
 
     private IEnumerator _Move()
     {
         while (true)
         {
-            agent.SetDestination(target.position);
+            if(!isMove)
+            {
+                agent.SetDestination(target.position);
 
-            yield return new WaitForSeconds(1f);
+                yield return new WaitForSeconds(1f);
 
-            agent.SetDestination(transform.position);
+                agent.SetDestination(transform.position);
 
-            yield return new WaitForSeconds(1f);
+                yield return new WaitForSeconds(1f);
 
-            num++;
+                num++;
+            }
+            if(isMove)
+            {
+                agent.SetDestination(transform.position);
+
+                yield return null;
+            }
         }
     }
 
