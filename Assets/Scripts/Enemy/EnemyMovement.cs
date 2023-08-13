@@ -1,72 +1,80 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class EnemyMovement : MonoBehaviour
+public class EnemyMovement : EnemyController
 {
     public NavMeshAgent agent;
     public Transform target;
     public Vector3 targetPos;
-    public int num = 0;
-    bool isMove;
+    public bool isMove;
 
-    private void Start()
+    void Start()
     {
-        isMove = false;
-
-        StartCoroutine(_Move());
+        isMove = true;
+        StartCoroutine(Move());
     }
 
-    private void Update()
+    void Update()
     {
         LookAt();
+        MoveAnim();
+        MoveJudge();
     }
 
-    private void LookAt()
+    void MoveJudge()
+    {
+        if (!agent.pathPending)
+        {
+            agent.SetDestination(target.position);
+            isMove = true;
+        }
+
+        if(agent.remainingDistance <= 5f)
+        {
+            isMove = false;
+            agent.autoRepath = true;
+        }
+    }
+
+    void MoveAnim()
+    {
+        if (isMove)
+        {
+            anim.SetBool("isMove", true);
+            anim.SetBool("isAttack", false);
+        }
+        if (!isMove)
+        {
+            anim.SetBool("isMove", false);
+            anim.SetBool("isAttack", true);
+        }
+    }
+    
+    void LookAt()
     {
         targetPos = new Vector3(target.position.x, transform.position.y, target.position.z);
         transform.LookAt(targetPos);
     }
 
-    private IEnumerator _Move()
+    IEnumerator Move()
     {
         while (true)
         {
-            if(!isMove)
+            if (isMove)
             {
-                agent.SetDestination(target.position);
-
-                yield return new WaitForSeconds(1f);
-
-                agent.SetDestination(transform.position);
-
-                yield return new WaitForSeconds(1f);
-
-                num++;
-            }
-            if(isMove)
-            {
-                agent.SetDestination(transform.position);
+                if (agent.isStopped) agent.isStopped = false;
 
                 yield return null;
             }
-        }
-    }
+            if (!isMove)
+            {
+                if (!agent.isStopped) agent.isStopped = true;
 
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.CompareTag("Player"))
-        {
-            isMove = true;
-        }
-    }
-
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.CompareTag("Player"))
-        {
-            isMove = false;
+                yield return null;
+            }
         }
     }
 }

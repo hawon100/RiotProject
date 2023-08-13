@@ -4,9 +4,20 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
+    static public PlayerMovement Instance { get; private set; }
+
     public bool isMoving;
+    public bool isObstacleUp;
+    public bool isObstacleDown;
+    public bool isObstacleRight;
+    public bool isObstacleLeft;
     public Vector3 origPos, targetPos;
     public float timeToMove = 0.2f;
+
+    private void Start()
+    {
+        Instance = this;
+    }
 
     private void Update()
     {
@@ -17,19 +28,19 @@ public class PlayerMovement : MonoBehaviour
     {
         if(Input.GetKeyDown(KeyCode.UpArrow))
         {
-            if(!isMoving) StartCoroutine(MovePlayer(Vector3.forward));
+            if(!isMoving && !isObstacleUp) StartCoroutine(MovePlayer(Vector3.forward));
         }
         if (Input.GetKeyDown(KeyCode.DownArrow))
         {
-            if (!isMoving) StartCoroutine(MovePlayer(Vector3.back));
+            if (!isMoving && !isObstacleDown) StartCoroutine(MovePlayer(Vector3.back));
         }
         if (Input.GetKeyDown(KeyCode.RightArrow))
         {
-            if (!isMoving) StartCoroutine(MovePlayer(Vector3.right));
+            if (!isMoving && !isObstacleRight) StartCoroutine(MovePlayer(Vector3.right));
         }
         if (Input.GetKeyDown(KeyCode.LeftArrow))
         {
-            if (!isMoving) StartCoroutine(MovePlayer(Vector3.left));
+            if (!isMoving && !isObstacleLeft) StartCoroutine(MovePlayer(Vector3.left));
         }
     }
 
@@ -51,13 +62,5 @@ public class PlayerMovement : MonoBehaviour
         transform.position = targetPos;
 
         isMoving = false;
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if(other.CompareTag("Enemy"))
-        {
-
-        }
     }
 }
