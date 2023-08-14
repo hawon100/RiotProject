@@ -4,8 +4,9 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class EnemyMovement : EnemyController
+public class EnemyMovement : MonoBehaviour
 {
+    public Animator anim;
     public NavMeshAgent agent;
     public Transform target;
     public Vector3 targetPos;
@@ -35,7 +36,6 @@ public class EnemyMovement : EnemyController
         if(agent.remainingDistance <= 5f)
         {
             isMove = false;
-            agent.autoRepath = true;
         }
     }
 

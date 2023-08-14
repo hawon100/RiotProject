@@ -1,8 +1,9 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerMovement : MonoBehaviour
+public class PlayerMovement : PlayerController
 {
     static public PlayerMovement Instance { get; private set; }
 
@@ -23,25 +24,70 @@ public class PlayerMovement : MonoBehaviour
     {
         Move();
     }
-    
+
     private void Move()
     {
-        if(Input.GetKeyDown(KeyCode.UpArrow))
+        if (Input.GetKeyDown(KeyCode.UpArrow))
         {
-            if(!isMoving && !isObstacleUp) StartCoroutine(MovePlayer(Vector3.forward));
+            RookPlayer(Vector3.forward);
+
+            if (isObstacleUp)
+            {
+                anim.SetTrigger("doAttack");
+            }
+            
+            if (!isMoving && !isObstacleUp)
+            {
+                StartCoroutine(MovePlayer(Vector3.forward));
+            }
         }
         if (Input.GetKeyDown(KeyCode.DownArrow))
         {
-            if (!isMoving && !isObstacleDown) StartCoroutine(MovePlayer(Vector3.back));
+            RookPlayer(Vector3.back);
+
+            if (isObstacleDown)
+            {
+                anim.SetTrigger("doAttack");
+            }
+                
+            if (!isMoving && !isObstacleDown)
+            {
+                StartCoroutine(MovePlayer(Vector3.back));
+            }
         }
         if (Input.GetKeyDown(KeyCode.RightArrow))
         {
-            if (!isMoving && !isObstacleRight) StartCoroutine(MovePlayer(Vector3.right));
+            RookPlayer(Vector3.right);
+
+            if (isObstacleRight)
+            {
+                anim.SetTrigger("doAttack");
+            }
+            
+            if (!isMoving && !isObstacleRight)
+            {
+                StartCoroutine(MovePlayer(Vector3.right));
+            }
         }
         if (Input.GetKeyDown(KeyCode.LeftArrow))
         {
-            if (!isMoving && !isObstacleLeft) StartCoroutine(MovePlayer(Vector3.left));
+            RookPlayer(Vector3.left);
+
+            if (isObstacleLeft)
+            {
+                anim.SetTrigger("doAttack");
+            }
+
+            if (!isMoving && !isObstacleLeft)
+            {
+                StartCoroutine(MovePlayer(Vector3.left));
+            }
         }
+    }
+
+    void RookPlayer(Vector3 pos)
+    {
+        transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(pos), 1f);
     }
 
     private IEnumerator MovePlayer(Vector3 direction)
@@ -54,12 +100,14 @@ public class PlayerMovement : MonoBehaviour
 
         while(elapsedTime < timeToMove)
         {
+            anim.SetBool("isDash", true);
             transform.position = Vector3.Lerp(origPos, targetPos, (elapsedTime / timeToMove));
             elapsedTime += Time.deltaTime;
             yield return null;
         }
 
         transform.position = targetPos;
+        anim.SetBool("isDash", false);
 
         isMoving = false;
     }
