@@ -4,59 +4,104 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class EnemyMovement : MonoBehaviour
+public class EnemyMovement : Enemy
 {
-    public Animator anim;
-    public NavMeshAgent agent;
-    public Transform target;
-    public Vector3 targetPos;
-    public bool isMove;
+    [SerializeField] private Transform _target;
+    [SerializeField] private Vector3 _targetPos;
+
+    Rigidbody _rigid;
+    BoxCollider _box;
 
     void Start()
     {
-        isMove = true;
+        _box = GetComponent<BoxCollider>();
+        _rigid = GetComponent<Rigidbody>();
+        _anim = GetComponent<Animator>();
+        _agent = GetComponent<NavMeshAgent>();
         StartCoroutine(Move());
     }
 
     void Update()
     {
+        _hpbar.value = _info.HP;
         LookAt();
-        MoveAnim();
         MoveJudge();
+        TypeMove();
+
+        if (_info.HP <= 0)
+        {
+            _box.enabled = false;
+
+            if (_anim.GetCurrentAnimatorStateInfo(0).IsName("death") && _anim.GetCurrentAnimatorStateInfo(0).normalizedTime < 1f)
+            {
+                StartCoroutine(Death());
+            }
+        }
+    }
+
+    private IEnumerator Death()
+    {
+        yield return new WaitForSeconds(2f);
+
+        gameObject.SetActive(false);
+    }
+
+    void TypeMove()
+    {
+        switch (_info._type)
+        {
+            case Define.EnemyType.Bat: BatAnim(); break;
+            case Define.EnemyType.Skeleton: break;
+            case Define.EnemyType.Slime: break;
+        }
     }
 
     void MoveJudge()
     {
-        if (!agent.pathPending)
+        if (!_agent.pathPending)
         {
-            agent.SetDestination(target.position);
+            _agent.SetDestination(_target.position);
             isMove = true;
         }
 
-        if(agent.remainingDistance <= 5f)
+        if(_agent.remainingDistance <= 5f)
         {
             isMove = false;
         }
     }
 
-    void MoveAnim()
+    void BatAnim()
     {
-        if (isMove)
+         _anim.SetBool("isHit", false);
+
+        if(isHit == true)
         {
-            anim.SetBool("isMove", true);
-            anim.SetBool("isAttack", false);
+            _anim.SetBool("isHit", true);
+            _anim.SetBool("isMove", false);
+            _anim.SetBool("isAttack", false);
+
+            if (_anim.GetCurrentAnimatorStateInfo(0).IsName("gethit") && _anim.GetCurrentAnimatorStateInfo(0).normalizedTime < 1f)
+            {
+                isHit = false;
+            }
         }
-        if (!isMove)
+        if (isMove && !isHit)
         {
-            anim.SetBool("isMove", false);
-            anim.SetBool("isAttack", true);
+            _anim.SetBool("isMove", true);
+            _anim.SetBool("isAttack", false);
         }
+        if (!isMove && !isHit)
+        {
+            _anim.SetBool("isMove", false);
+            _anim.SetBool("isAttack", true);
+        }
+
     }
-    
+
     void LookAt()
     {
-        targetPos = new Vector3(target.position.x, transform.position.y, target.position.z);
-        transform.LookAt(targetPos);
+        _targetPos = new Vector3(_target.position.x, transform.position.y, _target.position.z);
+        transform.LookAt(_targetPos);
     }
 
     IEnumerator Move()
@@ -65,13 +110,13 @@ public class EnemyMovement : MonoBehaviour
         {
             if (isMove)
             {
-                if (agent.isStopped) agent.isStopped = false;
+                if (_agent.isStopped) _agent.isStopped = false;
 
                 yield return null;
             }
             if (!isMove)
             {
-                if (!agent.isStopped) agent.isStopped = true;
+                if (!_agent.isStopped) _agent.isStopped = true;
 
                 yield return null;
             }

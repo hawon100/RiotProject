@@ -6,17 +6,35 @@ public class PlayerJudgement : MonoBehaviour
 {
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Enemy") && this.CompareTag("RangeUp")) PlayerMovement.Instance.isObstacleUp = true;
-        if (other.CompareTag("Enemy") && this.CompareTag("RangeDown")) PlayerMovement.Instance.isObstacleDown = true;
-        if (other.CompareTag("Enemy") && this.CompareTag("RangeRight")) PlayerMovement.Instance.isObstacleRight = true;
-        if (other.CompareTag("Enemy") && this.CompareTag("RangeLeft")) PlayerMovement.Instance.isObstacleLeft = true;
+        if (other.CompareTag("Enemy"))
+        {
+            Enemy enemy = other.GetComponent<Enemy>();
+            if (PlayerMovement.Instance.isUnderAttack == true)
+            {
+                enemy.OnHit(PlayerMovement.Instance._damage);
+                PlayerMovement.Instance.isUnderAttack = false;
+            }
+        }
+        if (other.CompareTag("Enemy") && this.CompareTag("RangeUp")) PlayerMovement.Instance._isObstacleUp = true;
+        if (other.CompareTag("Enemy") && this.CompareTag("RangeDown")) PlayerMovement.Instance._isObstacleDown = true;
+        if (other.CompareTag("Enemy") && this.CompareTag("RangeRight")) PlayerMovement.Instance._isObstacleRight = true;
+        if (other.CompareTag("Enemy") && this.CompareTag("RangeLeft")) PlayerMovement.Instance._isObstacleLeft = true;
     }
 
-    private void OnTriggerExit(Collider other)
+    private void OnTriggerStay(Collider other)
     {
-        if (other.CompareTag("Enemy") && this.CompareTag("RangeUp")) PlayerMovement.Instance.isObstacleUp = false;
-        if (other.CompareTag("Enemy") && this.CompareTag("RangeDown")) PlayerMovement.Instance.isObstacleDown = false;
-        if (other.CompareTag("Enemy") && this.CompareTag("RangeRight")) PlayerMovement.Instance.isObstacleRight = false;
-        if (other.CompareTag("Enemy") && this.CompareTag("RangeLeft")) PlayerMovement.Instance.isObstacleLeft = false;
+        if (other.CompareTag("Enemy"))
+        {
+            Enemy enemy = other.GetComponent<Enemy>();
+            if (PlayerMovement.Instance.isUnderAttack == true)
+            {
+                enemy.OnHit(PlayerMovement.Instance._damage);
+                PlayerMovement.Instance.isUnderAttack = false;
+            }
+        }
+        if (other.CompareTag("Enemy") && this.CompareTag("RangeUp")) PlayerMovement.Instance._isObstacleUp = true;
+        if (other.CompareTag("Enemy") && this.CompareTag("RangeDown")) PlayerMovement.Instance._isObstacleDown = true;
+        if (other.CompareTag("Enemy") && this.CompareTag("RangeRight")) PlayerMovement.Instance._isObstacleRight = true;
+        if (other.CompareTag("Enemy") && this.CompareTag("RangeLeft")) PlayerMovement.Instance._isObstacleLeft = true;
     }
 }
