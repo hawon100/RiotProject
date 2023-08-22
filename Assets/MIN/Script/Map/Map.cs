@@ -6,14 +6,13 @@ using Random = UnityEngine.Random;
 
 public class Map : MonoBehaviour
 {
-    [SerializeField] private GameObject startMap;
     [SerializeField] private GameObject battleMap;
-    [SerializeField] private GameObject voidCube;
     [SerializeField] private Transform group;
     [SerializeField] private Vector2Int maxMapSize;
     [SerializeField] private int mapSize;
     [SerializeField] private int mapCount;
     [SerializeField] private int walkCount;
+    private Vector2Int startPos;
     private Action createMap;
     private int curMapCount;
 
@@ -27,7 +26,6 @@ public class Map : MonoBehaviour
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.T)) { }
-
     }
 
     private void Init()
@@ -36,16 +34,11 @@ public class Map : MonoBehaviour
         group = Instantiate(group, new(0, 0, 0), Quaternion.identity);
 
 
-        Vector2Int startPos = new(Random.Range(0, maxMapSize.x), Random.Range(0, maxMapSize.y));
+        startPos = new(Random.Range(0, maxMapSize.x), Random.Range(0, maxMapSize.y));
+        Debug.Log(startPos);
         MakeTree(new Map_Node(startPos));
 
         createMap?.Invoke();
-
-
-        // for (int i = 0; i < maxMapSize.x; i++)
-        //     for (int j = 0; j < maxMapSize.y; j++)
-        //         if (!map[i, j]) Instantiate(voidCube, new Vector3Int(i * mapSize, 0, j * mapSize), Quaternion.identity, group);
-
     }
 
     private void MakeTree(Map_Node curNode)
@@ -69,8 +62,8 @@ public class Map : MonoBehaviour
         }
 
         map[curNode.curPos.x, curNode.curPos.y] = true;
-        var temp = Instantiate(battleMap, new Vector3Int(curNode.curPos.x * mapSize, 0, curNode.curPos.y * mapSize),
-                    Quaternion.identity, group).GetComponent<CreateMap>();
+        Vector3Int curPos = new ((curNode.curPos.x - startPos.x) * mapSize, 0, (curNode.curPos.y - startPos.y) * mapSize);
+        var temp = Instantiate(battleMap, curPos, Quaternion.identity, group).GetComponent<CreateMap>();
         for (int i = 0; i < 4; i++)
         {
             if (curNode.openDoor[i] && !temp.openDoor[i]) temp.openDoor[i] = true;

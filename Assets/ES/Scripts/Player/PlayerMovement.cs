@@ -109,7 +109,7 @@ public class PlayerMovement : MonoBehaviour
 
         float elapsedTime = 0;
         origPos = transform.position;
-        targetPos = origPos + direction * 5f;
+        targetPos = origPos + direction;// * 5f
 
         while (elapsedTime < timeToMove)
         {
