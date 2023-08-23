@@ -10,13 +10,13 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private Animator anim;
     public int _damage;
 
-    public bool isMoving = true;
-    public bool isUnderAttack = false;
+    [HideInInspector] public bool isMoving = true;
+    [HideInInspector] public bool isUnderAttack = false;
 
-    public bool _isObstacleUp;
-    public bool _isObstacleDown;
-    public bool _isObstacleRight;
-    public bool _isObstacleLeft;
+    [HideInInspector] public bool _isObstacleUp;
+    [HideInInspector] public bool _isObstacleDown;
+    [HideInInspector] public bool _isObstacleRight;
+    [HideInInspector] public bool _isObstacleLeft;
     public Vector3 origPos, targetPos;
     public float timeToMove = 0.2f;
 
