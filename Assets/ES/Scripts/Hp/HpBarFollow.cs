@@ -5,23 +5,19 @@ using UnityEngine;
 public class HpBarFollow : MonoBehaviour
 {
     public GameObject _hpbar;
-
     GameObject _obj;
 
-    Camera m_cam = null;
+    Canvas _canvas;
+    Camera _cam;
 
-    private void Start()
+    private void Awake()
     {
-        m_cam = Camera.main;
-
-        GameObject t_object = GameObject.FindGameObjectWithTag("Enemy");
-        _obj = t_object;
-        _hpbar.transform.position = t_object.transform.position;
-        _hpbar.transform.rotation = Quaternion.identity;
+        _obj = this.transform.parent.gameObject;
+        _cam = Camera.main;
     }
 
     private void Update()
     {
-        _hpbar.transform.position = m_cam.WorldToScreenPoint(_obj.transform.position + new Vector3(0f, 2.5f, 0f));
+        _hpbar.transform.position = _cam.WorldToScreenPoint(_obj.transform.position + new Vector3(0f, 2.5f, 0f));
     }
 }

@@ -23,6 +23,7 @@ public class Enemy : MonoBehaviour
     [SerializeField] protected bool isMove = true;
     [SerializeField] protected bool isHit = false;
     [SerializeField] protected Slider _hpbar;
+    [SerializeField] public Transform _target;
 
     public void OnHit(int dmg)
     {

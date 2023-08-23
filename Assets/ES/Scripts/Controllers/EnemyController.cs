@@ -4,10 +4,9 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class EnemyMovement : Enemy
+public class EnemyController : Enemy
 {
-    [SerializeField] private Transform _target;
-    [SerializeField] private Vector3 _targetPos;
+    private Vector3 _targetPos;
 
     Rigidbody _rigid;
     BoxCollider _box;
@@ -24,7 +23,9 @@ public class EnemyMovement : Enemy
     void Update()
     {
         _hpbar.value = _info.HP;
-        LookAt();
+        
+        if(gameObject.activeSelf) LookAt();
+
         MoveJudge();
         TypeMove();
 
@@ -43,7 +44,7 @@ public class EnemyMovement : Enemy
     {
         yield return new WaitForSeconds(2f);
 
-        gameObject.SetActive(false);
+        Managers.Resource.Destroy(gameObject);
     }
 
     void TypeMove()
