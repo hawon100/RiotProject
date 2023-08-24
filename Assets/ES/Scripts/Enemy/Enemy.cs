@@ -23,6 +23,7 @@ public class Enemy : MonoBehaviour
     [SerializeField] protected bool isMove = true;
     [SerializeField] protected bool isHit = false;
     [SerializeField] protected Slider _hpbar;
+    [SerializeField] public Transform _target;
 
     public void OnHit(int dmg)
     {
@@ -36,7 +37,7 @@ public class Enemy : MonoBehaviour
             isMove = false;
             isHit = false;
 
-            PlayerMovement.Instance.isUnderAttack = false;
+            PlayerController.Instance.isUnderAttack = false;
             _anim.SetBool("isDead", true);
         }
     }

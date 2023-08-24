@@ -4,79 +4,124 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    [SerializeField] float _speed = 10.0f;
+    static public PlayerController Instance { get; private set; }
 
-    Vector3 _destPos;
+    [SerializeField] private Animator anim;
+    public int _damage;
 
-    void Start()
+    public bool isMoving = false;
+    public bool isUnderAttack = false;
+
+    public bool _isObstacleUp;
+    public bool _isObstacleDown;
+    public bool _isObstacleRight;
+    public bool _isObstacleLeft;
+    public Vector3 origPos, targetPos;
+    public float timeToMove = 0.2f;
+
+    private void Start()
     {
-        Managers.Input.MouseAction -= OnMouseClicked;
-        Managers.Input.MouseAction += OnMouseClicked;
+        Instance = this;
+        isMoving = false;
     }
 
-    public enum PlayerState
+    private void Update()
     {
-        Die,
-        Moving,
-        Idle,
+        Move();
     }
 
-    PlayerState _state = PlayerState.Idle;
-
-    void UpdateDie()
+    private void Move()
     {
-
-    }
-
-    void UpdateMoving()
-    {
-        Vector3 dir = _destPos - transform.position;
-        if (dir.magnitude < 0.0001f)
+        if (Input.GetKeyDown(KeyCode.UpArrow))
         {
-            _state = PlayerState.Idle;
+            RookPlayer(Vector3.forward);
+
+            if (_isObstacleUp)
+            {
+                Attack();
+            }
+            else if (!isMoving && !_isObstacleUp)
+            {
+                StartCoroutine(MovePlayer(Vector3.forward));
+            }
         }
-        else
+        if (Input.GetKeyDown(KeyCode.DownArrow))
         {
-            float moveDist = Mathf.Clamp(_speed * Time.deltaTime, 0, dir.magnitude);
-            transform.position += dir.normalized * moveDist;
+            RookPlayer(Vector3.back);
 
-            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(dir), 20 * Time.deltaTime);
+            if (_isObstacleDown)
+            {
+                Attack();
+            }
+            else if (!isMoving && !_isObstacleDown)
+            {
+                StartCoroutine(MovePlayer(Vector3.back));
+            }
         }
+        if (Input.GetKeyDown(KeyCode.RightArrow))
+        {
+            RookPlayer(Vector3.right);
 
-        Animator anim = GetComponent<Animator>();
+            if (_isObstacleRight)
+            {
+                Attack();
+            }
+            else if (!isMoving && !_isObstacleRight)
+            {
+                StartCoroutine(MovePlayer(Vector3.right));
+            }
+        }
+        if (Input.GetKeyDown(KeyCode.LeftArrow))
+        {
+            RookPlayer(Vector3.left);
 
-        anim.SetFloat("speed", _speed);
+            if (_isObstacleLeft)
+            {
+                Attack();
+            }
+            else if (!isMoving && !_isObstacleLeft)
+            {
+                StartCoroutine(MovePlayer(Vector3.left));
+            }
+        }
     }
 
-    void UpdateIdle()
+    void Attack()
     {
-        Animator anim = GetComponent<Animator>();
+        anim.SetTrigger("doAttack");
 
-        anim.SetFloat("speed", 0);
+        isUnderAttack = true;
+
+        _isObstacleUp = false;
+        _isObstacleDown = false;
+        _isObstacleRight = false;
+        _isObstacleLeft = false;
     }
 
-    void Update()
+    void RookPlayer(Vector3 pos)
     {
-        switch(_state)
-        {
-            case PlayerState.Die: UpdateDie(); break;
-            case PlayerState.Moving: UpdateMoving(); break;
-            case PlayerState.Idle: UpdateIdle(); break;
-        }
+        transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(pos), 1f);
     }
 
-    void OnMouseClicked(Define.MouseEvent evt)
+    private IEnumerator MovePlayer(Vector3 direction)
     {
-        if (_state == PlayerState.Die) return;
+        isMoving = true;
 
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        Debug.DrawRay(Camera.main.transform.position, ray.direction * 100.0f, Color.red, 1.0f);
+        float elapsedTime = 0;
+        origPos = transform.position;
+        targetPos = origPos + direction;// * 5f
 
-        RaycastHit hit;
-        if(Physics.Raycast(ray, out hit, 100.0f, LayerMask.GetMask("Wall")))
+        while (elapsedTime < timeToMove)
         {
-            _destPos = hit.point;
-            _state = PlayerState.Moving;
+            anim.SetBool("isDash", true);
+            transform.position = Vector3.Lerp(origPos, targetPos, (elapsedTime / timeToMove));
+            elapsedTime += Time.deltaTime;
+            yield return null;
         }
+
+        transform.position = targetPos;
+        anim.SetBool("isDash", false);
+
+        isMoving = false;
     }
 }
