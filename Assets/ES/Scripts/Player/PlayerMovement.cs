@@ -8,6 +8,7 @@ public class PlayerMovement : MonoBehaviour
     static public PlayerMovement Instance { get; private set; }
 
     [SerializeField] private Animator anim;
+    [SerializeField] AudioClip test;
     public int _damage;
 
     [HideInInspector] public bool isMoving = true;
@@ -105,6 +106,7 @@ public class PlayerMovement : MonoBehaviour
 
     private IEnumerator MovePlayer(Vector3 direction)
     {
+        Managers.Sound.Play(test, Define.Sound.Effect, 0.5f);
         isMoving = true;
 
         float elapsedTime = 0;
