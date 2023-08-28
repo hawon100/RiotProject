@@ -1,10 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.TextCore.Text;
 
 public class PlayerController : MonoBehaviour
 {
     static public PlayerController Instance { get; private set; }
+    public AudioClip test;
 
     [SerializeField] private Animator anim;
     public int _damage;

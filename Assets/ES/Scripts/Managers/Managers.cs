@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Managers : MonoBehaviour
@@ -14,6 +15,7 @@ public class Managers : MonoBehaviour
     SceneManagerEx _scene = new SceneManagerEx();
     SoundManager _sound = new SoundManager();
     UIManager _ui = new UIManager();
+    public GameManager game;
 
     public static DataManager Data { get { return Instance._data; } }
     public static InputManager Input { get { return Instance._input; } }
@@ -23,7 +25,7 @@ public class Managers : MonoBehaviour
     public static SoundManager Sound { get { return Instance._sound; } }
     public static UIManager UI { get { return Instance._ui; } }
 
-    private void Start()
+    private void Awake()
     {
         Init();
     }
@@ -52,6 +54,7 @@ public class Managers : MonoBehaviour
             s_instance._sound.Init();
         }
     }
+
 
     public static void Clear()
     {

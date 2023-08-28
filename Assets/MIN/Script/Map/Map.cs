@@ -35,7 +35,6 @@ public class Map : MonoBehaviour
 
 
         startPos = new(Random.Range(0, maxMapSize.x), Random.Range(0, maxMapSize.y));
-        Debug.Log(startPos);
         MakeTree(new Map_Node(startPos));
 
         createMap?.Invoke();
