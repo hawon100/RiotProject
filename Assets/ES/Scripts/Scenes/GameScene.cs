@@ -12,7 +12,7 @@ public class GameScene : BaseScene
 
         SceneType = Define.Scene.Game;
 
-        Spawn();
+        //Spawn();
     }
 
     void Spawn()
