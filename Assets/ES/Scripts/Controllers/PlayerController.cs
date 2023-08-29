@@ -21,14 +21,18 @@ public class PlayerController : MonoBehaviour
     public Vector3 origPos, targetPos;
     public float timeToMove = 0.2f;
 
+    TimingManager timingManager;
+
     private void Start()
     {
+        timingManager = FindObjectOfType<TimingManager>();
         Instance = this;
         isMoving = false;
     }
 
     private void Update()
     {
+
         Move();
     }
 
@@ -90,6 +94,7 @@ public class PlayerController : MonoBehaviour
 
     void Attack()
     {
+        timingManager.CheckTiming();
         anim.SetTrigger("doAttack");
 
         isUnderAttack = true;
@@ -108,6 +113,8 @@ public class PlayerController : MonoBehaviour
     private IEnumerator MovePlayer(Vector3 direction)
     {
         isMoving = true;
+
+        timingManager.CheckTiming();
 
         float elapsedTime = 0;
         origPos = transform.position;

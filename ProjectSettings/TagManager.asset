@@ -9,6 +9,7 @@ TagManager:
   - RangeDown
   - RangeRight
   - RangeLeft
+  - Note
   layers:
   - Default
   - TransparentFX

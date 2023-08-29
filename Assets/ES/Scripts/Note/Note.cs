@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Note : MonoBehaviour
 {
@@ -13,6 +14,12 @@ public class Note : MonoBehaviour
 
     [SerializeField] NoteType type = NoteType.None;
     [SerializeField] float noteSpeed = 400f;
+    Image noteImage;
+
+    private void Start()
+    {
+        noteImage = Util.GetOrAddComponent<Image>(gameObject);
+    }
 
     private void Update()
     {
@@ -21,6 +28,11 @@ public class Note : MonoBehaviour
             case NoteType.Left: MoveLeft(); break;
             case NoteType.Right: MoveRight(); break;
         }
+    }
+
+    public void HideNote()
+    {
+        noteImage.enabled = false;
     }
 
     void MoveLeft()
