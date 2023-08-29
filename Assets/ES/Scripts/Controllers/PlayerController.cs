@@ -6,7 +6,7 @@ using UnityEngine.TextCore.Text;
 public class PlayerController : MonoBehaviour
 {
     static public PlayerController Instance { get; private set; }
-    public AudioClip test;
+    public AudioClip moveSound;
 
     [SerializeField] private Animator anim;
     public int _damage;
@@ -108,6 +108,7 @@ public class PlayerController : MonoBehaviour
     private IEnumerator MovePlayer(Vector3 direction)
     {
         isMoving = true;
+        Managers.Sound.Play(moveSound, Define.Sound.Effect);
 
         float elapsedTime = 0;
         origPos = transform.position;
