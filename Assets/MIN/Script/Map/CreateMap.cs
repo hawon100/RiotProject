@@ -136,16 +136,13 @@ public class CreateMap : MonoBehaviour
 
         map = new int[mapSize, mapSize];
 
-        // for (int i = 0; i < openDoor.Count; i++)
-        //     if (openDoor[i])
-
-
-
-
         for (int i = 0; i < repetitionCount; i++)
-        {
             RandomMove(center, walkCount);
-        }
+
+        for (int i = 0; i < openDoor.Count; i++)
+            if (openDoor[i]){
+                CreateHallWay(i, FindBorder(SetDirection(i)));
+            }
 
         leftDown = new((int)transform.position.x - (mapSize - 1) / 2, 0, (int)transform.position.z - (mapSize - 1) / 2);
 
@@ -196,7 +193,10 @@ public class CreateMap : MonoBehaviour
         {
             try
             {
-                Conversion(curPos);
+                if(map[curPos.x, curPos.y] == (int)Map.Wall)
+                    Conversion(curPos);
+
+                curPos += plusPos;
             }
             catch { break; }
         }
