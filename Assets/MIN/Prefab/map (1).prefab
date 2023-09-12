@@ -458,9 +458,11 @@ MonoBehaviour:
   - {fileID: 4366285995769901472}
   gruop: {fileID: 8040965929278777290}
   wall: {fileID: 4189690835450586684, guid: 2c54c2a2cb3e5824dacee6bac3ddf375, type: 3}
-  mapSize: {x: 9, y: 9}
+  boundaryWall: {fileID: 3893560755054686592, guid: 44fa37996d52fe04f8c75ce869ad090f,
+    type: 3}
   repetitionCount: 20
   walkCount: 5
+  mapSize: 0
   openDoor: 00000000
 --- !u!1 &3408138837573264622
 GameObject:
