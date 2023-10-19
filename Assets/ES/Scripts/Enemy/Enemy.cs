@@ -37,7 +37,7 @@ public class Enemy : MonoBehaviour
             isMove = false;
             isHit = false;
 
-            PlayerController.Instance.isUnderAttack = false;
+            Player.Instance.isUnderAttack = false;
             _anim.SetBool("isDead", true);
         }
     }
