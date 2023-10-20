@@ -52,7 +52,7 @@ public abstract class A_Unit : Enemy_Base
             curWayPoint = path[targetIndex];
         }
         Debug.Log("select");
-        yield return StartCoroutine(MoveTo(curWayPoint.pos, 1f));
+        yield return StartCoroutine(MoveTo(curWayPoint.pos, 0.5f));
         isEnd = true;
         yield break;
     }

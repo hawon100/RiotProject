@@ -20,7 +20,8 @@ public class MoveManager : MonoBehaviour
     private int[,] curObjMap;
     private int[,] curMoveMap;
 
-    private void Start() {
+    private void Start()
+    {
         Init();
     }
 
@@ -32,20 +33,18 @@ public class MoveManager : MonoBehaviour
         a_Map._Instance();
     }
 
-    private void Update()
-    {
-        // if (Input.GetKeyDown(KeyCode.T))
-        // {
-        //     for (int i = 0; i < curMoveMap.GetLength(0); i++)
-        //     {
-        //         Debug.Log("-------------------------");
-        //         for (int j = 0; j < curMoveMap.GetLength(1); j++)
-        //             Debug.Log(curMoveMap[i, j]);
+    // public int MoveCheck(Vector2Int curPos, Vector2Int plusPos)
+    // {
+    //     Vector2Int movePos = curPos + plusPos;
 
-        //         Debug.Log("-------------------------");
-        //     }
-        // }
-    }
+    //     if (curGroundMap[movePos.x, movePos.y] != 1) return 1;
+    //     if (curObjMap[movePos.x, movePos.y] != 0)
+    //     {
+    //         //return 1 or 2;
+    //     }
+    //     if (curMoveMap[movePos.x, movePos.y] != 0) return 1;
+        
+    // }
 
     public void MapInit(int[,] _curObjMap, int[,] _curGroundMap)
     {
@@ -59,7 +58,7 @@ public class MoveManager : MonoBehaviour
                 if (curObjMap[i, j] == 1)
                 {
                     curMoveMap[i, j] = 1;
-                    Player.Instance.transform.position = new Vector3(j, 0, curMoveMap.GetLength(0) - i - 1);
+                    Player.Instance.transform.position = new Vector3(i, 0, j);
                 }
 
     }

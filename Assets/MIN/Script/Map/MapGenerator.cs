@@ -52,7 +52,7 @@ public class MapGenerator : MonoBehaviour
         for (int i = 0; i < curGroundData.GetLength(0); i++) for (int j = 0; j < curGroundData.GetLength(1); j++)
             {
                 if (curGroundData[i, j] == 0) continue; // void
-                Instantiate(mapTile[curGroundData[i, j] - 1], new Vector3(j, -1, curGroundData.GetLength(0) - i - 1), Quaternion.identity, transform);
+                Instantiate(mapTile[curGroundData[i, j] - 1], new Vector3(i, -1, j), Quaternion.identity, transform);
                 totalData[i, j] = 1;
             }
 
@@ -69,7 +69,7 @@ public class MapGenerator : MonoBehaviour
                         }
                 }
                 else { Debug.Log($"{i} {j}"); totalData[i, j] = 0; }
-                Instantiate(mapObj[curObjData[i, j] - 1], new Vector3(j, 0, curGroundData.GetLength(0) - i - 1), Quaternion.identity, transform);
+                Instantiate(mapObj[curObjData[i, j] - 1], new Vector3(i, 0, j), Quaternion.identity, transform);
             }
 
         MoveManager.Instance.MapInit(curObjData, curGroundData);
@@ -84,7 +84,7 @@ public class MapGenerator : MonoBehaviour
         //Debug.Log($"spawnMap {spawnMap.GetLength(0)} {spawnMap.GetLength(1)}");
 
         for (int i = 0; i < curMap.GetLength(0); i++) for (int j = 0; j < curMap.GetLength(1); j++)
-                if (curMap[i, j] == 1) spawnPos.Add(new(j, curMap.GetLength(0) - i - 1));
+                if (curMap[i, j] == 1) spawnPos.Add(new(i, j));
 
         for(int i = 0; i < enemyCount; i++){
             int ranPos = Random.Range(0, spawnPos.Count);
