@@ -50,11 +50,12 @@ public class A_Map : MonoBehaviour
         for (int i = -1; i <= 1; i++) for (int j = -1; j <= 1; j++)
             {
                 if (i == 0 && j == 0) continue;
+                if(Mathf.Abs(i + j) != 1) continue;
 
                 int x = node.pos.x + i;
-                int y = node.pos.y + j;
+                int z = node.pos.z + j;
 
-                try { node_List.Add(Instance.a_Node[x, y]); }
+                try{ node_List.Add(Instance.a_Node[x, z]); }
                 catch { continue; }
             }
         return node_List;

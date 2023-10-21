@@ -36,6 +36,7 @@ public class TimingManager : MonoBehaviour
                     boxNoteList_1.RemoveAt(i);
                     Debug.Log("Hit" + x);
                     return;
+                    
                 }
             }
         }

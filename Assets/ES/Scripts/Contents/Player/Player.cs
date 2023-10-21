@@ -11,6 +11,7 @@ public class Player : MonoBehaviour
     public AudioClip moveSound;
 
     [SerializeField] private Animator anim;
+    private int[,] curPos;
     public int _damage;
 
     public bool isMoving = false;
@@ -29,6 +30,10 @@ public class Player : MonoBehaviour
         timingManager = FindObjectOfType<TimingManager>();
         _instance = this;
         isMoving = false;
+    }
+
+    public void Init(int[,] _curPos){
+        curPos = _curPos;
     }
 
     private void Update()
