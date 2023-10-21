@@ -11,7 +11,7 @@ public class PlayerJudgement : MonoBehaviour
             Enemy enemy = other.GetComponent<Enemy>();
             if (Player.Instance.isUnderAttack == true)
             {
-                enemy.OnHit(Player.Instance._damage);
+                enemy.OnDamage(Player.Instance._damage);
                 Player.Instance.isUnderAttack = false;
             }
         }
@@ -28,7 +28,7 @@ public class PlayerJudgement : MonoBehaviour
             Enemy enemy = other.GetComponent<Enemy>();
             if (Player.Instance.isUnderAttack == true)
             {
-                enemy.OnHit(Player.Instance._damage);
+                enemy.OnDamage(Player.Instance._damage);
                 Player.Instance.isUnderAttack = false;
             }
         }
