@@ -11,7 +11,7 @@ public class Player : MonoBehaviour
     public AudioClip moveSound;
 
     [SerializeField] private Animator anim;
-    private int[,] curPos;
+    public Vector2Int curPos;
     public int _damage;
 
     public bool isMoving = false;
@@ -26,14 +26,11 @@ public class Player : MonoBehaviour
 
     TimingManager timingManager;
 
-    private void Start() {
+    private void Start()
+    {
         timingManager = FindObjectOfType<TimingManager>();
         _instance = this;
         isMoving = false;
-    }
-
-    public void Init(int[,] _curPos){
-        curPos = _curPos;
     }
 
     private void Update()
@@ -43,57 +40,30 @@ public class Player : MonoBehaviour
 
     private void Move()
     {
-        if (Input.GetKeyDown(KeyCode.UpArrow))
-        {
-            RookPlayer(Vector3.forward);
+        if (Input.GetKeyDown(KeyCode.UpArrow)) CheckMove(Vector3.forward);
+        if (Input.GetKeyDown(KeyCode.DownArrow)) CheckMove(Vector3.back);
+        if (Input.GetKeyDown(KeyCode.RightArrow)) CheckMove(Vector3.right);
+        if (Input.GetKeyDown(KeyCode.LeftArrow)) CheckMove(Vector3.left);
+    }
 
-            if (_isObstacleUp)
-            {
-                Attack();
-            }
-            else if (!isMoving && !_isObstacleUp)
-            {
-                StartCoroutine(MovePlayer(Vector3.forward));
-            }
-        }
-        if (Input.GetKeyDown(KeyCode.DownArrow))
-        {
-            RookPlayer(Vector3.back);
+    private void CheckMove(Vector3 movePos)
+    {
+        Vector2Int plusPos = Vector2Int.zero;
 
-            if (_isObstacleDown)
-            {
-                Attack();
-            }
-            else if (!isMoving && !_isObstacleDown)
-            {
-                StartCoroutine(MovePlayer(Vector3.back));
-            }
-        }
-        if (Input.GetKeyDown(KeyCode.RightArrow))
-        {
-            RookPlayer(Vector3.right);
+        if (movePos == Vector3.forward) plusPos = Vector2Int.up;
+        else if (movePos == Vector3.back) plusPos = Vector2Int.down;
+        else if (movePos == Vector3.right) plusPos = Vector2Int.right;
+        else if (movePos == Vector3.left) plusPos = Vector2Int.left;
 
-            if (_isObstacleRight)
-            {
-                Attack();
-            }
-            else if (!isMoving && !_isObstacleRight)
-            {
-                StartCoroutine(MovePlayer(Vector3.right));
-            }
-        }
-        if (Input.GetKeyDown(KeyCode.LeftArrow))
-        {
-            RookPlayer(Vector3.left);
+        RookPlayer(movePos);
 
-            if (_isObstacleLeft)
-            {
-                Attack();
-            }
-            else if (!isMoving && !_isObstacleLeft)
-            {
-                StartCoroutine(MovePlayer(Vector3.left));
-            }
+        int action = MoveManager.Instance.MoveCheck(curPos, plusPos);
+        Debug.Log($"{action} {curPos} {plusPos}");
+        switch (action)
+        {
+            case 0: curPos = curPos + plusPos; StartCoroutine(MovePlayer(movePos)); break;
+            case 1: break;
+            case 2: /*attack*/ break;
         }
     }
 

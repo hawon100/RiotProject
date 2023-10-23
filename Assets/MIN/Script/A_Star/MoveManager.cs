@@ -33,18 +33,32 @@ public class MoveManager : MonoBehaviour
         a_Map._Instance();
     }
 
-    // public int MoveCheck(Vector2Int curPos, Vector2Int plusPos)
-    // {
-    //     Vector2Int movePos = curPos + plusPos;
+    /// <summary>
+    /// return 0 == move, 1 == can't move, 2 == attack
+    /// </summary>
+    /// <param name="curPos"></param>
+    /// <param name="plusPos"></param>
+    /// <returns></returns>
+    public int MoveCheck(Vector2Int curPos, Vector2Int plusPos)
+    {
+        Vector2Int movePos = curPos + plusPos;
 
-    //     if (curGroundMap[movePos.x, movePos.y] != 1) return 1;
-    //     if (curObjMap[movePos.x, movePos.y] != 0)
-    //     {
-    //         //return 1 or 2;
-    //     }
-    //     if (curMoveMap[movePos.x, movePos.y] != 0) return 1;
+        if (curGroundMap[movePos.x, movePos.y] != 1) return 1;
+        if (curObjMap[movePos.x, movePos.y] != 0)
+        {
+            //체크 후 공격, 이동불가 리턴
+            //return 1 or 2;
+        }
+        if (curMoveMap[movePos.x, movePos.y] != 0){
+            //공격
+            return 2;
+        }
         
-    // }
+        curMoveMap[movePos.x, movePos.y] = curMoveMap[curPos.x, curPos.y];
+        curMoveMap[curPos.x, curPos.y] = 0;
+
+        return 0;
+    }
 
     public void MapInit(int[,] _curObjMap, int[,] _curGroundMap)
     {
@@ -59,6 +73,7 @@ public class MoveManager : MonoBehaviour
                 {
                     curMoveMap[i, j] = 1;
                     Player.Instance.transform.position = new Vector3(i, 0, j);
+                    Player.Instance.curPos = new Vector2Int(i, j);
                 }
 
     }
