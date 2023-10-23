@@ -3,16 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.TextCore.Text;
 
-public class Player : MonoBehaviour
+public class Player : Mob_Base
 {
     private static Player _instance = null;
     public static Player Instance => _instance;
 
     public AudioClip moveSound;
-
-    [SerializeField] private Animator anim;
-    public Vector2Int curPos;
-    public int _damage;
 
     public bool isMoving = false;
     public bool isUnderAttack = false;
@@ -26,8 +22,10 @@ public class Player : MonoBehaviour
 
     TimingManager timingManager;
 
-    private void Start()
+    protected override void Start()
     {
+        base.Start();
+
         timingManager = FindObjectOfType<TimingManager>();
         _instance = this;
         isMoving = false;
@@ -58,7 +56,7 @@ public class Player : MonoBehaviour
         RookPlayer(movePos);
 
         int action = MoveManager.Instance.MoveCheck(curPos, plusPos);
-        Debug.Log($"{action} {curPos} {plusPos}");
+        Debug.Log($"{action}");
         switch (action)
         {
             case 0: curPos = curPos + plusPos; StartCoroutine(MovePlayer(movePos)); break;
@@ -108,5 +106,10 @@ public class Player : MonoBehaviour
         anim.SetBool("isDash", false);
 
         isMoving = false;
+    }
+
+    protected override void DieDestroy()
+    {
+        Debug.Log("Die");
     }
 }
