@@ -139,7 +139,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &23151814
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -819,9 +819,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba8552f1560ec75408b52f85d334535e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  HP: 0
+  maxHP: 0
+  damage: 0
+  curPos: {x: 0, y: 0}
   moveSound: {fileID: 8300000, guid: 1780f53627d9f864ab8451655bd6ce20, type: 3}
-  anim: {fileID: 868337175}
-  _damage: 0
   isMoving: 0
   isUnderAttack: 0
   _isObstacleUp: 0

@@ -78,7 +78,7 @@ public class MapGenerator : MonoBehaviour
 
     private void Spawn(int[,] curMap)
     {
-        int[,] spawnMap = new int[curMap.GetLength(0), curMap.GetLength(1)];
+        Mob_Base[,] spawnMap = new Mob_Base[curMap.GetLength(0), curMap.GetLength(1)];
         List<Vector2Int> spawnPos = new();
         
         //Debug.Log($"spawnMap {spawnMap.GetLength(0)} {spawnMap.GetLength(1)}");
@@ -89,8 +89,9 @@ public class MapGenerator : MonoBehaviour
         for(int i = 0; i < enemyCount; i++){
             int ranPos = Random.Range(0, spawnPos.Count);
             //Debug.Log($"spawnPos {spawnPos[ranPos]}");
-            spawnMap[spawnPos[ranPos].x, spawnPos[ranPos].y] = 1;
-            Instantiate(enemy, new Vector3(spawnPos[ranPos].x, 0, spawnPos[ranPos].y), Quaternion.identity);
+            var temp = Instantiate(enemy, new Vector3(spawnPos[ranPos].x, 0, spawnPos[ranPos].y), 
+            Quaternion.identity).GetComponent<Mob_Base>();
+            spawnMap[spawnPos[ranPos].x, spawnPos[ranPos].y] = temp;
             spawnPos.Remove(spawnPos[ranPos]);
         }
 
