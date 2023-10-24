@@ -83,7 +83,7 @@ public class MoveManager : MonoBehaviour
         for (int i = 0; i < spawnMap.GetLength(0); i++)
             for (int j = 0; j < spawnMap.GetLength(1); j++)
             {
-                
+                if (spawnMap[i, j] != null) curMoveMap[i, j] = 2;
             }
 
         a_Map.InitMoveMap(curMoveMap);
