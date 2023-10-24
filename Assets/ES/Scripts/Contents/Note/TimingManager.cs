@@ -20,7 +20,7 @@ public class TimingManager : MonoBehaviour
         }
     }
 
-    public void CheckTiming()
+    public bool CheckTiming()
     {
         for(int i = 0; i < boxNoteList_0.Count; i++)
         {
@@ -35,11 +35,12 @@ public class TimingManager : MonoBehaviour
                     boxNoteList_1[i].GetOrAddComponent<Note>().HideNote();
                     boxNoteList_1.RemoveAt(i);
                     Debug.Log("Hit" + x);
-                    return;
+                    return true;
                     
                 }
             }
         }
         Debug.Log("Miss");
+        return false;
     }
 }

@@ -51,7 +51,6 @@ public class Enemy : MonoBehaviour
     {
         isMove = false;
         isHit = false;
-        Player.Instance.isUnderAttack = false;
         _anim.SetBool("isDead", true);
         _box.enabled = false;
 
