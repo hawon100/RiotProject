@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class GameScene : BaseScene
 {
-    [SerializeField] private Transform _target;
-
     protected override void Init()
     {
         base.Init();
@@ -15,6 +13,6 @@ public class GameScene : BaseScene
 
     public override void Clear()
     {
-
+        
     }
 }

@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.TextCore.Text;
 
 public class Player : MonoBehaviour
 {
@@ -15,20 +14,12 @@ public class Player : MonoBehaviour
     public int _damage;
 
     public bool isMoving = false;
-    public bool isUnderAttack = false;
 
-    public bool _isObstacleUp;
-    public bool _isObstacleDown;
-    public bool _isObstacleRight;
-    public bool _isObstacleLeft;
     public Vector3 origPos, targetPos;
     public float timeToMove = 0.2f;
 
-    TimingManager timingManager;
-
     private void Start()
     {
-        timingManager = FindObjectOfType<TimingManager>();
         _instance = this;
         isMoving = false;
     }
@@ -51,46 +42,33 @@ public class Player : MonoBehaviour
         Vector2Int plusPos = Vector2Int.zero;
 
         if (movePos == Vector3.forward) plusPos = Vector2Int.up;
-        else if (movePos == Vector3.back) plusPos = Vector2Int.down;
-        else if (movePos == Vector3.right) plusPos = Vector2Int.right;
-        else if (movePos == Vector3.left) plusPos = Vector2Int.left;
-
-        RookPlayer(movePos);
-
+        if (movePos == Vector3.back) plusPos = Vector2Int.down;
+        if (movePos == Vector3.right) plusPos = Vector2Int.right;
+        if (movePos == Vector3.left) plusPos = Vector2Int.left;
+        curPos = curPos + plusPos; StartCoroutine(MovePlayer(movePos));
         int action = MoveManager.Instance.MoveCheck(curPos, plusPos);
         Debug.Log($"{action} {curPos} {plusPos}");
         switch (action)
         {
             case 0: curPos = curPos + plusPos; StartCoroutine(MovePlayer(movePos)); break;
             case 1: break;
-            case 2: /*attack*/ break;
+            case 2: break;
         }
     }
 
     void Attack()
     {
-        timingManager.CheckTiming();
+        TimingManager.Instance.CheckTiming();
         anim.SetTrigger("doAttack");
-
-        isUnderAttack = true;
-
-        _isObstacleUp = false;
-        _isObstacleDown = false;
-        _isObstacleRight = false;
-        _isObstacleLeft = false;
-    }
-
-    void RookPlayer(Vector3 pos)
-    {
-        transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(pos), 1f);
     }
 
     private IEnumerator MovePlayer(Vector3 direction)
     {
         isMoving = true;
         Managers.Sound.Play(moveSound, Define.Sound.Effect);
+        transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(direction), 1f);
 
-        timingManager.CheckTiming();
+        TimingManager.Instance.CheckTiming();
 
         float elapsedTime = 0;
         origPos = transform.position;

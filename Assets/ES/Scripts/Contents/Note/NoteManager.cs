@@ -38,6 +38,9 @@ public class NoteManager : MonoBehaviour
             timingManager.boxNoteList_0.Remove(collision.gameObject);
             timingManager.boxNoteList_1.Remove(collision.gameObject);
             Managers.Resource.Destroy(collision.gameObject);
+
+            //Miss
+            Debug.Log("Miss");
         }
     }
 }
