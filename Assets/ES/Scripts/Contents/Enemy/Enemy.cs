@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -19,11 +18,11 @@ public class Enemy : MonoBehaviour
 {
     public Information _info;
     protected Animator _anim;
-    protected NavMeshAgent _agent;
-    [SerializeField] protected bool isMove = true;
-    [SerializeField] protected bool isHit = false;
-    [SerializeField] protected Slider _hpbar;
+    protected NavMeshAgent agent;
+    [SerializeField] private Slider _hpbar;
     [SerializeField] public Transform _target;
+    [SerializeField] private float curAttackDelay;
+    [SerializeField] private float maxAttackDelay;
     private BoxCollider _box;
     private Vector3 _targetPos;
 
@@ -31,33 +30,55 @@ public class Enemy : MonoBehaviour
     {
         _box = GetComponent<BoxCollider>();
         _anim = GetComponent<Animator>();
-        _agent = GetComponent<NavMeshAgent>();
-        StartCoroutine(Move());
+        agent = GetComponent<NavMeshAgent>();
     }
 
     void Update()
     {
-        if (_info._hp <= 0)
-        {
-            HandleDeath();
-        }
+        HandleDeath();
+        HandleMove();
+    }
 
-        UpdateHPBar();
-        MoveJudge();
-        HandleAnimation();
+    void HandleMove()
+    {
+        _targetPos = new Vector3(_target.position.x, transform.position.y, _target.position.z);
+        transform.LookAt(_targetPos);
+        agent.SetDestination(Player.Instance.transform.position);
+
+        if (agent.remainingDistance <= agent.stoppingDistance && !agent.isStopped)
+        {
+            Attack(true);
+        }
+        else
+        {
+            Attack(false);
+        }
+    }
+
+    void Attack(bool isHit)
+    {
+        curAttackDelay += Time.deltaTime;
+        if(curAttackDelay < maxAttackDelay) return;
+        
+        _anim.SetBool("isAttack", isHit);
+
+        curAttackDelay = 0;
     }
 
     void HandleDeath()
     {
-        isMove = false;
-        isHit = false;
-        Player.Instance.isUnderAttack = false;
-        _anim.SetBool("isDead", true);
-        _box.enabled = false;
+        _hpbar.value = _info.HP;
 
-        if (_anim.GetCurrentAnimatorStateInfo(0).IsName("death") && _anim.GetCurrentAnimatorStateInfo(0).normalizedTime < 1f)
+        if (_info._hp <= 0)
         {
-            StartCoroutine(Death());
+            Player.Instance.isUnderAttack = false;
+            _anim.SetBool("isDead", true);
+            _box.enabled = false;
+
+            if (_anim.GetCurrentAnimatorStateInfo(0).IsName("death") && _anim.GetCurrentAnimatorStateInfo(0).normalizedTime < 1f)
+            {
+                StartCoroutine(Death());
+            }
         }
     }
 
@@ -67,79 +88,8 @@ public class Enemy : MonoBehaviour
         Managers.Resource.Destroy(gameObject);
     }
 
-    void UpdateHPBar()
-    {
-        _hpbar.value = _info.HP;
-    }
-
-    void MoveJudge()
-    {
-        _targetPos = new Vector3(_target.position.x, transform.position.y, _target.position.z);
-        transform.LookAt(_targetPos);
-
-        if (!_agent.pathPending)
-        {
-            _agent.SetDestination(_target.position);
-            isMove = true;
-        }
-
-        if (_agent.remainingDistance <= 5f)
-        {
-            isMove = false;
-        }
-    }
-
-    void HandleAnimation()
-    {
-        _anim.SetBool("isHit", false);
-
-        if (isHit)
-        {
-            _anim.SetBool("isHit", true);
-            _anim.SetBool("isMove", false);
-            _anim.SetBool("isAttack", false);
-
-            if (_anim.GetCurrentAnimatorStateInfo(0).IsName("gethit") && _anim.GetCurrentAnimatorStateInfo(0).normalizedTime < 1f)
-            {
-                isHit = false;
-            }
-        }
-        else
-        {
-            if (isMove)
-            {
-                _anim.SetBool("isMove", true);
-                _anim.SetBool("isAttack", false);
-            }
-            else
-            {
-                _anim.SetBool("isMove", false);
-                _anim.SetBool("isAttack", true);
-            }
-        }
-    }
-
-    private IEnumerator Move()
-    {
-        while (true)
-        {
-            if (isMove)
-            {
-                if (_agent.isStopped) _agent.isStopped = false;
-            }
-            else
-            {
-                if (!_agent.isStopped) _agent.isStopped = true;
-            }
-
-            yield return null;
-        }
-    }
-
     public void OnDamage(int dmg)
     {
         _info._hp -= dmg;
-        isMove = false;
-        isHit = true;
     }
 }
