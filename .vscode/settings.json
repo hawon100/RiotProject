@@ -53,5 +53,6 @@
         "Temp/":true
     },
     "omnisharp.enableRoslynAnalyzers": false,
-    "unity-code-snippets.style": "allman"
+    "unity-code-snippets.style": "allman",
+    "dotnet.preferCSharpExtension": true
 }
