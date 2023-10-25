@@ -557,6 +557,7 @@ GameObject:
   - component: {fileID: 4470585027259040857}
   - component: {fileID: 4470585027259040862}
   - component: {fileID: 4470585027259040859}
+  - component: {fileID: -2359885611559772231}
   m_Layer: 0
   m_Name: m_crownskeleton
   m_TagString: Untagged
@@ -634,10 +635,30 @@ MonoBehaviour:
     _hp: 0
     _maxHp: 0
     _damage: 0
-  isMove: 1
-  isHit: 0
   _hpbar: {fileID: 4470585026699798606}
   _target: {fileID: 0}
+  curAttackDelay: 0
+  maxAttackDelay: 0
+--- !u!95 &-2359885611559772231
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3660261790035065101}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
 --- !u!1 &3756370317388904299
 GameObject:
   m_ObjectHideFlags: 0

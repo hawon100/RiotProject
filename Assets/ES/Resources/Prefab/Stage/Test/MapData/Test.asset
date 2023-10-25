@@ -1,0 +1,16 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: beac9481ab8b89948997a06959fed3f8, type: 3}
+  m_Name: Test
+  m_EditorClassIdentifier: 
+  groundMap: {fileID: 4900000, guid: 087be49a375c962458cf68c0e7d8337c, type: 3}
+  objMap: {fileID: 4900000, guid: e674e6c43d660a64db7785341cf6f6e8, type: 3}

@@ -1064,6 +1064,7 @@ GameObject:
   - component: {fileID: 4808316069366524062}
   - component: {fileID: 4808316069366524257}
   - component: {fileID: 4808316069366524060}
+  - component: {fileID: 5569988437559359176}
   m_Layer: 0
   m_Name: m_dragon
   m_TagString: Untagged
@@ -1141,10 +1142,30 @@ MonoBehaviour:
     _hp: 0
     _maxHp: 0
     _damage: 0
-  isMove: 1
-  isHit: 0
   _hpbar: {fileID: 4808316068000262056}
   _target: {fileID: 0}
+  curAttackDelay: 0
+  maxAttackDelay: 0
+--- !u!95 &5569988437559359176
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5655386628016428082}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
 --- !u!1 &6097244983167141201
 GameObject:
   m_ObjectHideFlags: 0

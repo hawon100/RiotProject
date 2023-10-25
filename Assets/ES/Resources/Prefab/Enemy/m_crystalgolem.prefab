@@ -665,6 +665,7 @@ GameObject:
   - component: {fileID: 6600647266051549657}
   - component: {fileID: 6600647266051549656}
   - component: {fileID: 6600647266051549659}
+  - component: {fileID: 4958657823932629806}
   m_Layer: 0
   m_Name: m_crystalgolem
   m_TagString: Untagged
@@ -742,10 +743,30 @@ MonoBehaviour:
     _hp: 0
     _maxHp: 0
     _damage: 0
-  isMove: 1
-  isHit: 0
   _hpbar: {fileID: 6600647265862008391}
   _target: {fileID: 0}
+  curAttackDelay: 0
+  maxAttackDelay: 0
+--- !u!95 &4958657823932629806
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6294726499898152079}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
 --- !u!1 &6600647263980412420
 GameObject:
   m_ObjectHideFlags: 0

@@ -6,8 +6,7 @@ public class Define
 {
     public enum Scene
     {
-        Unknown,
-        Login,
+        None,
         Lobby,
         Game,
     }
@@ -19,28 +18,9 @@ public class Define
         MaxCount,
     }
 
-    public enum UIEvent
+    public enum Layer
     {
-        Click,
-        Drag,
-    }
-
-    public enum MouseEvent
-    {
-        Press,
-        Click,
-    }
-
-    public enum CameraMode
-    {
-        QuarterView,
-    }
-
-    public enum EnemyType
-    {
-        None,
-        Bat,
-        Skeleton,
-        Slime,
+        None = 6,
+        Enemy = 7,
     }
 }
