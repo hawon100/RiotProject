@@ -8,4 +8,9 @@ public class TestEnemy : A_Unit
     {
         Debug.Log("3");
     }
+
+    public override void Move()
+    {
+        oneMove();
+    }
 }

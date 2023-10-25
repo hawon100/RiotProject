@@ -80,6 +80,7 @@ public class MapGenerator : MonoBehaviour
     {
         Mob_Base[,] spawnMap = new Mob_Base[curMap.GetLength(0), curMap.GetLength(1)];
         List<Vector2Int> spawnPos = new();
+        List<Mob_Base> spawnMob = new();
         
         //Debug.Log($"spawnMap {spawnMap.GetLength(0)} {spawnMap.GetLength(1)}");
 
@@ -93,9 +94,10 @@ public class MapGenerator : MonoBehaviour
             Quaternion.identity).GetComponent<Mob_Base>();
             spawnMap[spawnPos[ranPos].x, spawnPos[ranPos].y] = temp;
             spawnPos.Remove(spawnPos[ranPos]);
+            spawnMob.Add(temp);
         }
 
-        MoveManager.Instance.MonsterInit(spawnMap);
+        MoveManager.Instance.MonsterInit(spawnMap, spawnMob);
     }
 
     private void Start()

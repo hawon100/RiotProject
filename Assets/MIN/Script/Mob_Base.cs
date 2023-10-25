@@ -17,12 +17,12 @@ public abstract class Mob_Base : MonoBehaviour
 
     protected virtual void Start()
     {
-        //anim = GetComponent<Animator>();
+        anim = GetComponent<Animator>();
         HP = maxHP;
         dieAction += DieDestroy;
     }
 
-    public virtual void Enemy_Damage(int Damage)
+    public virtual void Damage(int Damage)
     {
         HP -= Damage;
 

@@ -1,25 +1,25 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.TextCore.Text;
 
-public class Player : MonoBehaviour
+public class Player : Mob_Base
 {
     private static Player _instance = null;
     public static Player Instance => _instance;
 
-    public AudioClip moveSound;
+    [SerializeField] AudioClip moveSound;
 
-    [SerializeField] private Animator anim;
-    public Vector2Int curPos;
-    public int _damage;
+    [SerializeField] float timeToMove = 0.2f;
+    [SerializeField] bool isMoving = false;
 
-    public bool isMoving = false;
+    TimingManager timingManager;
 
-    public Vector3 origPos, targetPos;
-    public float timeToMove = 0.2f;
-
-    private void Start()
+    protected override void Start()
     {
+        base.Start();
+
+        timingManager = FindObjectOfType<TimingManager>();
         _instance = this;
         isMoving = false;
     }
@@ -39,40 +39,45 @@ public class Player : MonoBehaviour
 
     private void CheckMove(Vector3 movePos)
     {
+        if (!timingManager.CheckTiming()) { Debug.Log("Miss"); return; } //멈추는 이펙트 추가하면 좋을 듯
+
         Vector2Int plusPos = Vector2Int.zero;
 
         if (movePos == Vector3.forward) plusPos = Vector2Int.up;
-        if (movePos == Vector3.back) plusPos = Vector2Int.down;
-        if (movePos == Vector3.right) plusPos = Vector2Int.right;
-        if (movePos == Vector3.left) plusPos = Vector2Int.left;
-        curPos = curPos + plusPos; StartCoroutine(MovePlayer(movePos));
+        else if (movePos == Vector3.back) plusPos = Vector2Int.down;
+        else if (movePos == Vector3.right) plusPos = Vector2Int.right;
+        else if (movePos == Vector3.left) plusPos = Vector2Int.left;
+
+        RookPlayer(movePos);
+
         int action = MoveManager.Instance.MoveCheck(curPos, plusPos);
-        Debug.Log($"{action} {curPos} {plusPos}");
+        Debug.Log($"{action}");
         switch (action)
         {
             case 0: curPos = curPos + plusPos; StartCoroutine(MovePlayer(movePos)); break;
             case 1: break;
-            case 2: break;
+            case 2: /*attack*/ break;
         }
     }
 
     void Attack()
     {
-        TimingManager.Instance.CheckTiming();
         anim.SetTrigger("doAttack");
+    }
+
+    void RookPlayer(Vector3 pos)
+    {
+        transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(pos), 1f);
     }
 
     private IEnumerator MovePlayer(Vector3 direction)
     {
         isMoving = true;
         Managers.Sound.Play(moveSound, Define.Sound.Effect);
-        transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(direction), 1f);
-
-        TimingManager.Instance.CheckTiming();
 
         float elapsedTime = 0;
-        origPos = transform.position;
-        targetPos = origPos + direction;// * 5f
+        Vector3 origPos = transform.position;
+        Vector3 targetPos = origPos + direction;// * 5f
 
         while (elapsedTime < timeToMove)
         {
@@ -86,5 +91,10 @@ public class Player : MonoBehaviour
         anim.SetBool("isDash", false);
 
         isMoving = false;
+    }
+
+    protected override void DieDestroy()
+    {
+        Debug.Log("Die");
     }
 }

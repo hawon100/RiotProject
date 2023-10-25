@@ -18,17 +18,11 @@ public abstract class A_Unit : Enemy_Base
         base.Start();
     }
 
-    protected override void Update()
-    {
-        base.Update();
-
-        if (isEnd && isMove && Input.GetKeyDown(KeyCode.T)){
-            Debug.Log($"{transform.position} {target.position}");
-            MoveManager.Requset(transform.position, target.position, Found);
-        }
+    protected void oneMove(){
+        MoveManager.Requset(transform.position, target.position, Found);
     }
 
-    void Found(List<A_Node> newPath, bool success)
+    protected void Found(List<A_Node> newPath, bool success)
     {
         isEnd = false;
         path = newPath;

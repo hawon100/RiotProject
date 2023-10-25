@@ -824,15 +824,8 @@ MonoBehaviour:
   damage: 0
   curPos: {x: 0, y: 0}
   moveSound: {fileID: 8300000, guid: 1780f53627d9f864ab8451655bd6ce20, type: 3}
-  isMoving: 0
-  isUnderAttack: 0
-  _isObstacleUp: 0
-  _isObstacleDown: 0
-  _isObstacleRight: 0
-  _isObstacleLeft: 0
-  origPos: {x: 0, y: 0, z: 0}
-  targetPos: {x: 0, y: 0, z: 0}
   timeToMove: 0.2
+  isMoving: 0
 --- !u!1 &877256414
 GameObject:
   m_ObjectHideFlags: 0

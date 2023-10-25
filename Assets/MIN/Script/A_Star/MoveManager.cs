@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using System.Linq;
 
 public class MoveManager : MonoBehaviour
 {
@@ -19,6 +20,7 @@ public class MoveManager : MonoBehaviour
     private int[,] curGroundMap;
     private int[,] curObjMap;
     private int[,] curMoveMap;
+    private List<Mob_Base> curMob;
 
     private void Start()
     {
@@ -78,8 +80,10 @@ public class MoveManager : MonoBehaviour
 
     }
 
-    public void MonsterInit(Mob_Base[,] spawnMap)
+    public void MonsterInit(Mob_Base[,] spawnMap, List<Mob_Base> spawnMob)
     {
+        curMob = spawnMob.ToList();
+
         for (int i = 0; i < spawnMap.GetLength(0); i++)
             for (int j = 0; j < spawnMap.GetLength(1); j++)
             {
