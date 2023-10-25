@@ -7,7 +7,6 @@ using UnityEngine.UI;
 [System.Serializable]
 public class Information
 {
-    public Define.EnemyType _type;
     public float _hp;
     public int _maxHp;
     public float HP => _hp / _maxHp;

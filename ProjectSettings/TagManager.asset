@@ -10,6 +10,8 @@ TagManager:
   - RangeRight
   - RangeLeft
   - Note
+  - Wall
+  - Border
   layers:
   - Default
   - TransparentFX
