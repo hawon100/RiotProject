@@ -20,7 +20,7 @@ public class MoveManager : MonoBehaviour
     private int[,] curGroundMap;
     private int[,] curObjMap;
     private int[,] curMoveMap;
-    private List<Mob_Base> curMob;
+    [SerializeField] private List<Mob_Base> curMob;
 
     private void Start()
     {
@@ -60,6 +60,14 @@ public class MoveManager : MonoBehaviour
         curMoveMap[curPos.x, curPos.y] = 0;
 
         return 0;
+    }
+
+    public void DestroyEnemy(Vector2Int curPos){
+        curMoveMap[curPos.x, curPos.y] = 0;
+
+        for (int i = 0; i < curMob.Count; i++)
+                if (curMob[i] == null)
+                    curMob.Remove(curMob[i]);
     }
 
     public void MapInit(int[,] _curObjMap, int[,] _curGroundMap)

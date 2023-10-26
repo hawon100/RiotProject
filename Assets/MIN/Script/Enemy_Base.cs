@@ -12,7 +12,6 @@ public abstract class Enemy_Base : Mob_Base
 
     protected Vector2 direction;
 
-    public Define.EnemyType _type;
     [SerializeField] private Slider _hpbar;
     private BoxCollider _box;
 
