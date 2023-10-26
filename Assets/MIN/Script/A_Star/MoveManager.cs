@@ -20,7 +20,7 @@ public class MoveManager : MonoBehaviour
     private int[,] curGroundMap;
     private int[,] curObjMap;
     private int[,] curMoveMap;
-    [SerializeField] private List<Enemy_Base> curMob;
+    [SerializeField] private List<Enemy_Base> curMoveMob;
 
     private void Start()
     {
@@ -32,12 +32,12 @@ public class MoveManager : MonoBehaviour
         _instance = this;
         a_Check = GetComponent<A_Check>();
         a_Map = GetComponent<A_Map>();
-        a_Map._Instance();
     }
 
     public void EnemyMove(){
-        for(int i = 0; i < curMob.Count; i++){
-            curMob[i].Move();
+        for(int i = 0; i < curMoveMob.Count; i++){
+            a_Check.GetMoveMap(curMoveMap);
+            curMoveMob[i].Move();
         }
     }
 
@@ -71,9 +71,9 @@ public class MoveManager : MonoBehaviour
     public void DestroyEnemy(Vector2Int curPos){
         curMoveMap[curPos.x, curPos.y] = 0;
 
-        for (int i = 0; i < curMob.Count; i++)
-                if (curMob[i] == null)
-                    curMob.Remove(curMob[i]);
+        for (int i = 0; i < curMoveMob.Count; i++)
+                if (curMoveMob[i] == null)
+                    curMoveMob.Remove(curMoveMob[i]);
     }
 
     public void MapInit(int[,] _curObjMap, int[,] _curGroundMap)
@@ -97,7 +97,7 @@ public class MoveManager : MonoBehaviour
     public void MonsterInit(Mob_Base[,] spawnMap, List<Mob_Base> spawnMob)
     {
         for(int i = 0; i < spawnMob.Count; i++){
-            curMob.Add(spawnMob[i].GetComponent<Enemy_Base>());
+            curMoveMob.Add(spawnMob[i].GetComponent<Enemy_Base>());
         }
 
         for (int i = 0; i < spawnMap.GetLength(0); i++)

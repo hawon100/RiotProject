@@ -14,11 +14,13 @@ public abstract class A_Unit : Enemy_Base
 
     int targetIndex;
 
-    protected override void Start() {
+    protected override void Start()
+    {
         base.Start();
     }
 
-    protected void oneMove(){
+    protected void oneMove()
+    {
         MoveManager.Requset(transform.position, target.position, Found);
     }
 
@@ -32,6 +34,8 @@ public abstract class A_Unit : Enemy_Base
 
     IEnumerator Follow()
     {
+        if (!isMove) yield break;
+
         A_Node curWayPoint = path[0];
         targetIndex = 0;
 
@@ -44,7 +48,19 @@ public abstract class A_Unit : Enemy_Base
             }
             curWayPoint = path[targetIndex];
         }
-        yield return StartCoroutine(MoveTo(curWayPoint.pos, 0.5f));
+        Vector3 plusPos3 = -(transform.position - curWayPoint.pos);
+        Vector2Int plusPos = new((int)plusPos3.x, (int)plusPos3.z);
+
+        int action = MoveManager.Instance.MoveCheck(curPos, plusPos);
+
+        switch (action)
+        {
+            case 0: curPos = curPos + plusPos; yield return StartCoroutine(MoveTo(curWayPoint.pos, 0.5f)); break;
+            case 1: break;
+            case 2: Attack(); break;
+        }
+
+        
         isEnd = true;
         yield break;
     }
@@ -56,8 +72,6 @@ public abstract class A_Unit : Enemy_Base
 
         while (timer <= sec)
         {
-            if(!isMove) yield break;
-
             transform.position = Vector3.Lerp(start, target, timer / sec);
             timer += Time.deltaTime * moveSpeed;
 

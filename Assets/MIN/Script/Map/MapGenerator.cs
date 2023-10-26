@@ -59,7 +59,8 @@ public class MapGenerator : MonoBehaviour
         for (int i = 0; i < curGroundData.GetLength(0); i++) for (int j = 0; j < curObjData.GetLength(1); j++)
             {
                 if (curObjData[i, j] == 0) continue; // void
-                if (curObjData[i, j] == 1) {
+                if (curObjData[i, j] == 1)
+                {
                     totalData[i, j] = 0;
                     for (int k = -1; k <= 1; k++) for (int l = -1; l <= 1; l++)
                         {
@@ -80,17 +81,19 @@ public class MapGenerator : MonoBehaviour
         Mob_Base[,] spawnMap = new Mob_Base[curMap.GetLength(0), curMap.GetLength(1)];
         List<Vector2Int> spawnPos = new();
         List<Mob_Base> spawnMob = new();
-        
+
         //Debug.Log($"spawnMap {spawnMap.GetLength(0)} {spawnMap.GetLength(1)}");
 
         for (int i = 0; i < curMap.GetLength(0); i++) for (int j = 0; j < curMap.GetLength(1); j++)
                 if (curMap[i, j] == 1) spawnPos.Add(new(i, j));
 
-        for(int i = 0; i < enemyCount; i++){
+        for (int i = 0; i < enemyCount; i++)
+        {
             int ranPos = Random.Range(0, spawnPos.Count);
             //Debug.Log($"spawnPos {spawnPos[ranPos]}");
-            var temp = Instantiate(enemy, new Vector3(spawnPos[ranPos].x, 0, spawnPos[ranPos].y), 
+            var temp = Instantiate(enemy, new Vector3(spawnPos[ranPos].x, 0, spawnPos[ranPos].y),
             Quaternion.identity).GetComponent<Mob_Base>();
+            temp.curPos = new(spawnPos[ranPos].x, spawnPos[ranPos].y);
             spawnMap[spawnPos[ranPos].x, spawnPos[ranPos].y] = temp;
             spawnPos.Remove(spawnPos[ranPos]);
             spawnMob.Add(temp);

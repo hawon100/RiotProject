@@ -5,10 +5,16 @@ using UnityEngine;
 public class A_Check : MonoBehaviour
 {
     MoveManager moveManager;
+    int[,] curMoveMap;
 
     private void Awake()
     {
         moveManager = GetComponent<MoveManager>();
+    }
+
+    public void GetMoveMap(int[,] _curMoveMap)
+    {
+        curMoveMap = _curMoveMap;
     }
 
     public void find(Vector3 startPos, Vector3 endPos)
@@ -60,13 +66,6 @@ public class A_Check : MonoBehaviour
         if (isSuccess)
         {
             end = ResultNode(startNode, endNode);
-            // Debug.Log("--------------------");
-            // for (int i = 0; i < end.Count; i++)
-            // {
-            //     Debug.Log(end[i].pos);
-            // }
-            // Debug.Log("--------------------");
-
         }
         moveManager.Finished(end, isSuccess);
     }
@@ -88,7 +87,9 @@ public class A_Check : MonoBehaviour
     int NodeCost(A_Node nodeA, A_Node nodeB)
     {
         int distX = Mathf.Abs(nodeA.pos.x - nodeB.pos.x);
-        int distY = Mathf.Abs(nodeA.pos.y - nodeB.pos.y);
+        int distY = Mathf.Abs(nodeA.pos.z - nodeB.pos.z);
+
+        if(curMoveMap[nodeB.pos.x, nodeB.pos.z] != 0) return 10000;
 
         if (distX > distY) return 14 * distY + 10 * (distX - distY);
         return 14 * distX + 10 * (distY - distX);

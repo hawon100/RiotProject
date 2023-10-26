@@ -29,9 +29,9 @@ public abstract class Enemy_Base : Mob_Base
         transform.LookAt(target);
     }
 
-    protected virtual void Attack(bool isHit)
+    protected virtual void Attack()
     {
-        anim.SetBool("isAttack", isHit);
+        
     }
 
     protected override void DieDestroy()

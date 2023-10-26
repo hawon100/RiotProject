@@ -117,4 +117,4 @@ MonoBehaviour:
   curPos: {x: 0, y: 0}
   _hpbar: {fileID: 0}
   moveSpeed: 5
-  isMove: 0
+  isMove: 1
