@@ -7,6 +7,7 @@ public class NoteManager : MonoBehaviour
     public Transform[] tfNteAppear = new Transform[2];
 
     [SerializeField] int bpm = 0;
+    private int noteCount;
     double currentTime = 0d;
 
     TimingManager timingManager;
@@ -38,9 +39,11 @@ public class NoteManager : MonoBehaviour
             timingManager.boxNoteList_0.Remove(collision.gameObject);
             timingManager.boxNoteList_1.Remove(collision.gameObject);
             Managers.Resource.Destroy(collision.gameObject);
-
-            //Miss
-            Debug.Log("Miss");
+            noteCount++;
+            if(noteCount == 2){
+                MoveManager.Instance.EnemyMove();
+                noteCount = 0;
+            }
         }
     }
 }

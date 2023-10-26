@@ -60,7 +60,6 @@ public class MapGenerator : MonoBehaviour
             {
                 if (curObjData[i, j] == 0) continue; // void
                 if (curObjData[i, j] == 1) {
-                    Debug.Log($"{i} {j}");
                     totalData[i, j] = 0;
                     for (int k = -1; k <= 1; k++) for (int l = -1; l <= 1; l++)
                         {
@@ -68,7 +67,7 @@ public class MapGenerator : MonoBehaviour
                             catch { continue; }
                         }
                 }
-                else { Debug.Log($"{i} {j}"); totalData[i, j] = 0; }
+                else { totalData[i, j] = 0; }
                 Instantiate(mapObj[curObjData[i, j] - 1], new Vector3(i, 0, j), Quaternion.identity, transform);
             }
 
