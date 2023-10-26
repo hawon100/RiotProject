@@ -21,6 +21,7 @@ public class MoveManager : MonoBehaviour
     private int[,] curGroundMap;
     private int[,] curObjMap;
     private int[,] curMoveMap;
+    private Mob_Base[,] curSpawnMap;
     [SerializeField] private List<Enemy_Base> curMoveMob;
     [SerializeField] private List<Enemy_Base> curCheckMob;
 
@@ -65,9 +66,12 @@ public class MoveManager : MonoBehaviour
         }
         if (curMoveMap[movePos.x, movePos.y] != 0)
         {
-            //공격
+            curSpawnMap[movePos.x, movePos.y].Damage(1);
             return 2;
         }
+
+        curSpawnMap[movePos.x, movePos.y] = curSpawnMap[curPos.x, curPos.y];
+        curSpawnMap[curPos.x, curPos.y] = null;
 
         curMoveMap[movePos.x, movePos.y] = curMoveMap[curPos.x, curPos.y];
         curMoveMap[curPos.x, curPos.y] = 0;
@@ -91,19 +95,11 @@ public class MoveManager : MonoBehaviour
         curMoveMap = new int[curObjMap.GetLength(0), curObjMap.GetLength(1)];
 
         a_Map.InitMap(_curObjMap, _curGroundMap);
-
-        for (int i = 0; i < curObjMap.GetLength(0); i++) for (int j = 0; j < curObjMap.GetLength(1); j++)
-                if (curObjMap[i, j] == 1)
-                {
-                    curMoveMap[i, j] = 1;
-                    Player.Instance.transform.position = new Vector3(i, 0, j);
-                    Player.Instance.curPos = new Vector2Int(i, j);
-                }
-
     }
 
     public void MonsterInit(Mob_Base[,] spawnMap, List<Mob_Base> spawnMob)
     {
+        curSpawnMap = spawnMap;
         Enemy_Base temp;
         for (int i = 0; i < spawnMob.Count; i++)
         {
@@ -118,6 +114,15 @@ public class MoveManager : MonoBehaviour
             {
                 if (spawnMap[i, j] != null) curMoveMap[i, j] = 2;
             }
+
+        for (int i = 0; i < curObjMap.GetLength(0); i++) for (int j = 0; j < curObjMap.GetLength(1); j++)
+                if (curObjMap[i, j] == 1)
+                {
+                    curMoveMap[i, j] = 1;
+                    curSpawnMap[i, j] = Player.Instance.GetComponent<Mob_Base>();
+                    Player.Instance.transform.position = new Vector3(i, 0, j);
+                    Player.Instance.curPos = new Vector2Int(i, j);
+                }
 
         a_Map.InitMoveMap(curMoveMap);
     }
