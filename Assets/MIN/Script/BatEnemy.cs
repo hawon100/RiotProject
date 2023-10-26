@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TestEnemy : A_Unit
+public class BatEnemy : A_Unit
 {
     protected override void DieDestroy()
     {

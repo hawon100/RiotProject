@@ -622,10 +622,9 @@ GameObject:
   - component: {fileID: 151377752243995904}
   - component: {fileID: 401792601467642600}
   - component: {fileID: 401792601467642601}
-  - component: {fileID: 401792601467642598}
   - component: {fileID: 4338387411185865721}
   m_Layer: 0
-  m_Name: m_orc
+  m_Name: Orc
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -684,27 +683,6 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!114 &401792601467642598
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 671632210655633338}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b6e225166da525e48abd409e135e35de, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _info:
-    _type: 0
-    _hp: 0
-    _maxHp: 0
-    _damage: 0
-  _hpbar: {fileID: 401792602175309258}
-  _target: {fileID: 0}
-  curAttackDelay: 0
-  maxAttackDelay: 0
 --- !u!95 &4338387411185865721
 Animator:
   serializedVersion: 5
@@ -715,7 +693,7 @@ Animator:
   m_GameObject: {fileID: 671632210655633338}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: a0930f4d8fb50914db6c00c2dfd18103, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0

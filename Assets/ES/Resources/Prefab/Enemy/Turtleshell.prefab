@@ -923,10 +923,9 @@ GameObject:
   - component: {fileID: 2772338974298031842}
   - component: {fileID: 2446557299087253772}
   - component: {fileID: 2446557299087253771}
-  - component: {fileID: 2446557299087253774}
   - component: {fileID: -7843182439911347299}
   m_Layer: 0
-  m_Name: m_turtleshell
+  m_Name: Turtleshell
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -985,27 +984,6 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!114 &2446557299087253774
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3256809754041850968}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b6e225166da525e48abd409e135e35de, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _info:
-    _type: 0
-    _hp: 0
-    _maxHp: 0
-    _damage: 0
-  _hpbar: {fileID: 2446557299453782409}
-  _target: {fileID: 0}
-  curAttackDelay: 0
-  maxAttackDelay: 0
 --- !u!95 &-7843182439911347299
 Animator:
   serializedVersion: 5
@@ -1016,7 +994,7 @@ Animator:
   m_GameObject: {fileID: 3256809754041850968}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: c5fd015461a0fe34c934d793d770b261, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0

@@ -1063,10 +1063,9 @@ GameObject:
   - component: {fileID: 4985529318472519304}
   - component: {fileID: 4808316069366524062}
   - component: {fileID: 4808316069366524257}
-  - component: {fileID: 4808316069366524060}
   - component: {fileID: 5569988437559359176}
   m_Layer: 0
-  m_Name: m_dragon
+  m_Name: Dragon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1125,27 +1124,6 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!114 &4808316069366524060
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5655386628016428082}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b6e225166da525e48abd409e135e35de, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _info:
-    _type: 0
-    _hp: 0
-    _maxHp: 0
-    _damage: 0
-  _hpbar: {fileID: 4808316068000262056}
-  _target: {fileID: 0}
-  curAttackDelay: 0
-  maxAttackDelay: 0
 --- !u!95 &5569988437559359176
 Animator:
   serializedVersion: 5
@@ -1156,7 +1134,7 @@ Animator:
   m_GameObject: {fileID: 5655386628016428082}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 08506a075d1ca334eb1a4f204e5c2041, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
