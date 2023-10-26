@@ -17,6 +17,12 @@ public class LobbyScene : BaseScene
         {
             mapObj.Add(Managers.Resource.Instantiate("Stage/Map"));
         }
+
+
+        foreach(var item in mapObj)
+        {
+            
+        }
     }
 
     private void Update()
