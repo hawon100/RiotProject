@@ -22,5 +22,13 @@ public class Define
     {
         None = 6,
         Enemy = 7,
+        Block = 8,
+
+    }
+
+    public enum CameraMode
+    {
+        None,
+        QuarterView,
     }
 }
