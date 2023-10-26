@@ -25,6 +25,7 @@ public abstract class Mob_Base : MonoBehaviour
     public virtual void Damage(int Damage)
     {
         HP -= Damage;
+        anim.SetTrigger("OnHit");
 
         if (HP <= 0)
         {

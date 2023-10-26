@@ -9,14 +9,10 @@ public class LobbyMapRotation : MonoBehaviour
     private void Update()
     {
         transform.position += new Vector3(0, 0, -moveSpeed * Time.deltaTime);
-    }
 
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.CompareTag("Border"))
+        if (transform.position.z < -25)
         {
             transform.position = ConveyorBelt.Instance.startPos.position;
-            Debug.Log("Test");
         }
     }
 }
