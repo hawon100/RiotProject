@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using System.Linq;
+using TMPro;
 
 public class MoveManager : MonoBehaviour
 {
@@ -21,6 +22,7 @@ public class MoveManager : MonoBehaviour
     private int[,] curObjMap;
     private int[,] curMoveMap;
     [SerializeField] private List<Enemy_Base> curMoveMob;
+    [SerializeField] private List<Enemy_Base> curCheckMob;
 
     private void Start()
     {
@@ -34,11 +36,15 @@ public class MoveManager : MonoBehaviour
         a_Map = GetComponent<A_Map>();
     }
 
-    public void EnemyMove(){
-        for(int i = 0; i < curMoveMob.Count; i++){
-            a_Check.GetMoveMap(curMoveMap);
-            curMoveMob[i].Move();
-        }
+    public void EnemyMove()
+    {
+        if (curMoveMob.Count != 0)
+            for (int i = 0; i < curMoveMob.Count; i++)
+            {
+                a_Check.GetMoveMap(curMoveMap);
+                curMoveMob[i].Move();
+            }
+        Classification();
     }
 
     /// <summary>
@@ -57,23 +63,25 @@ public class MoveManager : MonoBehaviour
             //체크 후 공격, 이동불가 리턴
             //return 1 or 2;
         }
-        if (curMoveMap[movePos.x, movePos.y] != 0){
+        if (curMoveMap[movePos.x, movePos.y] != 0)
+        {
             //공격
             return 2;
         }
-        
+
         curMoveMap[movePos.x, movePos.y] = curMoveMap[curPos.x, curPos.y];
         curMoveMap[curPos.x, curPos.y] = 0;
 
         return 0;
     }
 
-    public void DestroyEnemy(Vector2Int curPos){
+    public void DestroyEnemy(Vector2Int curPos)
+    {
         curMoveMap[curPos.x, curPos.y] = 0;
 
         for (int i = 0; i < curMoveMob.Count; i++)
-                if (curMoveMob[i] == null)
-                    curMoveMob.Remove(curMoveMob[i]);
+            if (curMoveMob[i] == null)
+                curMoveMob.Remove(curMoveMob[i]);
     }
 
     public void MapInit(int[,] _curObjMap, int[,] _curGroundMap)
@@ -96,9 +104,14 @@ public class MoveManager : MonoBehaviour
 
     public void MonsterInit(Mob_Base[,] spawnMap, List<Mob_Base> spawnMob)
     {
-        for(int i = 0; i < spawnMob.Count; i++){
-            curMoveMob.Add(spawnMob[i].GetComponent<Enemy_Base>());
+        Enemy_Base temp;
+        for (int i = 0; i < spawnMob.Count; i++)
+        {
+            temp = spawnMob[i].GetComponent<Enemy_Base>();
+            if (temp.checkBoxSize == 0) curMoveMob.Add(temp);
+            else curCheckMob.Add(temp);
         }
+
 
         for (int i = 0; i < spawnMap.GetLength(0); i++)
             for (int j = 0; j < spawnMap.GetLength(1); j++)
@@ -107,6 +120,41 @@ public class MoveManager : MonoBehaviour
             }
 
         a_Map.InitMoveMap(curMoveMap);
+    }
+
+    private void Classification()
+    {
+        if (curCheckMob.Count == 0) return;
+
+        for (int i = 0; i < curCheckMob.Count; i++)
+        {
+            if (curCheckMob[i].checkBoxSize == 0)
+            {
+                curMoveMob.Add(curCheckMob[i]);
+                curCheckMob.Remove(curCheckMob[i]);
+            }
+            else
+            {
+                if (CheckPlayer(curCheckMob[i].curPos, curCheckMob[i].checkBoxSize))
+                {
+                    curMoveMob.Add(curCheckMob[i]);
+                    curCheckMob.Remove(curCheckMob[i]);
+                }
+            }
+        }
+    }
+
+    private bool CheckPlayer(Vector2Int pos, int size)
+    {
+        for (int i = -size; i <= size; i++) for (int j = -size; j <= size; j++)
+            {
+                int x = pos.x + i;
+                int y = pos.y + j;
+
+                try { if (curMoveMap[x, y] == 1) return true; }
+                catch { continue; }
+            }
+        return false;
     }
 
     public static void Requset(Vector3 _start, Vector3 _end, UnityAction<List<A_Node>, bool> _callbeck)
