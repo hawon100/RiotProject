@@ -22,6 +22,7 @@ public abstract class A_Unit : Enemy_Base
     protected void oneMove()
     {
         MoveManager.Requset(transform.position, target.position, Found);
+        anim.SetTrigger("OnRun");
     }
 
     protected void Found(List<A_Node> newPath, bool success)

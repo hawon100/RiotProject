@@ -31,7 +31,7 @@ public abstract class Enemy_Base : Mob_Base
 
     protected virtual void Attack()
     {
-        
+        anim.SetTrigger("OnAttack");
     }
 
     protected override void DieDestroy()
