@@ -51,12 +51,12 @@ public class Player : Mob_Base
         RookPlayer(movePos);
 
         int action = MoveManager.Instance.MoveCheck(curPos, plusPos);
-        Debug.Log($"{action}");
+
         switch (action)
         {
             case 0: curPos = curPos + plusPos; StartCoroutine(MovePlayer(movePos)); break;
             case 1: break;
-            case 2: /*attack*/ break;
+            case 2: Attack(); break;
         }
     }
 
