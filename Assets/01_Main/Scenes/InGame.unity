@@ -1292,9 +1292,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 1621368933}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3911987fa690ef54e8ce18cc9df76c09, type: 3}
+  m_Script: {fileID: 11500000, guid: 6ba4538a05d26604db2e39f19130682c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _mode: 1
+  _delta: {x: 0, y: 12, z: -6}
+  _player: {fileID: 868337173}
 --- !u!1 &1794171372
 GameObject:
   m_ObjectHideFlags: 0

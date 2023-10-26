@@ -6,8 +6,11 @@ public abstract class A_Unit : Enemy_Base
 {
     [Header("A_STAR")]
     [SerializeField] protected float moveSpeed;
+    [SerializeField] protected bool isMove;
 
     List<A_Node> path;
+
+    bool isEnd = true;
 
     int targetIndex;
 
@@ -21,6 +24,7 @@ public abstract class A_Unit : Enemy_Base
 
     protected void Found(List<A_Node> newPath, bool success)
     {
+        isEnd = false;
         path = newPath;
         //StopAllCoroutines();
         StartCoroutine(Follow());
@@ -41,6 +45,7 @@ public abstract class A_Unit : Enemy_Base
             curWayPoint = path[targetIndex];
         }
         yield return StartCoroutine(MoveTo(curWayPoint.pos, 0.5f));
+        isEnd = true;
         yield break;
     }
 
@@ -51,12 +56,14 @@ public abstract class A_Unit : Enemy_Base
 
         while (timer <= sec)
         {
+            if(!isMove) yield break;
+
             transform.position = Vector3.Lerp(start, target, timer / sec);
             timer += Time.deltaTime * moveSpeed;
 
             yield return null;
         }
-
+        transform.position = Vector3.Lerp(start, target, 1);
         yield break;
     }
 }
