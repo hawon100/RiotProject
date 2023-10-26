@@ -15,7 +15,8 @@ public class LobbyMapRotation : MonoBehaviour
     {
         if (other.CompareTag("Border"))
         {
-            Managers.Resource.Destroy(gameObject);
+            transform.position = ConveyorBelt.Instance.startPos.position;
+            Debug.Log("Test");
         }
     }
 }

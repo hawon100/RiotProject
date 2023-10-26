@@ -556,10 +556,9 @@ GameObject:
   - component: {fileID: 4143324954823877559}
   - component: {fileID: 4470585027259040857}
   - component: {fileID: 4470585027259040862}
-  - component: {fileID: 4470585027259040859}
   - component: {fileID: -2359885611559772231}
   m_Layer: 0
-  m_Name: m_crownskeleton
+  m_Name: Skeleton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -618,27 +617,6 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!114 &4470585027259040859
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3660261790035065101}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b6e225166da525e48abd409e135e35de, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _info:
-    _type: 0
-    _hp: 0
-    _maxHp: 0
-    _damage: 0
-  _hpbar: {fileID: 4470585026699798606}
-  _target: {fileID: 0}
-  curAttackDelay: 0
-  maxAttackDelay: 0
 --- !u!95 &-2359885611559772231
 Animator:
   serializedVersion: 5
@@ -649,7 +627,7 @@ Animator:
   m_GameObject: {fileID: 3660261790035065101}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 8165b3a4b69bf0b4eb1d06c8cd0fe6ce, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
