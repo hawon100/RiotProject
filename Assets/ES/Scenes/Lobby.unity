@@ -551,6 +551,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ea7b61d7ad61974981c742ef1587d83, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  MapSpawnIndex: 0
 --- !u!4 &705989190 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2877416805425478971, guid: 19f3a865e40324248ac24af81c8f65ef,
@@ -626,7 +627,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 868115642}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -1, z: -18}
+  m_LocalPosition: {x: 0, y: -1, z: -19}
   m_LocalScale: {x: 10, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -887,18 +888,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1070500816}
     m_Modifications:
-    - target: {fileID: 708651714, guid: 9157a02bace875741a72084e21994dd6, type: 3}
-      propertyPath: startPos
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 708651715, guid: 9157a02bace875741a72084e21994dd6, type: 3}
-      propertyPath: m_Center.y
-      value: -1
-      objectReference: {fileID: 0}
-    - target: {fileID: 708651715, guid: 9157a02bace875741a72084e21994dd6, type: 3}
-      propertyPath: m_IsTrigger
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 4995934150310736797, guid: 9157a02bace875741a72084e21994dd6,
         type: 3}
       propertyPath: m_Name
@@ -959,9 +948,7 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 0}
-    - {fileID: 0}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9157a02bace875741a72084e21994dd6, type: 3}
 --- !u!4 &1712459349 stripped
 Transform:
@@ -1069,28 +1056,6 @@ Rigidbody:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1720067745}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 0
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
---- !u!1 &1787448577 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4995934150310736797, guid: 9157a02bace875741a72084e21994dd6,
-    type: 3}
-  m_PrefabInstance: {fileID: 1712459348}
-  m_PrefabAsset: {fileID: 0}
---- !u!54 &1787448580
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1787448577}
   serializedVersion: 2
   m_Mass: 1
   m_Drag: 0
