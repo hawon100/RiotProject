@@ -4,30 +4,28 @@ using UnityEngine;
 
 public class LobbyScene : BaseScene
 {
-    public int MapSpawnIndex = 0;
+    [SerializeField] private GameObject panel;
+    [SerializeField] private Animator directorPlayer;
+    [SerializeField] private Transform directorCamPos;
+    [SerializeField] private Camera camera;
 
     protected override void Init()
     {
         base.Init();
 
         SceneType = Define.Scene.Lobby;
-
-        List<GameObject> mapObj = new();
-        for(int i = 0; i < MapSpawnIndex; i++)
-        {
-            mapObj.Add(Managers.Resource.Instantiate("Stage/Map"));
-        }
-
-
-        foreach(var item in mapObj)
-        {
-            
-        }
     }
 
     private void Update()
     {
-
+        if(Input.GetKeyDown(KeyCode.Q))
+        {
+            directorPlayer.SetTrigger("OnDirector");
+            panel.SetActive(false);
+            camera.gameObject.transform.position = directorCamPos.position;
+            camera.gameObject.transform.rotation = directorCamPos.rotation;
+            camera.fieldOfView = 69f;
+        }
     }
 
     public override void Clear()
