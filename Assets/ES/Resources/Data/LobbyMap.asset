@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: beac9481ab8b89948997a06959fed3f8, type: 3}
-  m_Name: MapData
+  m_Name: LobbyMap
   m_EditorClassIdentifier: 
   groundMap: {fileID: 4900000, guid: 9c29b26e69fd67a4f985e4556f102f04, type: 3}
-  objMap: {fileID: 4900000, guid: 979f7253b76ae5e46951d7cbdac685bf, type: 3}
+  objMap: {fileID: 4900000, guid: 4ce684e2ec1054e48b6e9264e39dcf96, type: 3}
