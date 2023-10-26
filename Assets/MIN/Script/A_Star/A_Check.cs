@@ -60,12 +60,12 @@ public class A_Check : MonoBehaviour
         if (isSuccess)
         {
             end = ResultNode(startNode, endNode);
-            Debug.Log("--------------------");
-            for (int i = 0; i < end.Count; i++)
-            {
-                Debug.Log(end[i].pos);
-            }
-            Debug.Log("--------------------");
+            // Debug.Log("--------------------");
+            // for (int i = 0; i < end.Count; i++)
+            // {
+            //     Debug.Log(end[i].pos);
+            // }
+            // Debug.Log("--------------------");
 
         }
         moveManager.Finished(end, isSuccess);

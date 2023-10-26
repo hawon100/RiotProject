@@ -20,7 +20,7 @@ public class MoveManager : MonoBehaviour
     private int[,] curGroundMap;
     private int[,] curObjMap;
     private int[,] curMoveMap;
-    [SerializeField] private List<Mob_Base> curMob;
+    [SerializeField] private List<Enemy_Base> curMob;
 
     private void Start()
     {
@@ -33,6 +33,12 @@ public class MoveManager : MonoBehaviour
         a_Check = GetComponent<A_Check>();
         a_Map = GetComponent<A_Map>();
         a_Map._Instance();
+    }
+
+    public void EnemyMove(){
+        for(int i = 0; i < curMob.Count; i++){
+            curMob[i].Move();
+        }
     }
 
     /// <summary>
@@ -90,7 +96,9 @@ public class MoveManager : MonoBehaviour
 
     public void MonsterInit(Mob_Base[,] spawnMap, List<Mob_Base> spawnMob)
     {
-        curMob = spawnMob.ToList();
+        for(int i = 0; i < spawnMob.Count; i++){
+            curMob.Add(spawnMob[i].GetComponent<Enemy_Base>());
+        }
 
         for (int i = 0; i < spawnMap.GetLength(0); i++)
             for (int j = 0; j < spawnMap.GetLength(1); j++)
