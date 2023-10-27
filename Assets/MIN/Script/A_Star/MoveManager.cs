@@ -21,7 +21,7 @@ public class MoveManager : MonoBehaviour
     private int[,] curGroundMap;
     private int[,] curObjMap;
     private int[,] curMoveMap;
-    private Mob_Base[,] curSpawnMap;
+    private Mob_Base[,] curEnemyMap;
     [SerializeField] private List<Enemy_Base> curMoveMob;
     [SerializeField] private List<Enemy_Base> curCheckMob;
 
@@ -54,11 +54,14 @@ public class MoveManager : MonoBehaviour
     /// <param name="curPos"></param>
     /// <param name="plusPos"></param>
     /// <returns></returns>
-    public int MoveCheck(Vector2Int curPos, Vector2Int plusPos)
+    public int MoveCheck(Vector2Int curPos, Vector2Int plusPos, bool isFly = false)
     {
         Vector2Int movePos = curPos + plusPos;
 
-        if (curGroundMap[movePos.x, movePos.y] != 1) return 1;
+        try { if (curGroundMap[movePos.x, movePos.y] == 0) { } /*map out check*/}
+        catch { return 1; }
+
+        if (curGroundMap[movePos.x, movePos.y] != 1 && !isFly) return 1;
         if (curObjMap[movePos.x, movePos.y] != 0)
         {
             //체크 후 공격, 이동불가 리턴
@@ -66,12 +69,12 @@ public class MoveManager : MonoBehaviour
         }
         if (curMoveMap[movePos.x, movePos.y] != 0)
         {
-            curSpawnMap[movePos.x, movePos.y].Damage(1);
+            curEnemyMap[movePos.x, movePos.y].Damage(1);
             return 2;
         }
 
-        curSpawnMap[movePos.x, movePos.y] = curSpawnMap[curPos.x, curPos.y];
-        curSpawnMap[curPos.x, curPos.y] = null;
+        curEnemyMap[movePos.x, movePos.y] = curEnemyMap[curPos.x, curPos.y];
+        curEnemyMap[curPos.x, curPos.y] = null;
 
         curMoveMap[movePos.x, movePos.y] = curMoveMap[curPos.x, curPos.y];
         curMoveMap[curPos.x, curPos.y] = 0;
@@ -99,7 +102,7 @@ public class MoveManager : MonoBehaviour
 
     public void MonsterInit(Mob_Base[,] spawnMap, List<Mob_Base> spawnMob)
     {
-        curSpawnMap = spawnMap;
+        curEnemyMap = spawnMap;
         Enemy_Base temp;
         for (int i = 0; i < spawnMob.Count; i++)
         {
@@ -119,7 +122,7 @@ public class MoveManager : MonoBehaviour
                 if (curObjMap[i, j] == 1)
                 {
                     curMoveMap[i, j] = 1;
-                    curSpawnMap[i, j] = Player.Instance.GetComponent<Mob_Base>();
+                    curEnemyMap[i, j] = Player.Instance.GetComponent<Mob_Base>();
                     Player.Instance.transform.position = new Vector3(i, 0, j);
                     Player.Instance.curPos = new Vector2Int(i, j);
                 }
