@@ -8,6 +8,7 @@ public class TitleScene : BaseScene
     [SerializeField] private Animator directorPlayer;
     [SerializeField] private Transform directorCamPos;
     [SerializeField] private Camera camera;
+    [SerializeField] private ParticleSystem slashEffect;
 
     public static bool isDoubleTouch;
 
@@ -28,6 +29,7 @@ public class TitleScene : BaseScene
             camera.gameObject.transform.position = directorCamPos.position;
             camera.gameObject.transform.rotation = directorCamPos.rotation;
             camera.fieldOfView = 69f;
+            slashEffect.Play();
             isDoubleTouch = false;
         }
     }
