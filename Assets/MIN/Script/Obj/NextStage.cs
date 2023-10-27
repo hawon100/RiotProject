@@ -4,11 +4,15 @@ using UnityEngine;
 
 public class NextStage : Obj_Base
 {
+    [SerializeField] private int stageIndex;
+
     protected override void UseObj()
     {
         if(isLock) return;
 
-        Debug.Log("NEXT");
-        //Managers.Map.LoadScene(Define.Scene.InGame);
+        RoundData.Instance.Reset();
+        RoundData.Instance.stageIndex = stageIndex;
+
+        Managers.Map.LoadScene(Define.Scene.InGame);
     }
 }

@@ -10,7 +10,6 @@ public class NextMap : Obj_Base
 
         if(isLock) return;
 
-        Debug.Log("NEXT");
-        //Managers.Map.LoadScene(Define.Scene.InGame);
+        Managers.Map.LoadScene(Define.Scene.InGame);
     }
 }

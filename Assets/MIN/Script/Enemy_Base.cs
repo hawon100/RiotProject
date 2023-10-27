@@ -40,17 +40,8 @@ public abstract class Enemy_Base : Mob_Base
     protected override void DieDestroy()
     {
         anim.SetBool("isDead", true);
-        _box.enabled = false;
 
-        if (anim.GetCurrentAnimatorStateInfo(0).IsName("death") && anim.GetCurrentAnimatorStateInfo(0).normalizedTime < 1f)
-        {
-            StartCoroutine(Death());
-        }
-    }
-
-    private IEnumerator Death()
-    {
-        yield return new WaitForSeconds(2f);
+        MoveManager.Instance.DestroyEnemy(curPos, this);
         Managers.Resource.Destroy(gameObject);
     }
 

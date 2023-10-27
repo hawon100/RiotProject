@@ -39,7 +39,7 @@ public class MoveManager : MonoBehaviour
 
     public void EnemyMove()
     {
-        if(curMoveMob.Count == 0 && curCheckMob.Count == 0)
+        if(curMoveMob.Count == 0 && curCheckMob.Count == 0) return;
 
         if (curMoveMob.Count != 0)
             for (int i = 0; i < curMoveMob.Count; i++)
@@ -84,13 +84,10 @@ public class MoveManager : MonoBehaviour
         return 0;
     }
 
-    public void DestroyEnemy(Vector2Int curPos)
+    public void DestroyEnemy(Vector2Int curPos, Enemy_Base dieObj)
     {
-        curMoveMap[curPos.x, curPos.y] = 0;
-
-        for (int i = 0; i < curMoveMob.Count; i++)
-            if (curMoveMob[i] == null)
-                curMoveMob.Remove(curMoveMob[i]);
+        curMoveMob.Remove(dieObj);
+        curMoveMap[curPos.x, curPos.y] = 0;                
     }
 
     public void MapInit(int[,] _curGroundMap)

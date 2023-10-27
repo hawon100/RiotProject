@@ -12,9 +12,9 @@ GameObject:
   - component: {fileID: 7531048529080168342}
   - component: {fileID: 3508237110260542952}
   - component: {fileID: 963677965813367715}
-  - component: {fileID: 3920263343653000665}
+  - component: {fileID: 1882720481210013175}
   m_Layer: 0
-  m_Name: Point 2
+  m_Name: In_Stage
   m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -98,7 +98,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &3920263343653000665
+--- !u!114 &1882720481210013175
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -107,7 +107,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 4189690835450586684}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8aa32f11708023448898a94907d21cbc, type: 3}
+  m_Script: {fileID: 11500000, guid: 1c8202818050164489adac2fca7c9b91, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   curPos: {x: 0, y: 0}

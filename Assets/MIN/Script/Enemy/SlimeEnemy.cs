@@ -6,22 +6,15 @@ public class SlimeEnemy : A_Unit
 {
     [SerializeField] private float timeToMove = 0.2f;
 
-    private int count;
+    [SerializeField] private int count;
     [SerializeField] private int maxcount;
-
-    protected override void DieDestroy()
-    {
-        Debug.Log("3");
-    }
 
     public override void Move()
     {
-        oneMove();
-
         switch (count)
         {
             case 0: CheckMove(Vector3.forward); count++; break;
-            case 1: CheckMove(Vector3.back);  count = -1; break;
+            case 1: CheckMove(Vector3.back);  count = 0; break;
         }
     }
 

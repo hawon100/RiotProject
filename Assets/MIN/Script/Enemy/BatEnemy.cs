@@ -7,14 +7,8 @@ public class BatEnemy : A_Unit
     [SerializeField] float timeToMove = 0.2f;
     [SerializeField] bool isMoving = false;
 
-    protected override void DieDestroy()
-    {
-        Debug.Log("3");
-    }
-
     public override void Move()
     {
-        oneMove();
         int randValue = Random.Range(0, 4);
 
         switch(randValue)

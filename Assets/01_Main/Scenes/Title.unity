@@ -706,8 +706,7 @@ MonoBehaviour:
   panel: {fileID: 1534184994}
   directorPlayer: {fileID: 3217105026942158921}
   directorCamPos: {fileID: 1669536245}
-  camera: {fileID: 630217491}
-  slashEffect: {fileID: 1250559660}
+  cam: {fileID: 630217491}
 --- !u!1 &630217489
 GameObject:
   m_ObjectHideFlags: 0
@@ -1174,12 +1173,6 @@ PrefabInstance:
 --- !u!4 &1250559659 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3407604102439438471, guid: 38874cea95e81344f8628e064bbef63e,
-    type: 3}
-  m_PrefabInstance: {fileID: 1250559658}
-  m_PrefabAsset: {fileID: 0}
---- !u!198 &1250559660 stripped
-ParticleSystem:
-  m_CorrespondingSourceObject: {fileID: 3407604102439438465, guid: 38874cea95e81344f8628e064bbef63e,
     type: 3}
   m_PrefabInstance: {fileID: 1250559658}
   m_PrefabAsset: {fileID: 0}

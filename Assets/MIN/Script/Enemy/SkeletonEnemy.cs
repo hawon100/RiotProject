@@ -4,13 +4,8 @@ using UnityEngine;
 
 public class SkeletonEnemy : A_Unit
 {
-    private int count;
+    [SerializeField]private int count;
     [SerializeField] private int maxcount = 2;
-
-    protected override void DieDestroy()
-    {
-        Debug.Log("3");
-    }
 
     public override void Move()
     {
@@ -18,6 +13,7 @@ public class SkeletonEnemy : A_Unit
         if (count == maxcount)
         {
             oneMove();
+            count = 0;
         }
     }
 }

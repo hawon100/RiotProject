@@ -10,15 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7a910ee761286a04aba03548bb4baa65, type: 3}
-  m_Name: TestMap
+  m_Name: LobbyStage
   m_EditorClassIdentifier: 
   battleMapData:
-  - {fileID: 11400000, guid: ca3d555cee9cc774a9833b3f20d99fa4, type: 2}
+  - {fileID: 11400000, guid: ea7402e233f313244a66ebe038b30c82, type: 2}
   specialMapData: []
   mapTile:
-  - {fileID: 4189690835450586684, guid: d59be852c7920ee49bf33a05040792c2, type: 3}
+  - {fileID: 4189690835450586684, guid: 3e1d4f6e113d5ea4eb92cfbfd9cf60f2, type: 3}
   mapObj:
   - {fileID: 4189690835450586684, guid: 2c54c2a2cb3e5824dacee6bac3ddf375, type: 3}
-  - {fileID: 4189690835450586684, guid: f488a1cc3b5228643bf62a01a3a5486d, type: 3}
+  - {fileID: 4189690835450586684, guid: 3008789f8b158ce4c9c00d51816be1f6, type: 3}
   bgm: {fileID: 0}
   stageCount: 0

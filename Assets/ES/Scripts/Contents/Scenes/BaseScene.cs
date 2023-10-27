@@ -10,7 +10,6 @@ public abstract class BaseScene : MonoBehaviour
 
     private void Awake()
     {
-        data.InitData();
         Init(); 
     }
 
