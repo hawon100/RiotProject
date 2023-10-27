@@ -35,7 +35,7 @@ public class BatEnemy : A_Unit
         if (movePos == Vector3.right) plusPos = Vector2Int.right;
         if (movePos == Vector3.left) plusPos = Vector2Int.left;
 
-        int action = MoveManager.Instance.MoveCheck(curPos, plusPos);
+        int action = MoveManager.Instance.MoveCheck(curPos, plusPos, true);
         switch (action)
         {
             case 0: curPos = curPos + plusPos; StartCoroutine(MovePlayer(movePos)); break;

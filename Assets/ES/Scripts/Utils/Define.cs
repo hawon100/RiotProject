@@ -32,4 +32,13 @@ public class Define
         None,
         QuarterView,
     }
+
+    public enum KeyType
+    {
+        None,
+        Up,
+        Down,
+        Right,
+        Left,
+    }
 }

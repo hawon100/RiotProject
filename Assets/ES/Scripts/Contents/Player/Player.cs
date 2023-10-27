@@ -24,17 +24,15 @@ public class Player : Mob_Base
         isMoving = false;
     }
 
-    private void Update()
+    public void Move(string type)
     {
-        Move();
-    }
-
-    private void Move()
-    {
-        if (Input.GetKeyDown(KeyCode.UpArrow)) CheckMove(Vector3.forward);
-        if (Input.GetKeyDown(KeyCode.DownArrow)) CheckMove(Vector3.back);
-        if (Input.GetKeyDown(KeyCode.RightArrow)) CheckMove(Vector3.right);
-        if (Input.GetKeyDown(KeyCode.LeftArrow)) CheckMove(Vector3.left);
+        switch(type)
+        {
+            case "Up": CheckMove(Vector3.forward); break;
+            case "Down": CheckMove(Vector3.back); break;
+            case "Right": CheckMove(Vector3.right); break;
+            case "Left": CheckMove(Vector3.left); break;
+        }
     }
 
     private void CheckMove(Vector3 movePos)

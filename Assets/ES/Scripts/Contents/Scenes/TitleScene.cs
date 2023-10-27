@@ -9,22 +9,26 @@ public class TitleScene : BaseScene
     [SerializeField] private Transform directorCamPos;
     [SerializeField] private Camera camera;
 
+    public static bool isDoubleTouch;
+
     protected override void Init()
     {
         base.Init();
 
         SceneType = Define.Scene.Title;
+        isDoubleTouch = false;
     }
 
     private void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Q))
+        if(isDoubleTouch)
         {
             directorPlayer.SetTrigger("OnDirector");
             panel.SetActive(false);
             camera.gameObject.transform.position = directorCamPos.position;
             camera.gameObject.transform.rotation = directorCamPos.rotation;
             camera.fieldOfView = 69f;
+            isDoubleTouch = false;
         }
     }
 
