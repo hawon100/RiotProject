@@ -5,12 +5,12 @@ using UnityEngine;
 
 public class MapGenerator : MonoBehaviour
 {
+    [SerializeField] private List<StageData> stageList;
     [SerializeField] private StageData curStage;
-    [SerializeField] private RoundData roundData;
     [SerializeField] private Player player;
     [SerializeField] private int stageIndex;
 
-    [SerializeField] GameObject enemy; //임시, 나중에 EnemyList을 만들던가 아니면 싹 다 랜덤으로 나오게 하던가 할 것
+    [SerializeField] List<GameObject> enemy; //임시, 나중에 EnemyList을 만들던가 아니면 싹 다 랜덤으로 나오게 하던가 할 것
     [SerializeField] int enemyCount; //임시
 
     private List<MapData> battleMapData = new();
@@ -21,7 +21,11 @@ public class MapGenerator : MonoBehaviour
 
     private void Init()
     {
-        stageIndex = RoundData.Instance.stageIndex;
+        if (stageList.Count != 0)
+        {
+            stageIndex = RoundData.Instance.stageIndex;
+            curStage = stageList[stageIndex];
+        }
 
         battleMapData = curStage.battleMapData.ToList();
         // specialMapData = curStage.specialMapData.ToList();
@@ -91,7 +95,8 @@ public class MapGenerator : MonoBehaviour
         for (int i = 0; i < enemyCount; i++)
         {
             int ranPos = Random.Range(0, spawnPos.Count);
-            var temp = Instantiate(enemy, new Vector3(spawnPos[ranPos].x, 0, spawnPos[ranPos].y),
+            int ranMob = Random.Range(0, enemy.Count);
+            var temp = Instantiate(enemy[ranMob], new Vector3(spawnPos[ranPos].x, 0, spawnPos[ranPos].y),
             Quaternion.identity).GetComponent<Enemy_Base>();
             temp.curPos = new(spawnPos[ranPos].x, spawnPos[ranPos].y);
             map[spawnPos[ranPos].x, spawnPos[ranPos].y] = temp;
@@ -102,9 +107,8 @@ public class MapGenerator : MonoBehaviour
         MoveManager.Instance.MobInit(map, spawnMob, curObjData);
     }
 
-    private void Awake() {
-        roundData.InitData();
-        roundData.Reset();
+    private void Awake()
+    {
         player.Init();
         Init();
         ChoiceMap(1);

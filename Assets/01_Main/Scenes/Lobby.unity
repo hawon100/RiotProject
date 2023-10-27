@@ -531,10 +531,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba8552f1560ec75408b52f85d334535e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  curPos: {x: 0, y: 0}
   HP: 0
   maxHP: 0
   damage: 0
-  curPos: {x: 0, y: 0}
   moveSound: {fileID: 8300000, guid: 1780f53627d9f864ab8451655bd6ce20, type: 3}
   timeToMove: 0.2
   isMoving: 0
@@ -678,6 +678,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8366e7957f02e70458f5fa8664a12588, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  data: {fileID: 0}
 --- !u!1 &566828852
 GameObject:
   m_ObjectHideFlags: 0
@@ -725,8 +726,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stageList: []
   curStage: {fileID: 11400000, guid: df073fc1ebd347b439d2014e6ca81850, type: 2}
-  stageLevel: 0
-  enemy: {fileID: 6964206347585860444, guid: e569555b29778674cbe3bfc299054656, type: 3}
+  player: {fileID: 191601819}
+  stageIndex: 0
+  enemy: []
   enemyCount: 0
 --- !u!114 &566828855
 MonoBehaviour:

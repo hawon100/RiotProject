@@ -6,9 +6,11 @@ using UnityEngine.EventSystems;
 public abstract class BaseScene : MonoBehaviour
 {
     public Define.Scene SceneType { get; protected set; } = Define.Scene.None;
+    public RoundData data;
 
     private void Awake()
     {
+        data.InitData();
         Init(); 
     }
 

@@ -7,7 +7,7 @@ public class TitleScene : BaseScene
     [SerializeField] private GameObject panel;
     [SerializeField] private Animator directorPlayer;
     [SerializeField] private Transform directorCamPos;
-    [SerializeField] private Camera camera;
+    [SerializeField] private Camera cam;
 
     public static bool isDoubleTouch;
 
@@ -25,9 +25,9 @@ public class TitleScene : BaseScene
         {
             directorPlayer.SetTrigger("OnDirector");
             panel.SetActive(false);
-            camera.gameObject.transform.position = directorCamPos.position;
-            camera.gameObject.transform.rotation = directorCamPos.rotation;
-            camera.fieldOfView = 69f;
+            cam.gameObject.transform.position = directorCamPos.position;
+            cam.gameObject.transform.rotation = directorCamPos.rotation;
+            cam.fieldOfView = 69f;
             isDoubleTouch = false;
         }
     }

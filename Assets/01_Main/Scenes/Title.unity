@@ -702,6 +702,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ea7b61d7ad61974981c742ef1587d83, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  data: {fileID: 11400000, guid: 6119960e5f7621547b2d64c71d58f5e6, type: 2}
   panel: {fileID: 1534184994}
   directorPlayer: {fileID: 3217105026942158921}
   directorCamPos: {fileID: 1669536245}

@@ -17,6 +17,7 @@ public class DirectorPlayerAnim : MonoBehaviour
     {
         yield return new WaitForSeconds(2f);
 
+        RoundData.Instance.Reset();
         Managers.Map.LoadScene(Define.Scene.Lobby);
 
         yield return null;
