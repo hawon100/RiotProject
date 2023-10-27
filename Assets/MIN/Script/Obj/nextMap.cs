@@ -10,6 +10,12 @@ public class NextMap : Obj_Base
 
         if(isLock) return;
 
+        if(RoundData.Instance.mapIndex < 3){
+            RoundData.Instance.mapIndex++;
         Managers.Map.LoadScene(Define.Scene.InGame);
+        }
+        else{
+            
+        }
     }
 }

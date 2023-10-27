@@ -1273,6 +1273,7 @@ GameObject:
   - component: {fileID: 1226037546}
   - component: {fileID: 1226037545}
   - component: {fileID: 1226037547}
+  - component: {fileID: 1226037548}
   m_Layer: 0
   m_Name: Manager
   m_TagString: Untagged
@@ -1323,6 +1324,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveManager: {fileID: 1231972999}
   curMap: {fileID: 8300000, guid: ce41558585627a247b61bf7716105914, type: 3}
+--- !u!114 &1226037548
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1226037544}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 54397ea3392725a4b9b480a05f74040c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  data: {fileID: 0}
 --- !u!1 &1231972998
 GameObject:
   m_ObjectHideFlags: 0
@@ -1730,7 +1744,7 @@ MonoBehaviour:
   - {fileID: 6294726499898152079, guid: 8d7487f79d272234ba9d74338ffac03e, type: 3}
   - {fileID: 671632210655633338, guid: b879aadb0c4c2dd4f9f4797d2d86bc24, type: 3}
   - {fileID: 3660261790035065101, guid: 73c77ab27e79f3043ab950d6d04c92cd, type: 3}
-  enemyCount: 1
+  enemyCount: 0
 --- !u!1 &1500605980
 GameObject:
   m_ObjectHideFlags: 0

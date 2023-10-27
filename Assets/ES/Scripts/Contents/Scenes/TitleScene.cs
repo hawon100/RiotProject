@@ -8,6 +8,7 @@ public class TitleScene : BaseScene
     [SerializeField] private Animator directorPlayer;
     [SerializeField] private Transform directorCamPos;
     [SerializeField] private Camera cam;
+    [SerializeField] private RoundData data;
 
     public static bool isDoubleTouch;
 

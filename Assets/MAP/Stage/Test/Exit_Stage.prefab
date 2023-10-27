@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 7531048529080168342}
   - component: {fileID: 3508237110260542952}
   - component: {fileID: 963677965813367715}
-  - component: {fileID: 2888198345248816121}
+  - component: {fileID: 6018893256273917786}
   m_Layer: 0
   m_Name: Exit_Stage
   m_TagString: Wall
@@ -98,7 +98,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &2888198345248816121
+--- !u!114 &6018893256273917786
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -111,4 +111,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   curPos: {x: 0, y: 0}
-  isLock: 1
+  isLock: 0

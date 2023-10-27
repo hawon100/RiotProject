@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Stage1Scene : BaseScene
+public class InGameScene : BaseScene
 {
     protected override void Init()
     {
@@ -13,6 +13,6 @@ public class Stage1Scene : BaseScene
 
     public override void Clear()
     {
-        
+        Debug.Log("InGameScene Clear!");
     }
 }

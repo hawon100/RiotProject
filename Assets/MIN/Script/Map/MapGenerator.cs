@@ -21,26 +21,29 @@ public class MapGenerator : MonoBehaviour
 
     private void Init()
     {
-        if (stageList.Count != 0)
-        {
-            stageIndex = RoundData.Instance.stageIndex;
-            curStage = stageList[stageIndex];
-        }
+        // if (stageList.Count != 0)
+        // {
+        //     stageIndex = RoundData.Instance.stageIndex;
+        //     curStage = stageList[stageIndex];
+        // }
+
+        stageIndex = RoundData.Instance.mapIndex;
 
         battleMapData = curStage.battleMapData.ToList();
         // specialMapData = curStage.specialMapData.ToList();
         mapTile = curStage.mapTile.ToList();
         mapObj = curStage.mapObj.ToList();
-        // bgm = curStage.bgm;
     }
 
     private void ChoiceMap(int count)
     {
-        if (count == stageIndex) { CreateMap(specialMapData[0]); return; }
+        // if (count == stageIndex) { CreateMap(specialMapData[0]); return; }
 
-        int ranMap = Random.Range(0, battleMapData.Count);
-        CreateMap(battleMapData[ranMap]);
-        battleMapData.Remove(battleMapData[ranMap]);
+        // int ranMap = Random.Range(0, battleMapData.Count);
+        // CreateMap(battleMapData[ranMap]);
+        // battleMapData.Remove(battleMapData[ranMap]);
+
+        CreateMap(battleMapData[stageIndex]);
     }
 
     private void CreateMap(MapData curMap)
@@ -111,6 +114,6 @@ public class MapGenerator : MonoBehaviour
     {
         player.Init();
         Init();
-        ChoiceMap(1);
+        ChoiceMap(stageIndex);
     }
 }
