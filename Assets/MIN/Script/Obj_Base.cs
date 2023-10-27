@@ -2,9 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class Obj_Base : MonoBehaviour
+public abstract class Obj_Base : Base
 {
     public bool isLock;
 
-    public abstract void Use();
+    public override void Use()
+    {
+        UseObj();
+    }
+
+    protected abstract void UseObj();
 }

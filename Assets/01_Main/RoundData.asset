@@ -9,7 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a63b4c06039ee7f4f9b45caafa6b6421, type: 3}
-  m_Name: Test
+  m_Script: {fileID: 11500000, guid: 97c115fe0d11cd44ea2feddf735917a6, type: 3}
+  m_Name: RoundData
   m_EditorClassIdentifier: 
-  BGM: {fileID: 8300000, guid: 1780f53627d9f864ab8451655bd6ce20, type: 3}
+  stageIndex: 0
+  HP: 6

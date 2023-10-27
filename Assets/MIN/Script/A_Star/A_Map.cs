@@ -7,19 +7,16 @@ public class A_Map : MonoBehaviour
     private static A_Map _instance = null;
     public static A_Map Instance => _instance;
 
-    private int[,] objMap;
     private int[,] groundMap;
-    private int[,] moveMap;
     A_Node[,] a_Node;
 
     Vector3Int center;
     int map_x;
     int map_y;
 
-    public void InitMap(int[,] _objMap, int[,] _groundMap)
+    public void InitMap(int[,] _groundMap)
     {
         _instance = this;
-        objMap = _objMap;
         groundMap = _groundMap;
 
         a_Node = new A_Node[groundMap.GetLength(0), groundMap.GetLength(1)];
@@ -28,11 +25,6 @@ public class A_Map : MonoBehaviour
             if(groundMap[i, j] == 0) a_Node[i, j] = new A_Node(true, new Vector3Int(i, 0, j));
             else a_Node[i, j] = new A_Node(false, new Vector3Int(i, 0, j));
         }
-    }
-
-    public void InitMoveMap(int[,] _moveMap)
-    {
-        moveMap = _moveMap;
     }
 
     public static A_Node GetNodeTransfrom(Vector3 nodePos)
