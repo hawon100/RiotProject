@@ -5,6 +5,9 @@ using UnityEngine;
 
 public class OrcEnemy : A_Unit
 {
+    private int count;
+    [SerializeField] private int maxcount = 5;
+
     protected override void DieDestroy()
     {
         Debug.Log("3");
@@ -12,7 +15,8 @@ public class OrcEnemy : A_Unit
 
     public override void Move()
     {
-        for (int i = 0; i < 2; i++)
+        count++;
+        if (count == maxcount)
         {
             oneMove();
         }
