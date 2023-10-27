@@ -2,8 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TouchController : MonoBehaviour
+public class TouchUI : MonoBehaviour
 {
+    [SerializeField] private Define.EndType type = Define.EndType.None;
     private float lastTouchTime;
     private const float doubleTouchDelay = 0.5f;
 
@@ -14,11 +15,11 @@ public class TouchController : MonoBehaviour
 
     private void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Q))
+        if (Input.GetKeyDown(KeyCode.Q))
         {
             TitleScene.isDoubleTouch = true;
         }
-
+        
         if (Input.touchCount == 1)
         {
             Touch touch = Input.GetTouch(0);
@@ -29,7 +30,12 @@ public class TouchController : MonoBehaviour
 
                     if (Time.time - lastTouchTime < doubleTouchDelay) // 더블터치 판정
                     {
-                        TitleScene.isDoubleTouch = true;
+                        switch (type)
+                        {
+                            case Define.EndType.Clear: Managers.Map.LoadScene(Define.Scene.Lobby); break;
+                            case Define.EndType.Over: Managers.Map.LoadScene(Define.Scene.Lobby); break;
+                            case Define.EndType.Victory: break;
+                        }
                     }
                     else
                     {

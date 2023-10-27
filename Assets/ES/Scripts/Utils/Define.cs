@@ -41,4 +41,12 @@ public class Define
         Right,
         Left,
     }
+
+    public enum EndType
+    {
+        None,
+        Victory,
+        Clear,
+        Over,
+    }
 }
