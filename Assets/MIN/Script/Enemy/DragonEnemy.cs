@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class DragonEnemy : A_Unit
 {
+    private int count = 0;
+    [SerializeField] private int maxcount = 2;
     protected override void DieDestroy()
     {
         Debug.Log("3");
@@ -11,9 +13,11 @@ public class DragonEnemy : A_Unit
 
     public override void Move()
     {
-        for (int i = 0; i < 2; i++)
+        count++;
+        if(count == maxcount)
         {
             oneMove();
+            count = 0;
         }
     }
 }

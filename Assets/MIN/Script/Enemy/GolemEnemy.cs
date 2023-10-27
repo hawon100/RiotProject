@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class GolemEnemy : A_Unit
 {
+    private int count;
+    [SerializeField] private int maxcount = 5;
+
     protected override void DieDestroy()
     {
         Debug.Log("3");
@@ -11,7 +14,8 @@ public class GolemEnemy : A_Unit
 
     public override void Move()
     {
-        for (int i = 0; i < 10; i++) 
+        count++;
+        if (count == maxcount)
         {
             oneMove();
         }

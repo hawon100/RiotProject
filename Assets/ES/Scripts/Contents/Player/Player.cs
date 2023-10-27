@@ -29,17 +29,15 @@ public class Player : Mob_Base
         HP = RoundData.Instance.HP;
     }
 
-    private void Update()
+    public void Move(string type)
     {
-        Move();
-    }
-
-    private void Move()
-    {
-        if (Input.GetKeyDown(KeyCode.UpArrow)) CheckMove(Vector3.forward);
-        if (Input.GetKeyDown(KeyCode.DownArrow)) CheckMove(Vector3.back);
-        if (Input.GetKeyDown(KeyCode.RightArrow)) CheckMove(Vector3.right);
-        if (Input.GetKeyDown(KeyCode.LeftArrow)) CheckMove(Vector3.left);
+        switch(type)
+        {
+            case "Up": CheckMove(Vector3.forward); break;
+            case "Down": CheckMove(Vector3.back); break;
+            case "Right": CheckMove(Vector3.right); break;
+            case "Left": CheckMove(Vector3.left); break;
+        }
     }
 
     private void CheckMove(Vector3 movePos)
@@ -49,9 +47,9 @@ public class Player : Mob_Base
         Vector2Int plusPos = Vector2Int.zero;
 
         if (movePos == Vector3.forward) plusPos = Vector2Int.up;
-        else if (movePos == Vector3.back) plusPos = Vector2Int.down;
-        else if (movePos == Vector3.right) plusPos = Vector2Int.right;
-        else if (movePos == Vector3.left) plusPos = Vector2Int.left;
+        if (movePos == Vector3.back) plusPos = Vector2Int.down;
+        if (movePos == Vector3.right) plusPos = Vector2Int.right;
+        if (movePos == Vector3.left) plusPos = Vector2Int.left;
 
         RookPlayer(movePos);
 

@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class EvilmageEnemy : A_Unit
 {
+    private int count;
+    [SerializeField] private int maxcount = 3;
+
     protected override void DieDestroy()
     {
         Debug.Log("3");
@@ -11,6 +14,10 @@ public class EvilmageEnemy : A_Unit
 
     public override void Move()
     {
-        oneMove();
+        count++;
+        if(count == maxcount)
+        {
+            oneMove();
+        }
     }
 }

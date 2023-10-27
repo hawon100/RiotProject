@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class SpiderEnemy : A_Unit
 {
+    private int count;
+    [SerializeField] private int maxcount = 4;
+
     protected override void DieDestroy()
     {
         Debug.Log("3");
@@ -11,7 +14,8 @@ public class SpiderEnemy : A_Unit
 
     public override void Move()
     {
-        for(int i = 0; i < 3; i++)
+        count++;
+        if (count == maxcount)
         {
             oneMove();
         }
