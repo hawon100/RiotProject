@@ -4,10 +4,13 @@ using UnityEngine;
 
 public class nextMap : Obj_Base
 {
-    
-
-    public override void Use()
+    protected override void UseObj()
     {
-        throw new System.NotImplementedException();
+        if(MoveManager.Instance.curMoveMob.Count == 0 && MoveManager.Instance.curCheckMob.Count == 0) isLock = false;
+
+        if(isLock) return;
+
+        Debug.Log("NEXT");
+        //Managers.Map.LoadScene(Define.Scene.InGame);
     }
 }

@@ -9,7 +9,7 @@ public class Define
         None,
         Title,
         Lobby,
-        Stage1,
+        InGame,
     }
 
     public enum Sound

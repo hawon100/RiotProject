@@ -15,13 +15,18 @@ public class Player : Mob_Base
 
     TimingManager timingManager;
 
+    public void Init(){
+        _instance = this;
+    }
+
     protected override void Start()
     {
         base.Start();
 
         timingManager = FindObjectOfType<TimingManager>();
-        _instance = this;
         isMoving = false;
+
+        HP = RoundData.Instance.HP;
     }
 
     public void Move(string type)

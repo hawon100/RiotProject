@@ -1,18 +1,26 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RoundData : MonoBehaviour
+[CreateAssetMenu(fileName = "StageData", menuName = "Game/RoundData", order = 1), Serializable]
+public class RoundData : ScriptableObject
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
+    private static RoundData _instance = null;
+    public static RoundData Instance => _instance;
+
+    public int stageIndex;
+
+    [Header("Player")]
+    public int HP;
+
+    public void Reset(){
+        stageIndex = 0;
+        HP = 6;
     }
 
-    // Update is called once per frame
-    void Update()
+    public void InitData()
     {
-        
+        _instance = this;
     }
 }

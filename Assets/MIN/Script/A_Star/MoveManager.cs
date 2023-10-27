@@ -21,9 +21,9 @@ public class MoveManager : MonoBehaviour
     private int[,] curGroundMap;
     private int[,] curObjMap;
     private int[,] curMoveMap;
-    private Mob_Base[,] curEnemyMap;
-    [SerializeField] private List<Enemy_Base> curMoveMob;
-    [SerializeField] private List<Enemy_Base> curCheckMob;
+    private Base[,] curMap;
+    public List<Enemy_Base> curMoveMob;
+    public List<Enemy_Base> curCheckMob;
 
     private void Start()
     {
@@ -39,6 +39,8 @@ public class MoveManager : MonoBehaviour
 
     public void EnemyMove()
     {
+        if(curMoveMob.Count == 0 && curCheckMob.Count == 0)
+
         if (curMoveMob.Count != 0)
             for (int i = 0; i < curMoveMob.Count; i++)
             {
@@ -64,17 +66,17 @@ public class MoveManager : MonoBehaviour
         if (curGroundMap[movePos.x, movePos.y] != 1 && !isFly) return 1;
         if (curObjMap[movePos.x, movePos.y] != 0)
         {
-            //체크 후 공격, 이동불가 리턴
-            //return 1 or 2;
+            curMap[movePos.x, movePos.y].Use();
+            return 1;
         }
         if (curMoveMap[movePos.x, movePos.y] != 0)
         {
-            curEnemyMap[movePos.x, movePos.y].Damage(1);
+            curMap[movePos.x, movePos.y].Use();
             return 2;
         }
 
-        curEnemyMap[movePos.x, movePos.y] = curEnemyMap[curPos.x, curPos.y];
-        curEnemyMap[curPos.x, curPos.y] = null;
+        curMap[movePos.x, movePos.y] = curMap[curPos.x, curPos.y];
+        curMap[curPos.x, curPos.y] = null;
 
         curMoveMap[movePos.x, movePos.y] = curMoveMap[curPos.x, curPos.y];
         curMoveMap[curPos.x, curPos.y] = 0;
@@ -91,18 +93,18 @@ public class MoveManager : MonoBehaviour
                 curMoveMob.Remove(curMoveMob[i]);
     }
 
-    public void MapInit(int[,] _curObjMap, int[,] _curGroundMap)
+    public void MapInit(int[,] _curGroundMap)
     {
-        curObjMap = _curObjMap;
         curGroundMap = _curGroundMap;
-        curMoveMap = new int[curObjMap.GetLength(0), curObjMap.GetLength(1)];
+        curMoveMap = new int[_curGroundMap.GetLength(0), _curGroundMap.GetLength(1)];
 
-        a_Map.InitMap(_curObjMap, _curGroundMap);
+        a_Map.InitMap(_curGroundMap);
     }
 
-    public void MonsterInit(Mob_Base[,] spawnMap, List<Mob_Base> spawnMob)
+    public void MobInit(Base[,] _map, List<Enemy_Base> spawnMob, int[,] _curObjMap)
     {
-        curEnemyMap = spawnMap;
+        curObjMap = _curObjMap;
+        curMap = _map;
         Enemy_Base temp;
         for (int i = 0; i < spawnMob.Count; i++)
         {
@@ -111,23 +113,21 @@ public class MoveManager : MonoBehaviour
             else curCheckMob.Add(temp);
         }
 
-
-        for (int i = 0; i < spawnMap.GetLength(0); i++)
-            for (int j = 0; j < spawnMap.GetLength(1); j++)
+        for (int i = 0; i < _map.GetLength(0); i++)
+            for (int j = 0; j < _map.GetLength(1); j++)
             {
-                if (spawnMap[i, j] != null) curMoveMap[i, j] = 2;
+                if (_map[i, j] != null) curMoveMap[i, j] = 2;
             }
 
-        for (int i = 0; i < curObjMap.GetLength(0); i++) for (int j = 0; j < curObjMap.GetLength(1); j++)
-                if (curObjMap[i, j] == 1)
+        for (int i = 0; i < _curObjMap.GetLength(0); i++) for (int j = 0; j < _curObjMap.GetLength(1); j++)
+                if (_curObjMap[i, j] == 1)
                 {
                     curMoveMap[i, j] = 1;
-                    curEnemyMap[i, j] = Player.Instance.GetComponent<Mob_Base>();
+                    curMap[i, j] = Player.Instance.GetComponent<Mob_Base>();
                     Player.Instance.transform.position = new Vector3(i, 0, j);
                     Player.Instance.curPos = new Vector2Int(i, j);
                 }
 
-        a_Map.InitMoveMap(curMoveMap);
     }
 
     private void Classification()
