@@ -1,17 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.TextCore.Text;
 
 public class Player : Mob_Base
 {
     private static Player _instance = null;
     public static Player Instance => _instance;
 
-    [SerializeField] AudioClip moveSound;
+    [SerializeField] private AudioClip moveSound;
 
     [SerializeField] float timeToMove = 0.2f;
     [SerializeField] bool isMoving = false;
+    [SerializeField] GameObject dieWin;
 
     TimingManager timingManager;
 
@@ -22,7 +22,7 @@ public class Player : Mob_Base
     protected override void Start()
     {
         base.Start();
-
+        dieWin.SetActive(false);
         timingManager = FindObjectOfType<TimingManager>();
         isMoving = false;
 
@@ -98,6 +98,7 @@ public class Player : Mob_Base
 
     protected override void DieDestroy()
     {
+        dieWin.SetActive(true);
         Debug.Log("Die");
     }
 }
