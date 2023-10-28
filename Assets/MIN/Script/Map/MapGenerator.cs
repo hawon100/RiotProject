@@ -43,7 +43,8 @@ public class MapGenerator : MonoBehaviour
         // CreateMap(battleMapData[ranMap]);
         // battleMapData.Remove(battleMapData[ranMap]);
 
-        CreateMap(battleMapData[stageIndex]);
+        if (stageList.Count != 0) CreateMap(battleMapData[stageIndex + 1]);
+        else CreateMap(battleMapData[stageIndex]);
     }
 
     private void CreateMap(MapData curMap)

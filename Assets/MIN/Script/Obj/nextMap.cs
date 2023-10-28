@@ -14,8 +14,10 @@ public class NextMap : Obj_Base
             RoundData.Instance.mapIndex++;
         Managers.Map.LoadScene(Define.Scene.InGame);
         }
-        else{
-            
+        else
+        {
+            RoundData.Instance.Reset();
+            MoveManager.Instance.clearWin.SetActive(true);
         }
     }
 }

@@ -30,12 +30,7 @@ public class TouchUI : MonoBehaviour
 
                     if (Time.time - lastTouchTime < doubleTouchDelay) // 더블터치 판정
                     {
-                        switch (type)
-                        {
-                            case Define.EndType.Clear: Managers.Map.LoadScene(Define.Scene.Lobby); break;
-                            case Define.EndType.Over: Managers.Map.LoadScene(Define.Scene.Lobby); break;
-                            case Define.EndType.Victory: break;
-                        }
+                        Managers.Map.LoadScene(Define.Scene.Lobby);
                     }
                     else
                     {

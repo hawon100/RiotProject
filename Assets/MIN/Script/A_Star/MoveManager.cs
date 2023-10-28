@@ -11,6 +11,8 @@ public class MoveManager : MonoBehaviour
     private static MoveManager _instance = null;
     public static MoveManager Instance => _instance;
 
+    [SerializeField] public GameObject clearWin;
+
     Queue<A_Requset> requsetQueue = new Queue<A_Requset>();
     A_Requset curRequset;
     A_Check a_Check;

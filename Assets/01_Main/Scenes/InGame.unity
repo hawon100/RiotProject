@@ -1101,7 +1101,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   curPos: {x: 0, y: 0}
   HP: 0
-  maxHP: 100
+  maxHP: 1
   damage: 0
   moveSound: {fileID: 8300000, guid: 1780f53627d9f864ab8451655bd6ce20, type: 3}
   timeToMove: 0.2
@@ -1231,6 +1231,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3454ea26f47f5804baff98d00c160966, type: 3}
+--- !u!1 &885558945 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3010665497849961434, guid: 3454ea26f47f5804baff98d00c160966,
+    type: 3}
+  m_PrefabInstance: {fileID: 885558944}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &907898027
 GameObject:
   m_ObjectHideFlags: 0
@@ -1591,7 +1597,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 54397ea3392725a4b9b480a05f74040c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  data: {fileID: 0}
 --- !u!1 &1231972998
 GameObject:
   m_ObjectHideFlags: 0
@@ -1623,6 +1628,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f378188cbf273b478a57304f8a52c3e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  clearWin: {fileID: 885558945}
   curMoveMob: []
   curCheckMob: []
 --- !u!114 &1231973000
@@ -1999,7 +2005,7 @@ MonoBehaviour:
   - {fileID: 6294726499898152079, guid: 8d7487f79d272234ba9d74338ffac03e, type: 3}
   - {fileID: 671632210655633338, guid: b879aadb0c4c2dd4f9f4797d2d86bc24, type: 3}
   - {fileID: 3660261790035065101, guid: 73c77ab27e79f3043ab950d6d04c92cd, type: 3}
-  enemyCount: 0
+  enemyCount: 2
 --- !u!1 &1500605980
 GameObject:
   m_ObjectHideFlags: 0
