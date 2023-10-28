@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a910ee761286a04aba03548bb4baa65, type: 3}
+  m_Name: LobbyStage
+  m_EditorClassIdentifier: 
+  battleMapData:
+  - {fileID: 11400000, guid: ea7402e233f313244a66ebe038b30c82, type: 2}
+  specialMapData: []
+  mapTile:
+  - {fileID: 4189690835450586684, guid: 3e1d4f6e113d5ea4eb92cfbfd9cf60f2, type: 3}
+  mapObj:
+  - {fileID: 4189690835450586684, guid: 2c54c2a2cb3e5824dacee6bac3ddf375, type: 3}
+  - {fileID: 4189690835450586684, guid: 3008789f8b158ce4c9c00d51816be1f6, type: 3}
+  bgm: {fileID: 0}
+  stageCount: 0
