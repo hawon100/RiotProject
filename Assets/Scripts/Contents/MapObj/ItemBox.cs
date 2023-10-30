@@ -6,7 +6,7 @@ public class ItemBox : Obj_Base
 {
     Item_Base myItem;
 
-    protected override void UseObj(){
+    public override void UseObj(){
         switch(myItem.thisItem){
             case (int)Define.ItemType.Stats : Player.Instance.statsItem.Add(myItem); break;
             case (int)Define.ItemType.Attack : Player.Instance.attackItem.Add(myItem); break;

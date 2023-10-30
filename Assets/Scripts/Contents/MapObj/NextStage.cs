@@ -6,7 +6,7 @@ public class NextStage : Obj_Base
 {
     [SerializeField] private int stageIndex;
 
-    protected override void UseObj()
+    public override void UseObj()
     {
         if(isLock) return;
 

@@ -65,7 +65,8 @@ public class MapGenerator : MonoBehaviour
 
     private void Spawn(MapData Map, int[,] curMap)
     {
-        Base[,] map = new Base[curMap.GetLength(0), curMap.GetLength(1)];
+        Mob_Base[,] map = new Mob_Base[curMap.GetLength(0), curMap.GetLength(1)];
+        Obj_Base[,] obj = new Obj_Base[curMap.GetLength(0), curMap.GetLength(1)];
         List<Vector2Int> spawnPos = new();
         List<Enemy_Base> spawnMob = new();
 
@@ -89,7 +90,7 @@ public class MapGenerator : MonoBehaviour
                 var temp = Instantiate(mapObj[curObjData[i, j] - 1], new Vector3(i, 0, j),
                 Quaternion.identity, transform).GetComponent<Obj_Base>();
                 temp.curPos = new(i, j);
-                map[i, j] = temp;
+                obj[i, j] = temp;
             }
 
 
@@ -108,7 +109,7 @@ public class MapGenerator : MonoBehaviour
             spawnMob.Add(temp);
         }
 
-        MoveManager.Instance.MobInit(map, spawnMob, curObjData);
+        MoveManager.Instance.MobInit(map, obj, spawnMob, curObjData);
     }
 
     private void Awake()

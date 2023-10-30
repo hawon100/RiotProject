@@ -2407,12 +2407,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba8552f1560ec75408b52f85d334535e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  curPos: {x: 0, y: 0}
   HP: 0
   maxHP: 1
-  damage: 0
+  damage: 2
+  curPos: {x: 0, y: 0}
   moveSound: {fileID: 0}
-  timeToMove: 0.2
   dieWin: {fileID: 67189168}
   statsItem: []
   attackItem: []

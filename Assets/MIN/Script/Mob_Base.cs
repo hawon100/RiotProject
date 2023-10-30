@@ -3,20 +3,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class Mob_Base : Base
+public abstract class Mob_Base : MonoBehaviour
 {
     [SerializeField] protected int HP;
     [SerializeField] protected int maxHP;
     public int damage;
 
-    public Action dieAction;
     protected Animator anim;
+    public Action dieAction;
+    public Vector2Int curPos;
     bool isDie;
-
-    public override void Interaction()
-    {
-        Damage(1);
-    }
 
     protected virtual void Start()
     {
@@ -25,7 +21,7 @@ public abstract class Mob_Base : Base
         dieAction += DieDestroy;
     }
 
-    private void Damage(int Damage)
+    public void Damage(int Damage)
     {
         HP -= Damage;
         anim.SetTrigger("OnHit");
