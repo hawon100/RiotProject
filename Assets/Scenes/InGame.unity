@@ -798,8 +798,10 @@ MonoBehaviour:
   damage: 0
   moveSound: {fileID: 0}
   timeToMove: 0.2
-  isMoving: 0
   dieWin: {fileID: 67189168}
+  statsItem: []
+  attackItem: []
+  moveItem: []
 --- !u!1001 &885558944
 PrefabInstance:
   m_ObjectHideFlags: 0

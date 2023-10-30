@@ -5,7 +5,6 @@ using UnityEngine;
 public abstract class A_Unit : Enemy_Base
 {
     [Header("A_STAR")]
-    [SerializeField] protected float moveSpeed;
     [SerializeField] protected bool isMove;
 
     List<A_Node> path;
@@ -23,7 +22,6 @@ public abstract class A_Unit : Enemy_Base
     {
         Debug.Log("Move");
         MoveManager.Requset(transform.position, target.position, Found);
-        anim.SetTrigger("OnRun");
     }
 
     protected void Found(List<A_Node> newPath, bool success)
@@ -70,17 +68,18 @@ public abstract class A_Unit : Enemy_Base
 
     private IEnumerator MoveTo(Vector3 target, float sec)
     {
-        float timer = 0f;
+        float elapsedTime = 0f;
         Vector3 start = transform.position;
 
-        while (timer <= sec)
+        anim.SetTrigger("OnRun");
+        while (elapsedTime <= sec)
         {
-            transform.position = Vector3.Lerp(start, target, timer / sec);
-            timer += Time.deltaTime * moveSpeed;
+            transform.position = Vector3.Lerp(start, target, (elapsedTime / sec));
+            elapsedTime += Time.deltaTime;
 
             yield return null;
         }
-        transform.position = Vector3.Lerp(start, target, 1);
+        transform.position = target;
         yield break;
     }
 }

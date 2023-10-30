@@ -10,8 +10,11 @@ public class Player : Mob_Base
     [SerializeField] private AudioClip moveSound;
 
     [SerializeField] float timeToMove = 0.2f;
-    [SerializeField] bool isMoving = false;
     [SerializeField] GameObject dieWin;
+
+    public List<Item_Base> statsItem = new();
+    public List<Item_Base> attackItem = new();
+    public List<Item_Base> moveItem = new();
 
     TimingManager timingManager;
 
@@ -24,7 +27,6 @@ public class Player : Mob_Base
         base.Start();
         dieWin.SetActive(false);
         timingManager = FindObjectOfType<TimingManager>();
-        isMoving = false;
 
         HP = RoundData.Instance.HP;
     }
@@ -65,6 +67,7 @@ public class Player : Mob_Base
 
     void Attack()
     {
+        //attack item trigger
         anim.SetTrigger("doAttack");
     }
 
@@ -75,25 +78,23 @@ public class Player : Mob_Base
 
     private IEnumerator MovePlayer(Vector3 direction)
     {
-        isMoving = true;
         Managers.Sound.Play(moveSound, Define.Sound.Effect);
 
         float elapsedTime = 0;
         Vector3 origPos = transform.position;
-        Vector3 targetPos = origPos + direction;// * 5f
+        Vector3 targetPos = origPos + direction;
 
+        anim.SetBool("isDash", true);
         while (elapsedTime < timeToMove)
         {
-            anim.SetBool("isDash", true);
             transform.position = Vector3.Lerp(origPos, targetPos, (elapsedTime / timeToMove));
             elapsedTime += Time.deltaTime;
             yield return null;
         }
 
+        //move item trigger
         transform.position = targetPos;
         anim.SetBool("isDash", false);
-
-        isMoving = false;
     }
 
     protected override void DieDestroy()

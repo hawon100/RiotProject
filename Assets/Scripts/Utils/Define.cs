@@ -49,4 +49,10 @@ public class Define
         Clear,
         Over,
     }
+
+    public enum ItemType{
+        Stats,
+        Attack,
+        Move,
+    }
 }
