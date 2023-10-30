@@ -23,5 +23,5 @@ MonoBehaviour:
   - {fileID: 4189690835450586684, guid: d59be852c7920ee49bf33a05040792c2, type: 3}
   mapObj:
   - {fileID: 4189690835450586684, guid: 2c54c2a2cb3e5824dacee6bac3ddf375, type: 3}
-  - {fileID: 8662736936944988397, guid: 98753d2ab4c5fba41951cfd122b634d2, type: 3}
+  - {fileID: 4189690835450586684, guid: f488a1cc3b5228643bf62a01a3a5486d, type: 3}
   stageCount: 1
