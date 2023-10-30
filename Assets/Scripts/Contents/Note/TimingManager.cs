@@ -6,9 +6,9 @@ public class TimingManager : MonoBehaviour
 {
     public List<GameObject> boxNoteList_0 = new List<GameObject>();
     public List<GameObject> boxNoteList_1 = new List<GameObject>();
-    [SerializeField] Transform Center = null;
-    [SerializeField] RectTransform[] timingRect = null;
-    Vector2[] timingBox = null;
+    [SerializeField] private Transform Center = null;
+    [SerializeField] private RectTransform[] timingRect = null;
+    private Vector2[] timingBox = null;
 
     private void Start()
     {
@@ -39,6 +39,8 @@ public class TimingManager : MonoBehaviour
                 }
             }
         }
+
+        EffectManager.Instance.JudgementEffect();
         return false;
     }
 }

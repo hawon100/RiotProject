@@ -20,7 +20,7 @@ public class NoteManager : MonoBehaviour
     {
         currentTime += Time.deltaTime;
 
-        if(currentTime >= 60d / bpm)
+        if (currentTime >= 60d / bpm)
         {
             GameObject t_note_0 = Managers.Resource.Instantiate("Note/Note_0", tfNteAppear[0]);
             GameObject t_note_1 = Managers.Resource.Instantiate("Note/Note_1", tfNteAppear[1]);
@@ -34,13 +34,18 @@ public class NoteManager : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.CompareTag("Note"))
+        if (collision.CompareTag("Note"))
         {
             timingManager.boxNoteList_0.Remove(collision.gameObject);
             timingManager.boxNoteList_1.Remove(collision.gameObject);
             Managers.Resource.Destroy(collision.gameObject);
+            EffectManager.Instance.JudgementEffect();
+            //miss
+
             noteCount++;
-            if(noteCount == 2){
+
+            if (noteCount == 2)
+            {
                 MoveManager.Instance.EnemyMove();
                 noteCount = 0;
             }
