@@ -58,7 +58,7 @@ public class MoveManager : MonoBehaviour
     /// <param name="curPos"></param>
     /// <param name="plusPos"></param>
     /// <returns></returns>
-    public int MoveCheck(Vector2Int curPos, Vector2Int plusPos, bool isFly = false)
+    public int MoveCheck(Vector2Int curPos, Vector2Int plusPos, bool isFly = false, bool isPlayer = false)
     {
         Vector2Int movePos = curPos + plusPos;
 
@@ -68,12 +68,14 @@ public class MoveManager : MonoBehaviour
         if (curGroundMap[movePos.x, movePos.y] != 1 && !isFly) return 1;
         if (curObjMap[movePos.x, movePos.y] != 0)
         {
-            curMap[movePos.x, movePos.y].Use();
+            if(isPlayer)
+                curMap[movePos.x, movePos.y].Interaction();
+                
             return 1;
         }
         if (curMoveMap[movePos.x, movePos.y] != 0)
         {
-            curMap[movePos.x, movePos.y].Use();
+            curMap[movePos.x, movePos.y].Interaction();
             return 2;
         }
 

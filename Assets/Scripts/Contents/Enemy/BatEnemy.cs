@@ -31,13 +31,13 @@ public class BatEnemy : A_Unit
         int action = MoveManager.Instance.MoveCheck(curPos, plusPos, true);
         switch (action)
         {
-            case 0: curPos = curPos + plusPos; StartCoroutine(MovePlayer(movePos)); break;
+            case 0: curPos = curPos + plusPos; StartCoroutine(MoveEnemy(movePos)); break;
             case 1: break;
             case 2: Attack(); break;
         }
     }
 
-    private IEnumerator MovePlayer(Vector3 direction)
+    private IEnumerator MoveEnemy(Vector3 direction)
     {
         isMoving = true;
 

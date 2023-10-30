@@ -8,9 +8,9 @@ public class Player : Mob_Base
     public static Player Instance => _instance;
 
     [SerializeField] private AudioClip moveSound;
-
-    [SerializeField] float timeToMove = 0.2f;
     [SerializeField] GameObject dieWin;
+
+    private bool isFly;
 
     public List<Item_Base> statsItem = new();
     public List<Item_Base> attackItem = new();
@@ -55,14 +55,16 @@ public class Player : Mob_Base
 
         RookPlayer(movePos);
 
-        int action = MoveManager.Instance.MoveCheck(curPos, plusPos);
+        int action = MoveManager.Instance.MoveCheck(curPos, plusPos, isFly, true);
 
         switch (action)
         {
-            case 0: curPos = curPos + plusPos; StartCoroutine(MovePlayer(movePos)); break;
+            case 0: curPos = curPos + plusPos; StartCoroutine(MovePlayer(movePos, 0.2f)); break;
             case 1: break;
             case 2: Attack(); break;
         }
+
+        MoveManager.Instance.EnemyMove();
     }
 
     void Attack()
@@ -76,7 +78,7 @@ public class Player : Mob_Base
         transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(pos), 1f);
     }
 
-    private IEnumerator MovePlayer(Vector3 direction)
+    private IEnumerator MovePlayer(Vector3 direction, float sec)
     {
         Managers.Sound.Play(moveSound, Define.Sound.Effect);
 
@@ -85,9 +87,9 @@ public class Player : Mob_Base
         Vector3 targetPos = origPos + direction;
 
         anim.SetBool("isDash", true);
-        while (elapsedTime < timeToMove)
+        while (elapsedTime < sec)
         {
-            transform.position = Vector3.Lerp(origPos, targetPos, (elapsedTime / timeToMove));
+            transform.position = Vector3.Lerp(origPos, targetPos, (elapsedTime / sec));
             elapsedTime += Time.deltaTime;
             yield return null;
         }

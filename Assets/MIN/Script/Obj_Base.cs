@@ -6,7 +6,7 @@ public abstract class Obj_Base : Base
 {
     public bool isLock;
 
-    public override void Use()
+    public override void Interaction()
     {
         UseObj();
     }

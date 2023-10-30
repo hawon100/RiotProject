@@ -13,7 +13,7 @@ public abstract class Mob_Base : Base
     protected Animator anim;
     bool isDie;
 
-    public override void Use()
+    public override void Interaction()
     {
         Damage(1);
     }
