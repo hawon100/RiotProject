@@ -10,7 +10,6 @@ public class BatEnemy : A_Unit
     public override void Move()
     {
         int randValue = Random.Range(0, 4);
-
         switch(randValue)
         {
             case 0: CheckMove(Vector3.forward); break;
