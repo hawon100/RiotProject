@@ -13,7 +13,7 @@ public class NextMap : Obj_Base
         if (RoundData.Instance.mapIndex < 3)
         {
             RoundData.Instance.mapIndex++;
-            Managers.Map.LoadScene(Define.Scene.InGame);
+            FadeLobby.Instance.fadeInGameAnim.SetTrigger("OnFade");
         }
         else
         {

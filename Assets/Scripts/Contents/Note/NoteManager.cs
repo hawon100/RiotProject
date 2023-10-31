@@ -23,11 +23,11 @@ public class NoteManager : MonoBehaviour
         if (currentTime >= 60d / bpm)
         {
             GameObject t_note_0 = Managers.Resource.Instantiate("Note/Note_0", tfNteAppear[0]);
-            GameObject t_note_1 = Managers.Resource.Instantiate("Note/Note_1", tfNteAppear[1]);
+            //GameObject t_note_1 = Managers.Resource.Instantiate("Note/Note_1", tfNteAppear[1]);
             t_note_0.transform.SetParent(this.transform);
-            t_note_1.transform.SetParent(this.transform);
+            //t_note_1.transform.SetParent(this.transform);
             timingManager.boxNoteList_0.Add(t_note_0);
-            timingManager.boxNoteList_1.Add(t_note_1);
+            //timingManager.boxNoteList_1.Add(t_note_1);
             currentTime -= 60d / bpm;
         }
     }
@@ -37,7 +37,7 @@ public class NoteManager : MonoBehaviour
         if (collision.CompareTag("Note"))
         {
             timingManager.boxNoteList_0.Remove(collision.gameObject);
-            timingManager.boxNoteList_1.Remove(collision.gameObject);
+            //timingManager.boxNoteList_1.Remove(collision.gameObject);
             Managers.Resource.Destroy(collision.gameObject);
             EffectManager.Instance.JudgementEffect();
             //miss

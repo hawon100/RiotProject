@@ -9,6 +9,23 @@ public class MenuInput : MonoBehaviour
     [SerializeField] private RectTransform inputKeyWinPos;
     [SerializeField] private RectTransform infoWinPos;
 
+    private bool isInfoMoving = false;
+    private bool isInputKeyMoving = false;
+
+    private void Update()
+    {
+        if (isInfoMoving)
+        {
+            inputKeyWin.anchoredPosition = Vector3.Lerp(inputKeyWin.anchoredPosition, infoWinPos.anchoredPosition, 0.005f);
+            infoWin.anchoredPosition = Vector3.Lerp(infoWin.anchoredPosition, inputKeyWinPos.anchoredPosition, 0.005f);
+
+            if (Vector3.Distance(inputKeyWin.anchoredPosition, inputKeyWinPos.anchoredPosition) < 0.01f)
+            {
+                isInfoMoving = false;
+            }
+        }
+    }
+
     public void Menu(string name)
     {
         switch (name)
@@ -27,14 +44,12 @@ public class MenuInput : MonoBehaviour
 
     private void Info()
     {
-        inputKeyWin.anchoredPosition = Vector3.Lerp(inputKeyWin.anchoredPosition, infoWinPos.anchoredPosition, 0.005f);
-        infoWin.anchoredPosition = Vector3.Lerp(infoWin.anchoredPosition, inputKeyWinPos.anchoredPosition, 0.005f);
+        isInfoMoving = true;
     }
 
     private void InputKey()
     {
-        inputKeyWin.anchoredPosition = Vector3.Lerp(inputKeyWin.anchoredPosition, inputKeyWinPos.anchoredPosition, 0.005f);
-        infoWin.anchoredPosition = Vector3.Lerp(infoWin.anchoredPosition, infoWinPos.anchoredPosition, 0.005f);
+        isInputKeyMoving = true;
     }
 
     private void Setting()

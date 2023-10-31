@@ -30,7 +30,7 @@ public class TouchUI : MonoBehaviour
 
                     if (Time.time - lastTouchTime < doubleTouchDelay) // 더블터치 판정
                     {
-                        Managers.Map.LoadScene(Define.Scene.Lobby);
+                        FadeLobby.Instance.fadeLobbyAnim.SetTrigger("OnFade");
                     }
                     else
                     {

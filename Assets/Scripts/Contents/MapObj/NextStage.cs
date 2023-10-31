@@ -12,7 +12,6 @@ public class NextStage : Obj_Base
 
         RoundData.Instance.Reset();
         RoundData.Instance.stageIndex = stageIndex;
-
-        Managers.Map.LoadScene(Define.Scene.InGame);
+        FadeLobby.Instance.fadeInGameAnim.SetTrigger("OnFade");
     }
 }
