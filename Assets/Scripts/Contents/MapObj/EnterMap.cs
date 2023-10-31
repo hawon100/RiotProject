@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class EnterMap : Obj_Base
 {
-    protected override void UseObj()
+    public override void UseObj()
     {
         isLock = false;
     }

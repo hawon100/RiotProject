@@ -2822,12 +2822,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba8552f1560ec75408b52f85d334535e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  curPos: {x: 0, y: 0}
   HP: 0
   maxHP: 1
-  damage: 0
+  damage: 2
+  curPos: {x: 0, y: 0}
   moveSound: {fileID: 0}
-  timeToMove: 0.2
   dieWin: {fileID: 67189168}
   statsItem: []
   attackItem: []
@@ -3287,6 +3286,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveManager: {fileID: 1231972999}
+  itemList:
+  - {fileID: 2642448131247356752, guid: 0dd505a46ba02ac42bed3d29c524a4f9, type: 3}
   curMap: {fileID: 8300000, guid: ce41558585627a247b61bf7716105914, type: 3}
 --- !u!114 &1226037548
 MonoBehaviour:

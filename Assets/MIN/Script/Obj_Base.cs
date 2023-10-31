@@ -2,14 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class Obj_Base : Base
+public abstract class Obj_Base : MonoBehaviour
 {
+    public Vector2Int curPos;
     public bool isLock;
 
-    public override void Use()
-    {
-        UseObj();
-    }
-
-    protected abstract void UseObj();
+    public abstract void UseObj();
 }

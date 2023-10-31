@@ -23,7 +23,8 @@ public class MoveManager : MonoBehaviour
     private int[,] curGroundMap;
     private int[,] curObjMap;
     private int[,] curMoveMap;
-    private Base[,] curMap;
+    private Mob_Base[,] curMob;
+    private Obj_Base[,] curObj;
     public List<Enemy_Base> curMoveMob;
     public List<Enemy_Base> curCheckMob;
 
@@ -41,7 +42,7 @@ public class MoveManager : MonoBehaviour
 
     public void EnemyMove()
     {
-        if(curMoveMob.Count == 0 && curCheckMob.Count == 0) return;
+        if (curMoveMob.Count == 0 && curCheckMob.Count == 0) return;
 
         if (curMoveMob.Count != 0)
             for (int i = 0; i < curMoveMob.Count; i++)
@@ -58,7 +59,7 @@ public class MoveManager : MonoBehaviour
     /// <param name="curPos"></param>
     /// <param name="plusPos"></param>
     /// <returns></returns>
-    public int MoveCheck(Vector2Int curPos, Vector2Int plusPos, bool isFly = false)
+    public int MoveCheck(Vector2Int curPos, Vector2Int plusPos, int damage, bool isFly = false, bool isPlayer = false)
     {
         Vector2Int movePos = curPos + plusPos;
 
@@ -68,17 +69,23 @@ public class MoveManager : MonoBehaviour
         if (curGroundMap[movePos.x, movePos.y] != 1 && !isFly) return 1;
         if (curObjMap[movePos.x, movePos.y] != 0)
         {
-            curMap[movePos.x, movePos.y].Use();
+            if (isPlayer)
+                curObj[movePos.x, movePos.y].UseObj();
+
             return 1;
         }
         if (curMoveMap[movePos.x, movePos.y] != 0)
         {
-            curMap[movePos.x, movePos.y].Use();
-            return 2;
+            if (isPlayer)
+            {
+                curMob[movePos.x, movePos.y].Damage(damage);
+                return 2;
+            }
+            return 1;
         }
 
-        curMap[movePos.x, movePos.y] = curMap[curPos.x, curPos.y];
-        curMap[curPos.x, curPos.y] = null;
+        curMob[movePos.x, movePos.y] = curMob[curPos.x, curPos.y];
+        curMob[curPos.x, curPos.y] = null;
 
         curMoveMap[movePos.x, movePos.y] = curMoveMap[curPos.x, curPos.y];
         curMoveMap[curPos.x, curPos.y] = 0;
@@ -89,7 +96,7 @@ public class MoveManager : MonoBehaviour
     public void DestroyEnemy(Vector2Int curPos, Enemy_Base dieObj)
     {
         curMoveMob.Remove(dieObj);
-        curMoveMap[curPos.x, curPos.y] = 0;                
+        curMoveMap[curPos.x, curPos.y] = 0;
     }
 
     public void MapInit(int[,] _curGroundMap)
@@ -100,10 +107,12 @@ public class MoveManager : MonoBehaviour
         a_Map.InitMap(_curGroundMap);
     }
 
-    public void MobInit(Base[,] _map, List<Enemy_Base> spawnMob, int[,] _curObjMap)
+    public void MobInit(Mob_Base[,] _map, Obj_Base[,] _obj, List<Enemy_Base> spawnMob, int[,] _curObjMap)
     {
         curObjMap = _curObjMap;
-        curMap = _map;
+        curMob = _map;
+        curObj = _obj;
+
         Enemy_Base temp;
         for (int i = 0; i < spawnMob.Count; i++)
         {
@@ -122,7 +131,7 @@ public class MoveManager : MonoBehaviour
                 if (_curObjMap[i, j] == 1)
                 {
                     curMoveMap[i, j] = 1;
-                    curMap[i, j] = Player.Instance.GetComponent<Mob_Base>();
+                    curMob[i, j] = Player.Instance.GetComponent<Mob_Base>();
                     Player.Instance.transform.position = new Vector3(i, 0, j);
                     Player.Instance.curPos = new Vector2Int(i, j);
                 }

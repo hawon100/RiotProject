@@ -693,13 +693,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f3314a21993f0eb4aa39fed83a0bc21c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  curPos: {x: 0, y: 0}
   HP: 0
   maxHP: 2
-  damage: 0
+  damage: 1
+  curPos: {x: 0, y: 0}
   _hpbar: {fileID: 0}
   checkBoxSize: 2
-  moveSpeed: 5
   isMove: 1
   count: 0
   maxcount: 5

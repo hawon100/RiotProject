@@ -28,16 +28,16 @@ public class BatEnemy : A_Unit
         if (movePos == Vector3.right) plusPos = Vector2Int.right;
         if (movePos == Vector3.left) plusPos = Vector2Int.left;
 
-        int action = MoveManager.Instance.MoveCheck(curPos, plusPos, true);
+        int action = MoveManager.Instance.MoveCheck(curPos, plusPos, damage, true);
         switch (action)
         {
-            case 0: curPos = curPos + plusPos; StartCoroutine(MovePlayer(movePos)); break;
+            case 0: curPos = curPos + plusPos; StartCoroutine(MoveEnemy(movePos)); break;
             case 1: break;
             case 2: Attack(); break;
         }
     }
 
-    private IEnumerator MovePlayer(Vector3 direction)
+    private IEnumerator MoveEnemy(Vector3 direction)
     {
         isMoving = true;
 

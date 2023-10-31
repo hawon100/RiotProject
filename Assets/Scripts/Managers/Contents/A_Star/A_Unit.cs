@@ -51,7 +51,7 @@ public abstract class A_Unit : Enemy_Base
         Vector3 plusPos3 = -(transform.position - curWayPoint.pos);
         Vector2Int plusPos = new((int)plusPos3.x, (int)plusPos3.z);
 
-        int action = MoveManager.Instance.MoveCheck(curPos, plusPos);
+        int action = MoveManager.Instance.MoveCheck(curPos, plusPos, damage);
         Debug.Log(action);
 
         switch (action)
