@@ -18,7 +18,7 @@ public class Note : MonoBehaviour
 
     private void Start()
     {
-        noteImage = Util.GetOrAddComponent<Image>(gameObject);
+        noteImage = gameObject.GetOrAddComponent<Image>();
     }
 
     private void Update()
@@ -43,5 +43,10 @@ public class Note : MonoBehaviour
     void MoveRight()
     {
         transform.localPosition += Vector3.right * noteSpeed * Time.deltaTime;
+    }
+
+    public bool GetNoteFlag()
+    {
+        return noteImage.enabled;
     }
 }

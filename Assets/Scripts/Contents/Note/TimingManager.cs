@@ -4,11 +4,10 @@ using UnityEngine;
 
 public class TimingManager : MonoBehaviour
 {
-    public List<GameObject> boxNoteList_0 = new List<GameObject>();
-    public List<GameObject> boxNoteList_1 = new List<GameObject>();
+    public List<GameObject> boxNoteList = new List<GameObject>();
     [SerializeField] private Transform Center = null;
     [SerializeField] private RectTransform[] timingRect = null;
-    private Vector2[] timingBox = null;
+    [SerializeField] private Vector2[] timingBox = null;
 
     private void Start()
     {
@@ -22,25 +21,23 @@ public class TimingManager : MonoBehaviour
 
     public bool CheckTiming()
     {
-        for(int i = 0; i < boxNoteList_0.Count; i++)
+        for(int i = 0; i < boxNoteList.Count; i++)
         {
-            float t_notePosX = boxNoteList_0[i].transform.localPosition.x;
+            float t_notePosX = boxNoteList[i].transform.localPosition.x;
 
             for(int x = 0; x < timingRect.Length; x++)
             {
                 if (timingBox[x].x <= t_notePosX && t_notePosX <= timingBox[x].y)
                 {
-                    boxNoteList_0[i].GetOrAddComponent<Note>().HideNote();
-                    boxNoteList_0.RemoveAt(i);
-                    boxNoteList_1[i].GetOrAddComponent<Note>().HideNote();
-                    boxNoteList_1.RemoveAt(i);
+                    boxNoteList[i].GetOrAddComponent<Note>().HideNote();
+                    boxNoteList.RemoveAt(i);
                     return true;
-                    
                 }
             }
         }
 
-        EffectManager.Instance.JudgementEffect();
+        //EffectManager.Instance.JudgementEffect();
+        Debug.Log("Miss");
         return false;
     }
 }
