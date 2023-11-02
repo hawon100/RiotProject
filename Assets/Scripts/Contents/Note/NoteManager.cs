@@ -4,16 +4,17 @@ using UnityEngine;
 
 public class NoteManager : MonoBehaviour
 {
-    public Transform tfNteAppear = null;
-
+    public RectTransform tfNteAppear = null;
+    [SerializeField] private string prefabPath;
     [SerializeField] int bpm = 0;
     private int noteCount;
     double currentTime = 0d;
 
     TimingManager timingManager;
+
     private void Start()
     {
-        timingManager = Util.GetOrAddComponent<TimingManager>(gameObject);
+        timingManager = gameObject.GetOrAddComponent<TimingManager>();
     }
 
     private void Update()
@@ -22,28 +23,24 @@ public class NoteManager : MonoBehaviour
 
         if (currentTime >= 60d / bpm)
         {
-            GameObject t_note_0 = Managers.Resource.Instantiate("Note/Note_0", tfNteAppear);
-            //GameObject t_note_1 = Managers.Resource.Instantiate("Note/Note_1", tfNteAppear[1]);
-            t_note_0.transform.SetParent(this.transform);
-            //t_note_1.transform.SetParent(this.transform);
-            timingManager.boxNoteList.Add(t_note_0);
-            //timingManager.boxNoteList_1.Add(t_note_1);
+            var t_note = Managers.Resource.Instantiate(prefabPath, tfNteAppear);
+            t_note.transform.SetParent(this.transform);
+            timingManager.boxNoteList.Add(t_note);
+
             currentTime -= 60d / bpm;
         }
     }
 
-    private void OnTriggerExit2D(Collider2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Note"))
         {
+            if (collision.GetComponent<Note>().GetNoteFlag()) EffectManager.Instance.JudgementEffect();
+
             timingManager.boxNoteList.Remove(collision.gameObject);
-            //timingManager.boxNoteList_1.Remove(collision.gameObject);
             Managers.Resource.Destroy(collision.gameObject);
-            //miss
-            if(collision.GetComponent<Note>().GetNoteFlag()) EffectManager.Instance.JudgementEffect();
 
             noteCount++;
-
             if (noteCount == 2)
             {
                 MoveManager.Instance.EnemyMove();

@@ -31,13 +31,13 @@ public class TimingManager : MonoBehaviour
                 {
                     boxNoteList[i].GetOrAddComponent<Note>().HideNote();
                     boxNoteList.RemoveAt(i);
+
                     return true;
                 }
             }
         }
 
-        //EffectManager.Instance.JudgementEffect();
-        Debug.Log("Miss");
+        EffectManager.Instance.JudgementEffect();
         return false;
     }
 }

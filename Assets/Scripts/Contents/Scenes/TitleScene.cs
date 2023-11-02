@@ -6,8 +6,6 @@ public class TitleScene : BaseScene
 {
     [SerializeField] private GameObject panel;
     [SerializeField] private Animator directorPlayer;
-    [SerializeField] private Transform directorCamPos;
-    [SerializeField] private Camera cam;
     [SerializeField] private RoundData data;
 
     public static bool isDoubleTouch;
@@ -18,17 +16,18 @@ public class TitleScene : BaseScene
         data.InitData();
         SceneType = Define.Scene.Title;
         isDoubleTouch = false;
+        directorPlayer.SetTrigger("OnDirector");
+        panel.SetActive(false);
     }
 
     private void Update()
     {
         if(isDoubleTouch)
         {
-            directorPlayer.SetTrigger("OnDirector");
-            panel.SetActive(false);
-            cam.gameObject.transform.position = directorCamPos.position;
-            cam.gameObject.transform.rotation = directorCamPos.rotation;
-            cam.fieldOfView = 69f;
+            //direction
+            RoundData.Instance.Reset();
+            Managers.Map.LoadScene(Define.Scene.Lobby);
+
             isDoubleTouch = false;
         }
     }

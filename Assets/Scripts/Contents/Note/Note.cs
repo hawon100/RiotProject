@@ -12,9 +12,9 @@ public class Note : MonoBehaviour
         Right,
     }
 
-    [SerializeField] NoteType type = NoteType.None;
-    [SerializeField] float noteSpeed = 400f;
-    Image noteImage;
+    [SerializeField] private NoteType type = NoteType.None;
+    [SerializeField] private float noteSpeed = 400f;
+    private Image noteImage;
 
     private void Start()
     {
@@ -25,8 +25,8 @@ public class Note : MonoBehaviour
     {
         switch (type)
         {
-            case NoteType.Left: MoveLeft(); break;
-            case NoteType.Right: MoveRight(); break;
+            case NoteType.Left: transform.localPosition += Vector3.left * noteSpeed * Time.deltaTime; break;
+            case NoteType.Right: transform.localPosition += Vector3.right * noteSpeed * Time.deltaTime; break;
         }
     }
 
@@ -34,17 +34,7 @@ public class Note : MonoBehaviour
     {
         noteImage.enabled = false;
     }
-
-    void MoveLeft()
-    {
-        transform.localPosition += Vector3.left * noteSpeed * Time.deltaTime;
-    }
-
-    void MoveRight()
-    {
-        transform.localPosition += Vector3.right * noteSpeed * Time.deltaTime;
-    }
-
+     
     public bool GetNoteFlag()
     {
         return noteImage.enabled;
