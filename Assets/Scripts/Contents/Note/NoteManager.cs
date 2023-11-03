@@ -35,17 +35,20 @@ public class NoteManager : MonoBehaviour
     {
         if (collision.CompareTag("Note"))
         {
-            if (collision.GetComponent<Note>().GetNoteFlag()) EffectManager.Instance.JudgementEffect();
+            if (collision.GetComponent<Note>().GetNoteFlag())
+            {
+                EffectManager.Instance.JudgementEffect();
+
+                noteCount++;
+                if (noteCount == 2)
+                {
+                    MoveManager.Instance.EnemyMove();
+                    noteCount = 0;
+                }
+            }
 
             timingManager.boxNoteList.Remove(collision.gameObject);
             Managers.Resource.Destroy(collision.gameObject);
-
-            noteCount++;
-            if (noteCount == 2)
-            {
-                MoveManager.Instance.EnemyMove();
-                noteCount = 0;
-            }
         }
     }
 }

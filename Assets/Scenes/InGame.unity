@@ -696,7 +696,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1451370588}
         m_TargetAssemblyTypeName: MenuInput, Assembly-CSharp
         m_MethodName: SettingQuit
         m_Mode: 1
@@ -1792,7 +1792,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: Pause
+          m_StringArgument: Setting
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &257883346
@@ -4218,13 +4218,11 @@ MonoBehaviour:
   player: {fileID: 868337177}
   stageIndex: 0
   enemy:
-  - {fileID: 4879784752839189155, guid: d1fcb891835ca2a4898545172879f2a6, type: 3}
   - {fileID: 5655386628016428082, guid: 063ff14ed80c635469ea1d65100615e3, type: 3}
   - {fileID: 8634667021073110229, guid: 36010772c10a2014c875f836e1146103, type: 3}
-  - {fileID: 6294726499898152079, guid: 8d7487f79d272234ba9d74338ffac03e, type: 3}
   - {fileID: 671632210655633338, guid: b879aadb0c4c2dd4f9f4797d2d86bc24, type: 3}
   - {fileID: 3660261790035065101, guid: 73c77ab27e79f3043ab950d6d04c92cd, type: 3}
-  enemyCount: 3
+  enemyCount: 1
 --- !u!1 &1451370587
 GameObject:
   m_ObjectHideFlags: 0

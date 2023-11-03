@@ -30,7 +30,7 @@ public abstract class Mob_Base : MonoBehaviour
         {
             if (isDie) return;
             isDie = true;
-
+            Debug.Log("11111111111111");
             dieAction?.Invoke();
         }
     }
