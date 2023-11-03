@@ -81,7 +81,7 @@ public class MoveManager : MonoBehaviour
         }
         
 
-        if (onlyCheck)
+        if (!onlyCheck)
         {
             curMob[movePos.x, movePos.y] = curMob[curPos.x, curPos.y];
             curMob[curPos.x, curPos.y] = null;
@@ -100,6 +100,7 @@ public class MoveManager : MonoBehaviour
 
         if (curMoveMap[curPos.x, curPos.y] != 0)
         {
+            Debug.Log(curPos);  
             curMob[curPos.x, curPos.y].Damage(damage);
         }
     }
@@ -152,6 +153,8 @@ public class MoveManager : MonoBehaviour
     private void Classification()
     {
         if (curCheckMob.Count == 0) return;
+
+        Debug.Log("111111111111111111");
 
         for (int i = 0; i < curCheckMob.Count; i++)
         {
