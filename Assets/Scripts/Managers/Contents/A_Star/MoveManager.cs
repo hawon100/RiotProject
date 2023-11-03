@@ -113,6 +113,10 @@ public class MoveManager : MonoBehaviour
         curMoveMob.Remove(dieObj);
     }
 
+    public void DestroyObj(Vector2Int curPos){
+        curObjMap[curPos.x, curPos.y] = 0;
+    }
+
     public void MapInit(int[,] _curGroundMap)
     {
         curGroundMap = _curGroundMap;
@@ -155,8 +159,6 @@ public class MoveManager : MonoBehaviour
     private void Classification()
     {
         if (curCheckMob.Count == 0) return;
-
-        Debug.Log("111111111111111111");
 
         for (int i = 0; i < curCheckMob.Count; i++)
         {
