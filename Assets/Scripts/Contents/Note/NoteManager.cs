@@ -31,7 +31,7 @@ public class NoteManager : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.CompareTag("Note"))
         {
