@@ -14,10 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   battleMapData:
   - {fileID: 11400000, guid: ca3d555cee9cc774a9833b3f20d99fa4, type: 2}
-  - {fileID: 11400000, guid: 39bf077a0a49f534aa7b22246fa3a066, type: 2}
-  - {fileID: 11400000, guid: c1f6c6ff770badb44a663d78927fc542, type: 2}
   - {fileID: 11400000, guid: 3031a25230c9981478630db008de576c, type: 2}
+  - {fileID: 11400000, guid: 39bf077a0a49f534aa7b22246fa3a066, type: 2}
   - {fileID: 11400000, guid: 7897ac35c2fb7c1439297358a59d653a, type: 2}
+  - {fileID: 11400000, guid: c1f6c6ff770badb44a663d78927fc542, type: 2}
   specialMapData: []
   mapTile:
   - {fileID: 4189690835450586684, guid: d59be852c7920ee49bf33a05040792c2, type: 3}

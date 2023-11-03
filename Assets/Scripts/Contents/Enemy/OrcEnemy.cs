@@ -6,7 +6,7 @@ using UnityEngine;
 public class OrcEnemy : A_Unit
 {
     [SerializeField]private int count;
-    [SerializeField] private int maxcount = 5;
+    [SerializeField] private int maxcount = 2;
 
     public override void Movement()
     {

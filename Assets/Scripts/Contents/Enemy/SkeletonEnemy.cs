@@ -9,11 +9,12 @@ public class SkeletonEnemy : A_Unit
 
     public override void Movement()
     {
-        count++;
-        if (count == maxcount)
-        {
-            oneMove();
-            count = 0;
-        }
+        oneMove();
+        // count++;
+        // if (count == maxcount)
+        // {
+            
+        //     count = 0;
+        // }
     }
 }

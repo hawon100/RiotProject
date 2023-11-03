@@ -14,3 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   groundMap: {fileID: 4900000, guid: bad97f52835703b49aa8122c450c5c45, type: 3}
   objMap: {fileID: 4900000, guid: de8c7a8c866f6804aaf15c09fe64527a, type: 3}
+  enemy:
+  - {fileID: 8634667021073110229, guid: 36010772c10a2014c875f836e1146103, type: 3}
+  - {fileID: 671632210655633338, guid: b879aadb0c4c2dd4f9f4797d2d86bc24, type: 3}
+  - {fileID: 3660261790035065101, guid: 73c77ab27e79f3043ab950d6d04c92cd, type: 3}
+  enemyCount: 3
