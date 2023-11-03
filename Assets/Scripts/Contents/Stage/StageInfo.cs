@@ -26,5 +26,15 @@ public class StageInfo : MonoBehaviour
                 case 4: player.position = path[4].position; break;
             }
         }
+        if (stageIndex == 2)
+        {
+            switch (mapIndex)
+            {
+                case 1: player.position = path[1].position; break;
+                case 2: player.position = path[2].position; break;
+                case 3: player.position = path[3].position; break;
+                case 4: player.position = path[4].position; break;
+            }
+        }
     }
 }
