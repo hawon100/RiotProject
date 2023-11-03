@@ -947,6 +947,7 @@ MonoBehaviour:
   stageIndex: 0
   enemy: []
   enemyCount: 0
+  battleMapData: []
 --- !u!114 &566828855
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1304,7 +1305,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _mode: 1
-  _delta: {x: 0, y: 5, z: -5}
+  _delta: {x: 0, y: 12, z: -6}
   _player: {fileID: 191601818}
 --- !u!114 &820571344
 MonoBehaviour:
