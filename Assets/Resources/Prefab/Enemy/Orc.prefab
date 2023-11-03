@@ -694,7 +694,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   HP: 0
-  maxHP: 2
+  maxHP: 6
   damage: 1
   curPos: {x: 0, y: 0}
   _hpbar: {fileID: 0}
