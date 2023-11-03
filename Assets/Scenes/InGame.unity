@@ -1674,6 +1674,12 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 218259569}
   m_PrefabAsset: {fileID: 0}
+--- !u!4 &218259571 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 2a3de8a7a3e5d2f42b73d46b276111ed,
+    type: 3}
+  m_PrefabInstance: {fileID: 218259569}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &258979706
 GameObject:
   m_ObjectHideFlags: 0
@@ -5693,6 +5699,7 @@ GameObject:
   - component: {fileID: 2078808644}
   - component: {fileID: 2078808646}
   - component: {fileID: 2078808645}
+  - component: {fileID: 2078808647}
   m_Layer: 5
   m_Name: InfoWin
   m_TagString: Untagged
@@ -5760,6 +5767,30 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2078808643}
   m_CullTransparentMesh: 1
+--- !u!114 &2078808647
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2078808643}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3483750d668f3874781a5b4540c0b637, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 218259571}
+  path:
+  - {fileID: 1814983212}
+  - {fileID: 388293922}
+  - {fileID: 624826604}
+  - {fileID: 2083661075}
+  - {fileID: 1381315723}
+  - {fileID: 1000415533}
+  - {fileID: 820852489}
+  - {fileID: 1616499201}
+  - {fileID: 1923315662}
+  stageText: {fileID: 1690866653}
 --- !u!1 &2083661074
 GameObject:
   m_ObjectHideFlags: 0
