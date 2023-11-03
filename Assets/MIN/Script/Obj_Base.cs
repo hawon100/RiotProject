@@ -6,6 +6,7 @@ public abstract class Obj_Base : MonoBehaviour
 {
     public Vector2Int curPos;
     public bool isLock;
+    public bool isCanMove;
 
     public abstract void UseObj();
 }

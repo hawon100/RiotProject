@@ -70,10 +70,11 @@ public class MoveManager : MonoBehaviour
         if (curGroundMap[movePos.x, movePos.y] != 1 && !isFly) return 1;
         if (curObjMap[movePos.x, movePos.y] != 0)
         {
-            if (isPlayer)
+            if (isPlayer){
                 curObj[movePos.x, movePos.y].UseObj();
 
-            return 1;
+                if(!curObj[movePos.x, movePos.y].isCanMove) return 1;
+            }else return 1;            
         }
         if (curMoveMap[movePos.x, movePos.y] != 0)
         {
