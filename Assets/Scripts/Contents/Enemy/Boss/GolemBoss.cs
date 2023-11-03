@@ -17,7 +17,7 @@ public class GolemBoss : Enemy_Base
     {
         Vector2Int plusPos = new();
         Vector2Int attackPlusPos = new(-1, -1);
-
+        Debug.Log("In");
         for (int i = 0; i < 4; i++)
         {
             switch (i)
@@ -29,12 +29,14 @@ public class GolemBoss : Enemy_Base
             }
 
             int action = MoveManager.Instance.AllCheck(curPos, plusPos, damage, false, false, true);
-
+            Debug.Log(action);
             switch (action)
             {
                 case 0: curPlayerCheckCount++; break;
                 case 1: curPlayerCheckCount++; break;
-                case 2: Attack(curPos + (attackPlusPos + plusPos), new(3, 3)); break;
+                case 2: skillCount++;
+                        Attack(curPos + (attackPlusPos + plusPos), new(3, 2));
+                break;
             }
 
             if(curPlayerCheckCount >= maxPlayerCheckCount){
@@ -42,6 +44,7 @@ public class GolemBoss : Enemy_Base
                 curPlayerCheckCount = 0;
             }
         }
+        Debug.Log("Out");
     }
 
     private void Attack(Vector2Int leftDonwPos, Vector2Int boxSize)
@@ -51,8 +54,12 @@ public class GolemBoss : Enemy_Base
                 int x = leftDonwPos.x + i;
                 int y = leftDonwPos.y + j;
 
+                if(new Vector2Int(x, y) == curPos) continue;
                 MoveManager.Instance.AttackCheck(new(x, y), damage);
             }
         }
+        //Player.Instance.Damage(1);
+        AttackAnim();
+        skillCount = 0;
     }
 }
