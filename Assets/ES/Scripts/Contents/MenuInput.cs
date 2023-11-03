@@ -4,67 +4,48 @@ using UnityEngine;
 
 public class MenuInput : MonoBehaviour
 {
-    [SerializeField] private RectTransform inputKeyWin;
-    [SerializeField] private RectTransform infoWin;
-    [SerializeField] private RectTransform inputKeyWinPos;
-    [SerializeField] private RectTransform infoWinPos;
+    [SerializeField] private GameObject inputBackWin;
+    [SerializeField] private GameObject infoWin;
+    [SerializeField] private GameObject settingWin;
 
-    private bool isInfoMoving = false;
-    private bool isInputKeyMoving = false;
-
-    private void Update()
-    {
-        if (isInfoMoving)
-        {
-            inputKeyWin.anchoredPosition = Vector3.Lerp(inputKeyWin.anchoredPosition, infoWinPos.anchoredPosition, 0.05f);
-            infoWin.anchoredPosition = Vector3.Lerp(infoWin.anchoredPosition, inputKeyWinPos.anchoredPosition, 0.05f);
-
-            if (Vector3.Distance(inputKeyWin.anchoredPosition, inputKeyWinPos.anchoredPosition) < 0.01f)
-            {
-                isInfoMoving = false;
-            }
-        }
-
-        if (isInputKeyMoving)
-        {
-            infoWin.anchoredPosition = Vector3.Lerp(inputKeyWin.anchoredPosition, infoWinPos.anchoredPosition, 0.05f);
-            inputKeyWin.anchoredPosition = Vector3.Lerp(infoWin.anchoredPosition, inputKeyWinPos.anchoredPosition, 0.05f);
-
-            if (Vector3.Distance(infoWin.anchoredPosition, infoWinPos.anchoredPosition) < 0.01f)
-            {
-                isInputKeyMoving = false;
-            }
-        }
-    }
+    private bool isInfoWinActive;
+    private bool isInputBackWinActive;
 
     public void Menu(string name)
     {
         switch (name)
         {
-            case "Pause": Pause(); break;
             case "Info": Info(); break;
             case "InputKey": InputKey(); break;
             case "Setting": Setting(); break;
         }
     }
 
-    private void Pause()
-    {
-
-    }
-
     private void Info()
     {
-        isInfoMoving = true;
+        isInputBackWinActive = false;
+        isInfoWinActive = true;
+        inputBackWin.SetActive(isInputBackWinActive);
+        infoWin.SetActive(isInfoWinActive);
     }
 
     private void InputKey()
     {
-        isInputKeyMoving = true;
+        isInputBackWinActive = true;
+        isInfoWinActive = false;
+        inputBackWin.SetActive(isInputBackWinActive);
+        infoWin.SetActive(isInfoWinActive);
     }
 
     private void Setting()
     {
+        settingWin.SetActive(true);
+        Time.timeScale = 0f;
+    }
 
+    public void SettingQuit()
+    {
+        settingWin.SetActive(false);
+        Time.timeScale = 1f;
     }
 }
