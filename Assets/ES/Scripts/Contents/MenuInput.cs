@@ -16,12 +16,23 @@ public class MenuInput : MonoBehaviour
     {
         if (isInfoMoving)
         {
-            inputKeyWin.anchoredPosition = Vector3.Lerp(inputKeyWin.anchoredPosition, infoWinPos.anchoredPosition, 0.005f);
-            infoWin.anchoredPosition = Vector3.Lerp(infoWin.anchoredPosition, inputKeyWinPos.anchoredPosition, 0.005f);
+            inputKeyWin.anchoredPosition = Vector3.Lerp(inputKeyWin.anchoredPosition, infoWinPos.anchoredPosition, 0.05f);
+            infoWin.anchoredPosition = Vector3.Lerp(infoWin.anchoredPosition, inputKeyWinPos.anchoredPosition, 0.05f);
 
             if (Vector3.Distance(inputKeyWin.anchoredPosition, inputKeyWinPos.anchoredPosition) < 0.01f)
             {
                 isInfoMoving = false;
+            }
+        }
+
+        if (isInputKeyMoving)
+        {
+            infoWin.anchoredPosition = Vector3.Lerp(inputKeyWin.anchoredPosition, infoWinPos.anchoredPosition, 0.05f);
+            inputKeyWin.anchoredPosition = Vector3.Lerp(infoWin.anchoredPosition, inputKeyWinPos.anchoredPosition, 0.05f);
+
+            if (Vector3.Distance(infoWin.anchoredPosition, infoWinPos.anchoredPosition) < 0.01f)
+            {
+                isInputKeyMoving = false;
             }
         }
     }
