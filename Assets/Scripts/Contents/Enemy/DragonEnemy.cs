@@ -7,7 +7,7 @@ public class DragonEnemy : A_Unit
     [SerializeField] private int count = 0;
     [SerializeField] private int maxcount = 2;
 
-    public override void Move()
+    public override void Movement()
     {
         count++;
         if(count == maxcount)

@@ -48,7 +48,7 @@ public class MoveManager : MonoBehaviour
             for (int i = 0; i < curMoveMob.Count; i++)
             {
                 a_Check.GetMoveMap(curMoveMap);
-                curMoveMob[i].Move();
+                curMoveMob[i].Movement();
             }
         Classification();
     }
@@ -59,7 +59,7 @@ public class MoveManager : MonoBehaviour
     /// <param name="curPos"></param>
     /// <param name="plusPos"></param>
     /// <returns></returns>
-    public int MoveCheck(Vector2Int curPos, Vector2Int plusPos, int damage, bool isFly = false, bool isPlayer = false)
+    public int AllCheck(Vector2Int curPos, Vector2Int plusPos, int damage, bool isFly = false, bool isPlayer = false, bool onlyCheck = false)
     {
         Vector2Int movePos = curPos + plusPos;
 
@@ -76,21 +76,32 @@ public class MoveManager : MonoBehaviour
         }
         if (curMoveMap[movePos.x, movePos.y] != 0)
         {
-            if (isPlayer)
-            {
-                curMob[movePos.x, movePos.y].Damage(damage);
-                return 2;
-            }
-            return 1;
+            curMob[movePos.x, movePos.y].Damage(damage);
+            return 2;
+        }
+        
+
+        if (onlyCheck)
+        {
+            curMob[movePos.x, movePos.y] = curMob[curPos.x, curPos.y];
+            curMob[curPos.x, curPos.y] = null;
+
+            curMoveMap[movePos.x, movePos.y] = curMoveMap[curPos.x, curPos.y];
+            curMoveMap[curPos.x, curPos.y] = 0;
         }
 
-        curMob[movePos.x, movePos.y] = curMob[curPos.x, curPos.y];
-        curMob[curPos.x, curPos.y] = null;
-
-        curMoveMap[movePos.x, movePos.y] = curMoveMap[curPos.x, curPos.y];
-        curMoveMap[curPos.x, curPos.y] = 0;
-
         return 0;
+    }
+
+    public void AttackCheck(Vector2Int curPos, int damage){;
+
+        try { if (curGroundMap[curPos.x, curPos.y] == 0) { } /*map out check*/}
+        catch { return; }
+
+        if (curMoveMap[curPos.x, curPos.y] != 0)
+        {
+            curMob[curPos.x, curPos.y].Damage(damage);
+        }
     }
 
     public void DestroyEnemy(Vector2Int curPos, Enemy_Base dieObj)

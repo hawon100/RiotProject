@@ -7,7 +7,7 @@ public class BatEnemy : A_Unit
     [SerializeField] float timeToMove = 0.2f;
     [SerializeField] bool isMoving = false;
 
-    public override void Move()
+    public override void Movement()
     {
         int randValue = Random.Range(0, 4);
         switch(randValue)
@@ -28,12 +28,12 @@ public class BatEnemy : A_Unit
         if (movePos == Vector3.right) plusPos = Vector2Int.right;
         if (movePos == Vector3.left) plusPos = Vector2Int.left;
 
-        int action = MoveManager.Instance.MoveCheck(curPos, plusPos, damage, true);
+        int action = MoveManager.Instance.AllCheck(curPos, plusPos, damage, true);
         switch (action)
         {
             case 0: curPos = curPos + plusPos; StartCoroutine(MoveEnemy(movePos)); break;
             case 1: break;
-            case 2: Attack(); break;
+            case 2: AttackAnim(); break;
         }
     }
 

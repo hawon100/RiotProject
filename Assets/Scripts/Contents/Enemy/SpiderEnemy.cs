@@ -7,7 +7,7 @@ public class SpiderEnemy : A_Unit
     [SerializeField] private int count;
     [SerializeField] private int maxcount = 4;
 
-    public override void Move()
+    public override void Movement()
     {
         count++;
         if (count == maxcount)

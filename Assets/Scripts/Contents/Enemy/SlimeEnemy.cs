@@ -9,7 +9,7 @@ public class SlimeEnemy : A_Unit
     [SerializeField] private int count;
     [SerializeField] private int maxcount;
 
-    public override void Move()
+    public override void Movement()
     {
         switch (count)
         {
@@ -25,12 +25,12 @@ public class SlimeEnemy : A_Unit
         if (movePos == Vector3.forward) plusPos = Vector2Int.up;
         if (movePos == Vector3.back) plusPos = Vector2Int.down;
 
-        int action = MoveManager.Instance.MoveCheck(curPos, plusPos, damage);
+        int action = MoveManager.Instance.AllCheck(curPos, plusPos, damage);
         switch (action)
         {
             case 0: curPos = curPos + plusPos; StartCoroutine(MovePlayer(movePos)); break;
             case 1: break;
-            case 2: Attack(); break;
+            case 2: AttackAnim(); break;
         }
     }
 

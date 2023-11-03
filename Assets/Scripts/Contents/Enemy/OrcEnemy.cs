@@ -8,7 +8,7 @@ public class OrcEnemy : A_Unit
     [SerializeField]private int count;
     [SerializeField] private int maxcount = 5;
 
-    public override void Move()
+    public override void Movement()
     {
         count++;
         if (count == maxcount)

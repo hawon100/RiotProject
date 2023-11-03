@@ -7,7 +7,7 @@ public class TurtleShellEnemy : A_Unit
     [SerializeField] private int count;
     [SerializeField] private int maxcount = 3;
 
-    public override void Move()
+    public override void Movement()
     {
         count++;
         if (count == maxcount)

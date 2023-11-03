@@ -20,7 +20,6 @@ public abstract class A_Unit : Enemy_Base
 
     protected void oneMove()
     {
-        Debug.Log("Move");
         MoveManager.Requset(transform.position, target.position, Found);
     }
 
@@ -51,14 +50,14 @@ public abstract class A_Unit : Enemy_Base
         Vector3 plusPos3 = -(transform.position - curWayPoint.pos);
         Vector2Int plusPos = new((int)plusPos3.x, (int)plusPos3.z);
 
-        int action = MoveManager.Instance.MoveCheck(curPos, plusPos, damage);
+        int action = MoveManager.Instance.AllCheck(curPos, plusPos, damage);
         Debug.Log(action);
 
         switch (action)
         {
             case 0: curPos = curPos + plusPos; yield return StartCoroutine(MoveTo(curWayPoint.pos, 0.2f)); break;
             case 1: break;
-            case 2: Attack(); break;
+            case 2: AttackAnim(); break;
         }
 
         

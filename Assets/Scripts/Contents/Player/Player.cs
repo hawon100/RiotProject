@@ -55,7 +55,7 @@ public class Player : Mob_Base
 
         RookPlayer(movePos);
 
-        int action = MoveManager.Instance.MoveCheck(curPos, plusPos, damage, isFly, true);
+        int action = MoveManager.Instance.AllCheck(curPos, plusPos, damage, isFly, true);
 
         switch (action)
         {

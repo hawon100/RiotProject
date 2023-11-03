@@ -32,7 +32,7 @@ public abstract class Enemy_Base : Mob_Base
         transform.LookAt(target);
     }
 
-    protected virtual void Attack()
+    protected virtual void AttackAnim()
     {
         anim.SetTrigger("doAttack");
     }
@@ -45,5 +45,5 @@ public abstract class Enemy_Base : Mob_Base
         Managers.Resource.Destroy(gameObject);
     }
 
-    public abstract void Move();
+    public abstract void Movement();
 }

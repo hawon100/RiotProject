@@ -3727,7 +3727,6 @@ MonoBehaviour:
   - {fileID: 4879784752839189155, guid: d1fcb891835ca2a4898545172879f2a6, type: 3}
   - {fileID: 5655386628016428082, guid: 063ff14ed80c635469ea1d65100615e3, type: 3}
   - {fileID: 8634667021073110229, guid: 36010772c10a2014c875f836e1146103, type: 3}
-  - {fileID: 6294726499898152079, guid: 8d7487f79d272234ba9d74338ffac03e, type: 3}
   - {fileID: 671632210655633338, guid: b879aadb0c4c2dd4f9f4797d2d86bc24, type: 3}
   - {fileID: 3660261790035065101, guid: 73c77ab27e79f3043ab950d6d04c92cd, type: 3}
   enemyCount: 0
@@ -4949,11 +4948,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4034ef005df895d4a84ab28ab604c3d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  boxNoteList_0: []
-  boxNoteList_1: []
+  boxNoteList: []
   Center: {fileID: 1982629891}
   timingRect:
   - {fileID: 662394730}
+  timingBox: []
 --- !u!114 &1975825374
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4966,9 +4965,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c58b8012f3e0ad4cb7d5004d86645d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tfNteAppear:
-  - {fileID: 888620294}
-  - {fileID: 316857856}
+  tfNteAppear: {fileID: 0}
   bpm: 100
 --- !u!1 &1982629890
 GameObject:
