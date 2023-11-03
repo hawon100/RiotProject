@@ -50,6 +50,7 @@ public class MoveManager : MonoBehaviour
                 a_Check.GetMoveMap(curMoveMap);
                 curMoveMob[i].Movement();
             }
+
         Classification();
     }
 
@@ -107,8 +108,8 @@ public class MoveManager : MonoBehaviour
 
     public void DestroyEnemy(Vector2Int curPos, Enemy_Base dieObj)
     {
-        curMoveMob.Remove(dieObj);
         curMoveMap[curPos.x, curPos.y] = 0;
+        curMoveMob.Remove(dieObj);
     }
 
     public void MapInit(int[,] _curGroundMap)

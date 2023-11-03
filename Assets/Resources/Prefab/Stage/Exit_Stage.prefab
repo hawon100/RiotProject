@@ -112,7 +112,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   curPos: {x: 0, y: 0}
-  isLock: 1
+  isLock: 0
 --- !u!1001 &9218203678732105987
 PrefabInstance:
   m_ObjectHideFlags: 0
