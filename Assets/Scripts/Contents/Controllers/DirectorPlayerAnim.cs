@@ -4,11 +4,7 @@ using UnityEngine;
 
 public class DirectorPlayerAnim : MonoBehaviour
 {
-    [SerializeField] private GameObject fade;
-    [SerializeField] private GameObject panel;
     [SerializeField] private Animator fadeAnim;
-    [SerializeField] private Transform directorCamPos;
-    [SerializeField] private Camera cam;
 
     public void OnTitle()
     {
@@ -19,12 +15,9 @@ public class DirectorPlayerAnim : MonoBehaviour
 
     private IEnumerator NextScene()
     {
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(4f);
 
-        cam.gameObject.transform.position = directorCamPos.position;
-        cam.gameObject.transform.rotation = directorCamPos.rotation;
-        panel.SetActive(true);
-        fade.SetActive(false);
+        Managers.Map.LoadScene(Define.Scene.Lobby);
 
         yield return null;
     }
