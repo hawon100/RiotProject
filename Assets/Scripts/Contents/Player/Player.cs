@@ -12,8 +12,6 @@ public class Player : Mob_Base
     [SerializeField] GameObject dieWin;
     [SerializeField] private Image hpbar;
 
-    private bool isFly;
-
     public List<Item_Base> statsItem = new();
     public List<Item_Base> attackItem = new();
     public List<Item_Base> moveItem = new();
@@ -35,6 +33,10 @@ public class Player : Mob_Base
         HP = RoundData.Instance.HP;
          
         hpbar.fillAmount = HP / (float)maxHP;
+    }
+
+    public void Damage(){
+        HP -= 1;
     }
 
     public void Move(string type)
@@ -61,7 +63,7 @@ public class Player : Mob_Base
 
         RookPlayer(movePos);
 
-        int action = MoveManager.Instance.AllCheck(curPos, plusPos, damage, isFly, true);
+        int action = MoveManager.Instance.MoveCheck(curPos, plusPos, true);
 
         switch (action)
         {
@@ -69,13 +71,10 @@ public class Player : Mob_Base
             case 1: break;
             case 2: Attack(); break;
         }
-
-        MoveManager.Instance.EnemyMove();
     }
 
     void Attack()
     {
-        //attack item trigger
         anim.SetTrigger("doAttack");
     }
 

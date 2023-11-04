@@ -1159,7 +1159,6 @@ GameObject:
   - component: {fileID: 8980088892256915055}
   - component: {fileID: 8869019478010816897}
   - component: {fileID: -4815794573489408759}
-  - component: {fileID: -8338855337517682763}
   m_Layer: 0
   m_Name: EvilMage
   m_TagString: Untagged
@@ -1218,27 +1217,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
---- !u!114 &-8338855337517682763
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8634667021073110229}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d44d5cd02eccbfd4c8fcf5b38ff7ea4e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  HP: 0
-  maxHP: 2
-  damage: 1
-  curPos: {x: 0, y: 0}
-  _hpbar: {fileID: 0}
-  checkBoxSize: 3
-  isMove: 0
-  count: 0
-  maxcount: 3
 --- !u!1 &8817284497358235827
 GameObject:
   m_ObjectHideFlags: 0
