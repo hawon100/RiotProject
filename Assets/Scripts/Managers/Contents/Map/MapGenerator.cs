@@ -15,7 +15,7 @@ public class MapGenerator : MonoBehaviour
     private List<MapData> specialMapData = new();
     private List<GameObject> mapTile = new();
     private List<Obj_Base> mapObj = new();
-    private List<GameObject> enemy;
+    private List<Enemy_Base> mapEnemy = new();
     private int enemyCount;
 
     private AudioClip bgm;
@@ -34,6 +34,7 @@ public class MapGenerator : MonoBehaviour
         // specialMapData = curStage.specialMapData.ToList();
         mapTile = curStage.mapTile.ToList();
         mapObj = curStage.mapObj.ToList();
+        mapEnemy = curStage.mapEnemy.ToList();
     }
 
     private void ChoiceMap(int count)
@@ -44,8 +45,7 @@ public class MapGenerator : MonoBehaviour
         // CreateMap(battleMapData[ranMap]);
         // battleMapData.Remove(battleMapData[ranMap]);
 
-        if (stageList.Count != 0) CreateMap(battleMapData[stageIndex + 1]);
-        else CreateMap(battleMapData[stageIndex]);
+        CreateMap(battleMapData[stageIndex]);
     }
 
     private void CreateMap(MapData curMap)
@@ -98,7 +98,7 @@ public class MapGenerator : MonoBehaviour
             {
                 if (curEnemyData[i, j] == 0) continue; // void
 
-                var temp = Instantiate(enemy[curEnemyData[i, j] - 1], new Vector3(i, 0, j), Quaternion.identity).GetComponent<Enemy_Base>();
+                var temp = Instantiate(mapEnemy[curEnemyData[i, j] - 1], new Vector3(i, 0, j), Quaternion.identity).GetComponent<Enemy_Base>();
                 temp.curPos = new(i, j);
                 map[i, j] = temp;
                 spawnMob.Add(temp);
