@@ -18,6 +18,7 @@ MonoBehaviour:
   mapTile:
   - {fileID: 4189690835450586684, guid: 3e1d4f6e113d5ea4eb92cfbfd9cf60f2, type: 3}
   mapObj:
-  - {fileID: 4189690835450586684, guid: 2c54c2a2cb3e5824dacee6bac3ddf375, type: 3}
-  - {fileID: 4189690835450586684, guid: 3008789f8b158ce4c9c00d51816be1f6, type: 3}
+  - {fileID: 1882720481210013175, guid: 2c54c2a2cb3e5824dacee6bac3ddf375, type: 3}
+  - {fileID: 1486698038848309755, guid: 3008789f8b158ce4c9c00d51816be1f6, type: 3}
+  mapEnemy: []
   stageCount: 0
