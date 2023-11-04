@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class TimingManager : MonoBehaviour
 {
-    public List<GameObject> boxNoteList = new List<GameObject>();
+    public List<GameObject> boxNoteList = new();
+    public List<GameObject> ghostNoteList = new();
     [SerializeField] private Transform Center = null;
     [SerializeField] private RectTransform[] timingRect = null;
     [SerializeField] private Vector2[] timingBox = null;
@@ -30,7 +31,9 @@ public class TimingManager : MonoBehaviour
                 if (timingBox[x].x <= t_notePosX && t_notePosX <= timingBox[x].y)
                 {
                     boxNoteList[i].GetOrAddComponent<Note>().HideNote();
+                    ghostNoteList[i].GetOrAddComponent<Note>().HideNote();
                     boxNoteList.RemoveAt(i);
+                    ghostNoteList.RemoveAt(i);
 
                     return true;
                 }

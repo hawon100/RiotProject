@@ -373,7 +373,7 @@ MonoBehaviour:
   curPos: {x: 0, y: 0}
   _hpbar: {fileID: 0}
   checkBoxSize: 0
-  isMove: 1
+  isMove: 0
   timeToMove: 0.2
   isMoving: 0
 --- !u!1 &5154042740967224100

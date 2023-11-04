@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Player : Mob_Base
 {
@@ -9,6 +10,7 @@ public class Player : Mob_Base
 
     [SerializeField] private AudioClip moveSound;
     [SerializeField] GameObject dieWin;
+    [SerializeField] private Image hpbar;
 
     private bool isFly;
 
@@ -19,7 +21,8 @@ public class Player : Mob_Base
 
     TimingManager timingManager;
 
-    public void Init(){
+    public void Init()
+    {
         _instance = this;
     }
 
@@ -30,11 +33,13 @@ public class Player : Mob_Base
         timingManager = FindObjectOfType<TimingManager>();
 
         HP = RoundData.Instance.HP;
+         
+        hpbar.fillAmount = HP / (float)maxHP;
     }
 
     public void Move(string type)
     {
-        switch(type)
+        switch (type)
         {
             case "Up": CheckMove(Vector3.forward); break;
             case "Down": CheckMove(Vector3.back); break;

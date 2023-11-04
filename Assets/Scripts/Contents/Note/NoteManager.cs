@@ -5,7 +5,7 @@ using UnityEngine;
 public class NoteManager : MonoBehaviour
 {
     public RectTransform tfNteAppear = null;
-    [SerializeField] private string prefabPath;
+    public RectTransform ghostTfNteAppear = null;
     [SerializeField] int bpm = 0;
     private int noteCount;
     double currentTime = 0d;
@@ -23,9 +23,12 @@ public class NoteManager : MonoBehaviour
 
         if (currentTime >= 60d / bpm)
         {
-            var t_note = Managers.Resource.Instantiate(prefabPath, tfNteAppear);
+            var t_note = Managers.Resource.Instantiate("Note/Note_0", tfNteAppear);
+            var ghost_note = Managers.Resource.Instantiate("Note/Note_1", ghostTfNteAppear);
             t_note.transform.SetParent(this.transform);
+            ghost_note.transform.SetParent(this.transform);
             timingManager.boxNoteList.Add(t_note);
+            timingManager.ghostNoteList.Add(ghost_note);
 
             currentTime -= 60d / bpm;
         }
@@ -45,8 +48,21 @@ public class NoteManager : MonoBehaviour
                     noteCount = 0;
                 }
             }
+
             timingManager.boxNoteList.Remove(collision.gameObject);
+            timingManager.ghostNoteList.Remove(collision.gameObject);
+
+            //if (timingManager.ghostNoteList.Count > 0)
+            //{
+            //    if (timingManager.ghostNoteList[0] != null)
+            //    {
+            //        Managers.Resource.Destroy(timingManager.ghostNoteList[0]);
+            //    }
+            //    timingManager.ghostNoteList.RemoveAt(0);
+            //}
+
             Managers.Resource.Destroy(collision.gameObject);
+
         }
     }
 }

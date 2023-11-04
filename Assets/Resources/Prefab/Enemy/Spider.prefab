@@ -321,7 +321,7 @@ MonoBehaviour:
   curPos: {x: 0, y: 0}
   _hpbar: {fileID: 0}
   checkBoxSize: 2
-  isMove: 1
+  isMove: 0
   count: 0
   maxcount: 4
 --- !u!1 &2753354036671409801
