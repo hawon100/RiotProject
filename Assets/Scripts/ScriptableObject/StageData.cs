@@ -9,7 +9,8 @@ public class StageData : ScriptableObject
     public List<MapData> battleMapData = new();
     public List<MapData> specialMapData = new();
     public List<GameObject> mapTile = new();
-    public List<GameObject> mapObj = new();
+    public List<Obj_Base> mapObj = new();
+    public List<Enemy_Base> mapEnemy = new();
 
     public int stageCount;
 }

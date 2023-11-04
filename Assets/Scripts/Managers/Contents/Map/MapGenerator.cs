@@ -10,13 +10,14 @@ public class MapGenerator : MonoBehaviour
     [SerializeField] private Player player;
     [SerializeField] private int stageIndex;
 
-    [SerializeField] List<GameObject> enemy; //임시, 나중에 EnemyList을 만들던가 아니면 싹 다 랜덤으로 나오게 하던가 할 것
-    [SerializeField] int enemyCount; //임시
 
-    [SerializeField] private List<MapData> battleMapData = new();
+    private List<MapData> battleMapData = new();
     private List<MapData> specialMapData = new();
     private List<GameObject> mapTile = new();
-    private List<GameObject> mapObj = new();
+    private List<Obj_Base> mapObj = new();
+    private List<GameObject> enemy;
+    private int enemyCount;
+
     private AudioClip bgm;
 
     private void Init()
@@ -43,11 +44,7 @@ public class MapGenerator : MonoBehaviour
         // CreateMap(battleMapData[ranMap]);
         // battleMapData.Remove(battleMapData[ranMap]);
 
-        if (stageList.Count != 0) {
-        enemy = battleMapData[stageIndex + 1].enemy.ToList();
-        enemyCount = battleMapData[stageIndex + 1].enemyCount;
-        CreateMap(battleMapData[stageIndex + 1]);
-        }
+        if (stageList.Count != 0) CreateMap(battleMapData[stageIndex + 1]);
         else CreateMap(battleMapData[stageIndex]);
     }
 
@@ -71,10 +68,10 @@ public class MapGenerator : MonoBehaviour
     {
         Mob_Base[,] map = new Mob_Base[curMap.GetLength(0), curMap.GetLength(1)];
         Obj_Base[,] obj = new Obj_Base[curMap.GetLength(0), curMap.GetLength(1)];
-        List<Vector2Int> spawnPos = new();
         List<Enemy_Base> spawnMob = new();
 
         int[,] curObjData = LoadCSV.Load(Map.objMap);
+        int[,] curEnemyData = LoadCSV.Load(Map.enemyMap);
 
         for (int i = 0; i < curObjData.GetLength(0); i++) for (int j = 0; j < curObjData.GetLength(1); j++)
             {
@@ -97,26 +94,15 @@ public class MapGenerator : MonoBehaviour
                 obj[i, j] = temp;
             }
 
+        for (int i = 0; i < curEnemyData.GetLength(0); i++) for (int j = 0; j < curEnemyData.GetLength(1); j++)
+            {
+                if (curEnemyData[i, j] == 0) continue; // void
 
-        if(stageIndex == 2){
-            spawnPos.Add(new(4, 4));
-            Debug.Log("-----------------------");
-        }else{
-            for (int i = 0; i < curMap.GetLength(0); i++) for (int j = 0; j < curMap.GetLength(1); j++)
-                if (curMap[i, j] == 1) spawnPos.Add(new(i, j));
-        }
-
-        for (int i = 0; i < enemyCount; i++)
-        {
-            int ranPos = Random.Range(0, spawnPos.Count);
-            int ranMob = Random.Range(0, enemy.Count);
-            var temp = Instantiate(enemy[ranMob], new Vector3(spawnPos[ranPos].x, 0, spawnPos[ranPos].y),
-            Quaternion.identity).GetComponent<Enemy_Base>();
-            temp.curPos = new(spawnPos[ranPos].x, spawnPos[ranPos].y);
-            map[spawnPos[ranPos].x, spawnPos[ranPos].y] = temp;
-            spawnPos.Remove(spawnPos[ranPos]);
-            spawnMob.Add(temp);
-        }
+                var temp = Instantiate(enemy[curEnemyData[i, j] - 1], new Vector3(i, 0, j), Quaternion.identity).GetComponent<Enemy_Base>();
+                temp.curPos = new(i, j);
+                map[i, j] = temp;
+                spawnMob.Add(temp);
+            }
 
         MoveManager.Instance.MobInit(map, obj, spawnMob, curObjData);
     }
