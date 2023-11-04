@@ -66,7 +66,7 @@ public class MapGenerator : MonoBehaviour
 
     private void Spawn(MapData Map, int[,] curMap)
     {
-        Mob_Base[,] map = new Mob_Base[curMap.GetLength(0), curMap.GetLength(1)];
+        Enemy_Base[,] map = new Enemy_Base[curMap.GetLength(0), curMap.GetLength(1)];
         Obj_Base[,] obj = new Obj_Base[curMap.GetLength(0), curMap.GetLength(1)];
         List<Enemy_Base> spawnMob = new();
 

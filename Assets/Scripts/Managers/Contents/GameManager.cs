@@ -8,7 +8,6 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance => _instance;
     [SerializeField] private MoveManager moveManager;
 
-    public List<Item_Base> itemList = new();
     public AudioClip curMap;
 
     private void Awake() {
