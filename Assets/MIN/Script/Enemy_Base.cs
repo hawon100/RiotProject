@@ -10,29 +10,18 @@ public class Enemy_Base : Mob_Base
     [SerializeField] private Slider _hpbar;
     //[SerializeField] protected GameObject die_effect;
 
-    protected Transform target;
-    protected Vector2 direction;
-
-    private BoxCollider _box;
-    bool isDie;
+    [SerializeField] private bool cantDie;
 
     protected override void Start()
     {
         base.Start();
 
-        _box = GetComponent<BoxCollider>();
         transform.LookAt(Vector3.forward);
-    }
-
-    protected virtual void Update()
-    {
-        target = Player.Instance.transform;
-        direction = target.position - transform.position;
     }
 
     public void BackStep(Vector2Int plusPos)
     {
-        transform.LookAt(target);
+        transform.LookAt(Player.Instance.transform);
         anim.SetTrigger("OnHit");
 
         Vector3 movePos = new();
@@ -47,7 +36,7 @@ public class Enemy_Base : Mob_Base
         switch (action)
         {
             case 0: curPos = curPos + plusPos; StartCoroutine(MoveEnemy(movePos, 0.2f)); break;
-            case 1: dieAction?.Invoke(); break;
+            case 1: if(!cantDie) dieAction?.Invoke(); break;
             case 2: break;
         }
     }
