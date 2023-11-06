@@ -5255,7 +5255,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tfNteAppear: {fileID: 803727742}
   ghostTfNteAppear: {fileID: 423345004}
-  bpm: 80
+  bpm: 120
 --- !u!61 &2124523006
 BoxCollider2D:
   m_ObjectHideFlags: 0

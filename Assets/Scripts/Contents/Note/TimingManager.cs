@@ -37,13 +37,13 @@ public class TimingManager : MonoBehaviour
                     ghostNoteList[i].GetOrAddComponent<Note>().HideNote();
                     boxNoteList.RemoveAt(i);
                     ghostNoteList.RemoveAt(i);
-
+                    if (!isLobby) Player.Instance.Damage();
                     return true;
                 }
             }
         }
 
-        if (!isLobby) Player.Instance.HP--;
+        if (!isLobby) Player.Instance.Damage();
         EffectManager.Instance.JudgementEffect();
         return false;
     }

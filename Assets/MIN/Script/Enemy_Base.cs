@@ -8,7 +8,6 @@ public class Enemy_Base : Mob_Base
 {
     [Header("Enemy_Base")]
     [SerializeField] private Slider _hpbar;
-    //[SerializeField] protected GameObject die_effect;
 
     [SerializeField] private bool cantDie;
 
@@ -22,7 +21,6 @@ public class Enemy_Base : Mob_Base
     public void BackStep(Vector2Int plusPos)
     {
         transform.LookAt(Player.Instance.transform);
-        anim.SetTrigger("OnHit");
 
         Vector3 movePos = new();
 
@@ -43,8 +41,6 @@ public class Enemy_Base : Mob_Base
 
     protected override void DieDestroy()
     {
-        anim.SetBool("isDead", true);
-
         MoveManager.Instance.InOutObj(curPos, true);
         Managers.Resource.Destroy(gameObject);
     }

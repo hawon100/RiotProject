@@ -40,6 +40,11 @@ public class Player : Mob_Base
     public void Damage()
     {
         HP -= 1;
+
+        if(HP <= 0)
+        {
+            DieDestroy();
+        }
     }
 
     public void Move(string type)
@@ -76,14 +81,14 @@ public class Player : Mob_Base
         }
     }
 
-    void Attack()
-    {
-        anim.SetTrigger("doAttack");
-    }
-
     void RookPlayer(Vector3 pos)
     {
         transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(pos), 1f);
+    }
+
+    void Attack()
+    {
+        anim.SetTrigger("doAttack");
     }
 
     private IEnumerator MovePlayer(Vector3 direction, float sec)
@@ -93,7 +98,6 @@ public class Player : Mob_Base
         float elapsedTime = 0;
         Vector3 origPos = transform.position;
         Vector3 targetPos = origPos + direction;
-
         anim.SetBool("isDash", true);
         while (elapsedTime < sec)
         {
