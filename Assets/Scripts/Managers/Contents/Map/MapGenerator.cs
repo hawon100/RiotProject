@@ -45,6 +45,7 @@ public class MapGenerator : MonoBehaviour
         // CreateMap(battleMapData[ranMap]);
         // battleMapData.Remove(battleMapData[ranMap]);
 
+        player.HP = battleMapData[stageIndex].life;
         CreateMap(battleMapData[stageIndex]);
     }
 

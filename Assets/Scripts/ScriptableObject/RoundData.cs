@@ -12,14 +12,11 @@ public class RoundData : ScriptableObject
     public int stageIndex;
     public int mapIndex;
 
-    [Header("Player")]
-    public int HP;
 
     public void Reset()
     {
         stageIndex = 0;
         mapIndex = 0;
-        HP = 6;
     }
 
     public void InitData()
