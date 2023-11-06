@@ -56,6 +56,7 @@ public class MoveManager : MonoBehaviour
         {
             if (isPlayer)
             {
+                Debug.Log($"CheckObj {curObj[movePos.x, movePos.y]} {curObjMap[movePos.x, movePos.y]}");
                 curObj[movePos.x, movePos.y].UseObj();
 
                 if (!curObj[movePos.x, movePos.y].isCanMove) return 1;
@@ -81,7 +82,7 @@ public class MoveManager : MonoBehaviour
         return 0;
     }
 
-    public void InOutObj(Vector2Int curPos, bool isEnemy = true, int index = 0)
+    public void InOutObj(Vector2Int curPos, bool isEnemy = false, int index = 0)
     {
         if (isEnemy) { curMoveMap[curPos.x, curPos.y] = 0; return; }
 
