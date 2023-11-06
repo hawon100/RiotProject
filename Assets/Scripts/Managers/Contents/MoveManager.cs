@@ -13,15 +13,12 @@ public class MoveManager : MonoBehaviour
 
     [SerializeField] public GameObject clearWin;
 
-    bool isProcessing;
-
     private int[,] curGroundMap;
     private int[,] curObjMap;
     private int[,] curMoveMap;
     private Enemy_Base[,] curMob;
     private Obj_Base[,] curObj;
-    public List<Enemy_Base> curMoveMob;
-    public List<Enemy_Base> curCheckMob;
+    public List<MoveObj_Base> moveObj;
 
     private void Start()
     {
@@ -31,6 +28,14 @@ public class MoveManager : MonoBehaviour
     public void Init()
     {
         _instance = this;
+    }
+
+    public void MoveObj()
+    {
+        for (int i = 0; i < moveObj.Count; i++)
+        {
+            moveObj[i].nextTiming();
+        }
     }
 
     /// <summary>
@@ -59,7 +64,8 @@ public class MoveManager : MonoBehaviour
         }
         if (curMoveMap[movePos.x, movePos.y] != 0)
         {
-            if(isPlayer){
+            if (isPlayer)
+            {
                 curMob[movePos.x, movePos.y].BackStep(plusPos);
                 return 2;
             }
@@ -75,15 +81,11 @@ public class MoveManager : MonoBehaviour
         return 0;
     }
 
-    public void DestroyEnemy(Vector2Int curPos, Enemy_Base dieObj)
+    public void InOutObj(Vector2Int curPos, bool isEnemy = true, int index = 0)
     {
-        curMoveMap[curPos.x, curPos.y] = 0;
-        curMoveMob.Remove(dieObj);
-    }
+        if (isEnemy) { curMoveMap[curPos.x, curPos.y] = 0; return; }
 
-    public void InOutObj(Vector2Int curPos, int index = 0)
-    {
-        if(curObjMap[curPos.x, curPos.y] == 0) curObjMap[curPos.x, curPos.y] = index;
+        if (curObjMap[curPos.x, curPos.y] == 0) curObjMap[curPos.x, curPos.y] = index;
         else curObjMap[curPos.x, curPos.y] = 0;
     }
 
@@ -93,19 +95,13 @@ public class MoveManager : MonoBehaviour
         curMoveMap = new int[_curGroundMap.GetLength(0), _curGroundMap.GetLength(1)];
     }
 
-    public void MobInit(Enemy_Base[,] _map, Obj_Base[,] _obj, List<Enemy_Base> spawnMob, int[,] _curObjMap)
+    public void MobInit(Enemy_Base[,] _map, Obj_Base[,] _obj, List<MoveObj_Base> _moveObj, int[,] _curObjMap)
     {
         curObjMap = _curObjMap;
         curMob = _map;
         curObj = _obj;
 
-        Enemy_Base temp;
-        for (int i = 0; i < spawnMob.Count; i++)
-        {
-            temp = spawnMob[i].GetComponent<Enemy_Base>();
-            if (temp.checkBoxSize == 0) curMoveMob.Add(temp);
-            else curCheckMob.Add(temp);
-        }
+        moveObj = _moveObj.ToList();
 
         for (int i = 0; i < _map.GetLength(0); i++)
             for (int j = 0; j < _map.GetLength(1); j++)

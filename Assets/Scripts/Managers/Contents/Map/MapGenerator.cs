@@ -68,7 +68,7 @@ public class MapGenerator : MonoBehaviour
     {
         Enemy_Base[,] map = new Enemy_Base[curMap.GetLength(0), curMap.GetLength(1)];
         Obj_Base[,] obj = new Obj_Base[curMap.GetLength(0), curMap.GetLength(1)];
-        List<Enemy_Base> spawnMob = new();
+        List<MoveObj_Base> moveObj = new();
 
         int[,] curObjData = LoadCSV.Load(Map.objMap);
         int[,] curEnemyData = LoadCSV.Load(Map.enemyMap);
@@ -93,6 +93,8 @@ public class MapGenerator : MonoBehaviour
                 temp.index = curObjData[i, j];
                 temp.curPos = new(i, j);
                 obj[i, j] = temp;
+
+                if(temp.TryGetComponent<MoveObj_Base>(out var m)) moveObj.Add(m);
             }
 
         for (int i = 0; i < curEnemyData.GetLength(0); i++) for (int j = 0; j < curEnemyData.GetLength(1); j++)
@@ -102,10 +104,9 @@ public class MapGenerator : MonoBehaviour
                 var temp = Instantiate(mapEnemy[curEnemyData[i, j] - 1], new Vector3(i, 0, j), Quaternion.identity).GetComponent<Enemy_Base>();
                 temp.curPos = new(i, j);
                 map[i, j] = temp;
-                spawnMob.Add(temp);
             }
 
-        MoveManager.Instance.MobInit(map, obj, spawnMob, curObjData);
+        MoveManager.Instance.MobInit(map, obj, moveObj, curObjData);
     }
 
     private void Awake()
