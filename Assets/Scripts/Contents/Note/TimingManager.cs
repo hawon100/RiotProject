@@ -23,6 +23,8 @@ public class TimingManager : MonoBehaviour
 
     public bool CheckTiming()
     {
+        MoveManager.Instance.MoveObj();
+
         for(int i = 0; i < boxNoteList.Count; i++)
         {
             float t_notePosX = boxNoteList[i].transform.localPosition.x;
@@ -36,7 +38,6 @@ public class TimingManager : MonoBehaviour
                     boxNoteList.RemoveAt(i);
                     ghostNoteList.RemoveAt(i);
 
-                    if(!isLobby) Player.Instance.HP--;
                     return true;
                 }
             }

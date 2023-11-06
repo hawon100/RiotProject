@@ -16,9 +16,6 @@ public class Enemy_Base : Mob_Base
     private BoxCollider _box;
     bool isDie;
 
-    [Header("if 0 == noCheck")]
-    public int checkBoxSize;
-
     protected override void Start()
     {
         base.Start();
@@ -59,7 +56,7 @@ public class Enemy_Base : Mob_Base
     {
         anim.SetBool("isDead", true);
 
-        MoveManager.Instance.DestroyEnemy(curPos, this);
+        MoveManager.Instance.InOutObj(curPos, true);
         Managers.Resource.Destroy(gameObject);
     }
 

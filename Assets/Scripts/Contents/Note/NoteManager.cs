@@ -45,6 +45,7 @@ public class NoteManager : MonoBehaviour
                 noteCount++;
                 if (noteCount == 2)
                 {
+                    MoveManager.Instance.MoveObj();
                     noteCount = 0;
                 }
             }
