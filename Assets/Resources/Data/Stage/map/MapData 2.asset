@@ -10,10 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: beac9481ab8b89948997a06959fed3f8, type: 3}
-  m_Name: MapData
+  m_Name: MapData 2
   m_EditorClassIdentifier: 
-  groundMap: {fileID: 4900000, guid: 641626a86add47145842acc76e76d79f, type: 3}
-  objMap: {fileID: 4900000, guid: 6759aa4b852b0764bbbe1addf679cca3, type: 3}
-  enemy:
-  - {fileID: 8634667021073110229, guid: 36010772c10a2014c875f836e1146103, type: 3}
-  enemyCount: 1
+  life: 32
+  groundMap: {fileID: 4900000, guid: e7e4078618daafe4d9730d1ae9a7b638, type: 3}
+  objMap: {fileID: 4900000, guid: d3016b16a6aa159479b3295e26930a0d, type: 3}
+  enemyMap: {fileID: 4900000, guid: 4193fe3b2cbcba14ab0dce8a29929a9f, type: 3}
