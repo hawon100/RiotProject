@@ -29,7 +29,7 @@ public class Enemy_Base : Mob_Base
         if (plusPos == Vector2Int.right) movePos = Vector3.right;
         if (plusPos == Vector2Int.left) movePos = Vector3.left;
 
-        int action = MoveManager.Instance.MoveCheck(curPos, plusPos, true);
+        int action = MoveManager.Instance.MoveCheck(curPos, plusPos, false);
 
         switch (action)
         {
