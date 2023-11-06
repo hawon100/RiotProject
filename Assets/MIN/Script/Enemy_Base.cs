@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.UI;
 
-public abstract class Enemy_Base : Mob_Base
+public class Enemy_Base : Mob_Base
 {
     [Header("Enemy_Base")]
     [SerializeField] private Slider _hpbar;

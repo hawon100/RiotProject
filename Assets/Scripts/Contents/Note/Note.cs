@@ -15,6 +15,7 @@ public class Note : MonoBehaviour
     [SerializeField] private NoteType type = NoteType.None;
     [SerializeField] private float noteSpeed = 400f;
     private Image noteImage;
+    public bool isGhost;
 
     private void Start()
     {

@@ -9,6 +9,7 @@ public class TimingManager : MonoBehaviour
     [SerializeField] private Transform Center = null;
     [SerializeField] private RectTransform[] timingRect = null;
     [SerializeField] private Vector2[] timingBox = null;
+    public bool isLobby = false;
 
     private void Start()
     {
@@ -35,11 +36,13 @@ public class TimingManager : MonoBehaviour
                     boxNoteList.RemoveAt(i);
                     ghostNoteList.RemoveAt(i);
 
+                    if(!isLobby) Player.Instance.HP--;
                     return true;
                 }
             }
         }
 
+        if (!isLobby) Player.Instance.HP--;
         EffectManager.Instance.JudgementEffect();
         return false;
     }
