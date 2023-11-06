@@ -10,7 +10,7 @@ public class LockBlock : Obj_Base
 
         Player.Instance.isKey = false;
 
-        MoveManager.Instance.DestroyObj(curPos);
+        MoveManager.Instance.InOutObj(curPos);
         Destroy(gameObject);
     }
 }

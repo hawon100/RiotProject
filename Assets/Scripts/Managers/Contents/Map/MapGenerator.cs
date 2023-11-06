@@ -90,6 +90,7 @@ public class MapGenerator : MonoBehaviour
                 else { curMap[i, j] = 0; }
                 var temp = Instantiate(mapObj[curObjData[i, j] - 1], new Vector3(i, 0, j),
                 Quaternion.identity, transform).GetComponent<Obj_Base>();
+                temp.index = curObjData[i, j];
                 temp.curPos = new(i, j);
                 obj[i, j] = temp;
             }

@@ -8,7 +8,7 @@ public class Key : Obj_Base
     {
         Player.Instance.isKey = true;
 
-        MoveManager.Instance.DestroyObj(curPos);
+        MoveManager.Instance.InOutObj(curPos);
         Destroy(gameObject);
     }
 }

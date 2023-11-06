@@ -81,9 +81,10 @@ public class MoveManager : MonoBehaviour
         curMoveMob.Remove(dieObj);
     }
 
-    public void DestroyObj(Vector2Int curPos)
+    public void InOutObj(Vector2Int curPos, int index = 0)
     {
-        curObjMap[curPos.x, curPos.y] = 0;
+        if(curObjMap[curPos.x, curPos.y] == 0) curObjMap[curPos.x, curPos.y] = index;
+        else curObjMap[curPos.x, curPos.y] = 0;
     }
 
     public void MapInit(int[,] _curGroundMap)
