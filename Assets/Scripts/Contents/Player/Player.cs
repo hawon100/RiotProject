@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class Player : Mob_Base
 {
@@ -10,7 +10,8 @@ public class Player : Mob_Base
 
     [SerializeField] private AudioClip moveSound;
     [SerializeField] GameObject dieWin;
-    [SerializeField] private Image hpbar;
+    [SerializeField] private TextMeshProUGUI hpbar;
+    [SerializeField] public int HP;
 
     public List<Item_Base> statsItem = new();
     public List<Item_Base> attackItem = new();
@@ -29,13 +30,15 @@ public class Player : Mob_Base
         base.Start();
         dieWin.SetActive(false);
         timingManager = FindObjectOfType<TimingManager>();
-
-        HP = RoundData.Instance.HP;
-         
-        hpbar.fillAmount = HP / (float)maxHP;
     }
 
-    public void Damage(){
+    private void Update()
+    {
+        hpbar.text = HP.ToString();
+    }
+
+    public void Damage()
+    {
         HP -= 1;
     }
 

@@ -93,6 +93,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 1
   noteSpeed: 400
+  isGhost: 1
 --- !u!61 &4466043700474202869
 BoxCollider2D:
   m_ObjectHideFlags: 0

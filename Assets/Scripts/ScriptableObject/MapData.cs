@@ -6,6 +6,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName ="MapData", menuName ="Game/MapData", order = 0), Serializable]
 public class MapData : ScriptableObject
 {
+    public int life;
     public TextAsset groundMap;
     public TextAsset objMap;
     public TextAsset enemyMap;

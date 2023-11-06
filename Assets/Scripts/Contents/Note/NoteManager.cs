@@ -41,6 +41,7 @@ public class NoteManager : MonoBehaviour
             if (collision.GetComponent<Note>().GetNoteFlag())
             {
                 EffectManager.Instance.JudgementEffect();
+                if (!timingManager.isLobby) if (!collision.GetComponent<Note>().isGhost) Player.Instance.HP--;
                 noteCount++;
                 if (noteCount == 2)
                 {
@@ -50,18 +51,7 @@ public class NoteManager : MonoBehaviour
 
             timingManager.boxNoteList.Remove(collision.gameObject);
             timingManager.ghostNoteList.Remove(collision.gameObject);
-
-            //if (timingManager.ghostNoteList.Count > 0)
-            //{
-            //    if (timingManager.ghostNoteList[0] != null)
-            //    {
-            //        Managers.Resource.Destroy(timingManager.ghostNoteList[0]);
-            //    }
-            //    timingManager.ghostNoteList.RemoveAt(0);
-            //}
-
             Managers.Resource.Destroy(collision.gameObject);
-
         }
     }
 }
