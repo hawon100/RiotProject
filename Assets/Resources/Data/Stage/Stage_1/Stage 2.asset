@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: Stage 2
   m_EditorClassIdentifier: 
   battleMapData:
+  - {fileID: 11400000, guid: 802cf6e5eea9eef4884b69f1031cf9f3, type: 2}
   - {fileID: 11400000, guid: 1c478076c95441e4b81d37b235af4582, type: 2}
   - {fileID: 11400000, guid: 5a2ad2398665cb444aa1b446755c4217, type: 2}
   - {fileID: 11400000, guid: 7794369b8019579468290bc7310ded4a, type: 2}
-  - {fileID: 11400000, guid: 802cf6e5eea9eef4884b69f1031cf9f3, type: 2}
   mapTile:
   - {fileID: 4189690835450586684, guid: d59be852c7920ee49bf33a05040792c2, type: 3}
   mapObj:
