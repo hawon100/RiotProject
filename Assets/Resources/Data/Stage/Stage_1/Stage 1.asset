@@ -15,9 +15,8 @@ MonoBehaviour:
   battleMapData:
   - {fileID: 11400000, guid: e699aa8be63f05c4c949f56ed7095075, type: 2}
   - {fileID: 11400000, guid: 5328168d809e70c4ab8f39fb70d1a4f5, type: 2}
-  - {fileID: 11400000, guid: 3031a25230c9981478630db008de576c, type: 2}
+  - {fileID: 11400000, guid: f5dce2f65d2282547887be60d95151b7, type: 2}
   - {fileID: 11400000, guid: 6123030dd5071254bb37ad583ba98b67, type: 2}
-  specialMapData: []
   mapTile:
   - {fileID: 4189690835450586684, guid: d59be852c7920ee49bf33a05040792c2, type: 3}
   mapObj:

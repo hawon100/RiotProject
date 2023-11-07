@@ -4682,10 +4682,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stageList:
   - {fileID: 11400000, guid: a7e88a8156022ae45b88e25bb85a202b, type: 2}
-  - {fileID: 11400000, guid: 7724d6d3dbaed414fae4d9b763eda4e3, type: 2}
+  - {fileID: 11400000, guid: 89df6d2b2f91d8f40961fef9c4c95d63, type: 2}
   curStage: {fileID: 11400000, guid: a7e88a8156022ae45b88e25bb85a202b, type: 2}
   player: {fileID: 868337177}
   stageIndex: 0
+  mapIndex: 0
 --- !u!1 &1451370587
 GameObject:
   m_ObjectHideFlags: 0

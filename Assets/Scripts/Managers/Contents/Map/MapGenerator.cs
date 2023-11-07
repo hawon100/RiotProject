@@ -9,26 +9,24 @@ public class MapGenerator : MonoBehaviour
     [SerializeField] private StageData curStage;
     [SerializeField] private Player player;
     [SerializeField] private int stageIndex;
+    [SerializeField] private int mapIndex;
 
 
     private List<MapData> battleMapData = new();
-    private List<MapData> specialMapData = new();
     private List<GameObject> mapTile = new();
     private List<Obj_Base> mapObj = new();
     private List<Enemy_Base> mapEnemy = new();
-    private int enemyCount;
 
     private AudioClip bgm;
 
     private void Init()
     {
-        // if (stageList.Count != 0)
-        // {
-        //     stageIndex = RoundData.Instance.stageIndex;
-        //     curStage = stageList[stageIndex];
-        // }
-
-        stageIndex = RoundData.Instance.mapIndex;
+        if (stageList.Count != 0)
+        {
+            stageIndex = RoundData.Instance.stageIndex;
+            mapIndex = RoundData.Instance.mapIndex;
+            curStage = stageList[stageIndex];
+        }
 
         battleMapData = curStage.battleMapData.ToList();
         // specialMapData = curStage.specialMapData.ToList();
@@ -45,8 +43,8 @@ public class MapGenerator : MonoBehaviour
         // CreateMap(battleMapData[ranMap]);
         // battleMapData.Remove(battleMapData[ranMap]);
 
-        player.HP = battleMapData[stageIndex].life;
-        CreateMap(battleMapData[stageIndex]);
+        player.HP = battleMapData[mapIndex].life;
+        CreateMap(battleMapData[mapIndex]);
     }
 
     private void CreateMap(MapData curMap)
@@ -94,7 +92,13 @@ public class MapGenerator : MonoBehaviour
                                 try { curMap[i + k, j + l] = 0; }
                                 catch { continue; }
                             }
-                    else temp.GetComponent<NextMap>().endStageCount = curStage.endStageCount;
+                    else
+                    {
+                        if(temp.TryGetComponent<NextMap>(out var n))
+                        {
+                            n.endStageCount = curStage.battleMapData.Count - 1;
+                        }
+                    }
                 }
                 else { curMap[i, j] = 0; }
             }

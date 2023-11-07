@@ -8,8 +8,7 @@ public class NextStage : Obj_Base
 
     public override void UseObj()
     {
-        RoundData.Instance.Reset();
-        RoundData.Instance.stageIndex = stageIndex;
+        RoundData.Instance.Reset(stageIndex);
         FadeLobby.Instance.fadeInGameAnim.SetTrigger("OnFade");
     }
 }

@@ -17,7 +17,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 5a2ad2398665cb444aa1b446755c4217, type: 2}
   - {fileID: 11400000, guid: 7794369b8019579468290bc7310ded4a, type: 2}
   - {fileID: 11400000, guid: 802cf6e5eea9eef4884b69f1031cf9f3, type: 2}
-  specialMapData: []
   mapTile:
   - {fileID: 4189690835450586684, guid: d59be852c7920ee49bf33a05040792c2, type: 3}
   mapObj:
@@ -39,4 +38,4 @@ MonoBehaviour:
   - {fileID: 5806191123734787372, guid: cc16cbb23d4c9664a8c30ff72020d126, type: 3}
   - {fileID: -8243170515732912157, guid: c1a2fbda9dbd4e644bc6665ae7ef6d15, type: 3}
   - {fileID: 1252195281081224522, guid: a158c4f37360683499a03a0ff87cd61a, type: 3}
-  stageCount: 1
+  stageCount: 2

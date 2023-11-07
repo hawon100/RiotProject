@@ -52,17 +52,6 @@ public class MoveManager : MonoBehaviour
         catch { return 1; }
 
         if (curGroundMap[movePos.x, movePos.y] != 1) return 1;
-        if (curObjMap[movePos.x, movePos.y] != 0)
-        {
-            if (isPlayer)
-            {
-                Debug.Log($"CheckObj {curObj[movePos.x, movePos.y]} {curObjMap[movePos.x, movePos.y]}");
-                curObj[movePos.x, movePos.y].UseObj();
-
-                if (!curObj[movePos.x, movePos.y].isCanMove) return 1;
-            }
-            else return 1;
-        }
         if (curMoveMap[movePos.x, movePos.y] != 0)
         {
             if (isPlayer)
@@ -71,6 +60,16 @@ public class MoveManager : MonoBehaviour
                 return 2;
             }
             else return 1;
+        }
+        if (curObjMap[movePos.x, movePos.y] != 0)
+        {
+            if (isPlayer)
+            {
+                Debug.Log($"CheckObj {curObj[movePos.x, movePos.y]} {curObjMap[movePos.x, movePos.y]}");
+                curObj[movePos.x, movePos.y].UseObj();
+            }
+
+            if (!curObj[movePos.x, movePos.y].isCanMove) return 1;
         }
 
         curMob[movePos.x, movePos.y] = curMob[curPos.x, curPos.y];

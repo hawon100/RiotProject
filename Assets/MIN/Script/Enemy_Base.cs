@@ -14,8 +14,6 @@ public class Enemy_Base : Mob_Base
     protected override void Start()
     {
         base.Start();
-
-        transform.LookAt(Vector3.forward);
     }
 
     public void BackStep(Vector2Int plusPos)

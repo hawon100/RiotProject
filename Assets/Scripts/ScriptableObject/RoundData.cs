@@ -13,9 +13,9 @@ public class RoundData : ScriptableObject
     public int mapIndex;
 
 
-    public void Reset()
+    public void Reset(int index)
     {
-        stageIndex = 0;
+        stageIndex = index;
         mapIndex = 0;
     }
 

@@ -8,6 +8,7 @@ public class NextMap : Obj_Base
 
     public override void UseObj()
     {
+        Debug.Log($"{endStageCount} {RoundData.Instance.mapIndex}");
         if (RoundData.Instance.mapIndex < endStageCount)
         {
             RoundData.Instance.mapIndex++;
@@ -15,7 +16,7 @@ public class NextMap : Obj_Base
         }
         else
         {
-            RoundData.Instance.Reset();
+            RoundData.Instance.Reset(0);
             MoveManager.Instance.clearWin.SetActive(true);
         }
     }
