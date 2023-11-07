@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: MapData 2
   m_EditorClassIdentifier: 
   life: 1000
-  groundMap: {fileID: 4900000, guid: e7e4078618daafe4d9730d1ae9a7b638, type: 3}
-  objMap: {fileID: 4900000, guid: d3016b16a6aa159479b3295e26930a0d, type: 3}
-  enemyMap: {fileID: 4900000, guid: 4193fe3b2cbcba14ab0dce8a29929a9f, type: 3}
+  groundMap: {fileID: 4900000, guid: 4a2dca449d4a6f94fa0083390266cb50, type: 3}
+  objMap: {fileID: 4900000, guid: 1ef2e7f28fe37614ab3c90650e813d13, type: 3}
+  enemyMap: {fileID: 4900000, guid: 47c25d25987304a4e84f770649fa14c1, type: 3}

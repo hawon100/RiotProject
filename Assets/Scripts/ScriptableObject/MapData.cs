@@ -8,6 +8,6 @@ public class MapData : ScriptableObject
 {
     public int life;
     public TextAsset groundMap;
-    public TextAsset objMap;
     public TextAsset enemyMap;
+    public TextAsset objMap;
 }
