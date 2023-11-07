@@ -13,4 +13,5 @@ public class StageData : ScriptableObject
     public List<Enemy_Base> mapEnemy = new();
 
     public int stageCount;
+    public int endStageCount;
 }

@@ -77,6 +77,14 @@ public class MapGenerator : MonoBehaviour
         for (int i = 0; i < curObjData.GetLength(0); i++) for (int j = 0; j < curObjData.GetLength(1); j++)
             {
                 if (curObjData[i, j] == 0) continue; // void
+                var temp = Instantiate(mapObj[curObjData[i, j] - 1], new Vector3(i, 0, j),
+                Quaternion.identity, transform).GetComponent<Obj_Base>();
+                temp.index = curObjData[i, j];
+                temp.curPos = new(i, j);
+                obj[i, j] = temp;
+
+                if(temp.TryGetComponent<MoveObj_Base>(out var m)) moveObj.Add(m);
+
                 if (curObjData[i, j] == 1 || curObjData[i, j] == 2)
                 {
                     curMap[i, j] = 0;
@@ -86,16 +94,9 @@ public class MapGenerator : MonoBehaviour
                                 try { curMap[i + k, j + l] = 0; }
                                 catch { continue; }
                             }
-
+                    else temp.GetComponent<NextMap>().endStageCount = curStage.endStageCount;
                 }
                 else { curMap[i, j] = 0; }
-                var temp = Instantiate(mapObj[curObjData[i, j] - 1], new Vector3(i, 0, j),
-                Quaternion.identity, transform).GetComponent<Obj_Base>();
-                temp.index = curObjData[i, j];
-                temp.curPos = new(i, j);
-                obj[i, j] = temp;
-
-                if(temp.TryGetComponent<MoveObj_Base>(out var m)) moveObj.Add(m);
             }
 
         for (int i = 0; i < curEnemyData.GetLength(0); i++) for (int j = 0; j < curEnemyData.GetLength(1); j++)
