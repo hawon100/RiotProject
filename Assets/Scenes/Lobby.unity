@@ -1420,6 +1420,7 @@ MonoBehaviour:
   stageList: []
   curStage: {fileID: 11400000, guid: df073fc1ebd347b439d2014e6ca81850, type: 2}
   player: {fileID: 191601819}
+  cam: {fileID: 820571346}
   stageIndex: 0
   mapIndex: 0
 --- !u!114 &566828855
@@ -1565,8 +1566,8 @@ GameObject:
   m_Component:
   - component: {fileID: 820571342}
   - component: {fileID: 820571341}
-  - component: {fileID: 820571343}
   - component: {fileID: 820571344}
+  - component: {fileID: 820571346}
   - component: {fileID: 820571345}
   m_Layer: 0
   m_Name: Main Camera
@@ -1633,21 +1634,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &820571343
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 820571339}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6ba4538a05d26604db2e39f19130682c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _mode: 1
-  _delta: {x: 0, y: 12, z: -6}
-  _player: {fileID: 191601818}
 --- !u!114 &820571344
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1689,6 +1675,18 @@ AudioListener:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 820571339}
   m_Enabled: 1
+--- !u!114 &820571346
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 820571339}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3669c27e9af46c04a9be03b96973e5a2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &831776466
 GameObject:
   m_ObjectHideFlags: 0
