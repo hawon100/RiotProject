@@ -3514,6 +3514,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c58b8012f3e0ad4cb7d5004d86645d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  clearWin: {fileID: 885558945}
   tfNteAppear: {fileID: 1667403793}
   ghostTfNteAppear: {fileID: 787350545}
   bpm: 80

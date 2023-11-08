@@ -23,7 +23,7 @@ public class NoteManager : MonoBehaviour
     {
         currentTime += Time.deltaTime;
 
-        if(!clearWin.activeSelf)
+        if (!clearWin.activeSelf)
         {
             if (currentTime >= 60d / bpm)
             {
@@ -43,14 +43,17 @@ public class NoteManager : MonoBehaviour
     {
         if (collision.CompareTag("Note"))
         {
-            if (collision.GetComponent<Note>().GetNoteFlag())
+            if (!clearWin.activeSelf)
             {
-                EffectManager.Instance.JudgementEffect();
-                if (!timingManager.isLobby) if (!collision.GetComponent<Note>().isGhost) Player.Instance.Damage();
-                noteCount++;
-                if (noteCount == 2)
+                if (collision.GetComponent<Note>().GetNoteFlag())
                 {
-                    noteCount = 0;
+                    EffectManager.Instance.JudgementEffect();
+                    if (!timingManager.isLobby) if (!collision.GetComponent<Note>().isGhost) Player.Instance.Damage();
+                    noteCount++;
+                    if (noteCount == 2)
+                    {
+                        noteCount = 0;
+                    }
                 }
             }
 
