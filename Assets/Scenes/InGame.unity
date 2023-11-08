@@ -6610,7 +6610,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3669c27e9af46c04a9be03b96973e5a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  clamp: 4
+  clampX: 4
+  clampY: 4
 --- !u!1 &1667403792
 GameObject:
   m_ObjectHideFlags: 0

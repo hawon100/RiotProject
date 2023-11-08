@@ -5,14 +5,14 @@ using UnityEngine;
 public class CameraMove : MonoBehaviour
 {
     public int[,] mapSize;
-    [SerializeField] private int clamp;
+    [SerializeField] private int clampX;
+    [SerializeField] private int clampY;
 
     private void Update()
     {
         transform.position = new Vector3
-        (Mathf.Clamp(Player.Instance.transform.position.x, clamp, mapSize.GetLength(0) - clamp),
-        0, Mathf.Clamp(Player.Instance.transform.position.y, clamp, mapSize.GetLength(1) - clamp)) +
-        new Vector3(0, 12, -10);//new Vector3(4.25f, 12, 6)
+        (Mathf.Clamp(Player.Instance.transform.position.x, clampX, mapSize.GetLength(0) - clampX),
+        12, Mathf.Clamp(Player.Instance.transform.position.z, clampY, mapSize.GetLength(1) - clampY) - 10);
         transform.rotation = Quaternion.Euler(60, 0, 0);
     }
 }
