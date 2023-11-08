@@ -11,7 +11,7 @@ public class MoveManager : MonoBehaviour
     private static MoveManager _instance = null;
     public static MoveManager Instance => _instance;
 
-    [SerializeField] public GameObject clearWin;
+    public GameObject clearWin;
 
     private int[,] curGroundMap;
     private int[,] curObjMap;

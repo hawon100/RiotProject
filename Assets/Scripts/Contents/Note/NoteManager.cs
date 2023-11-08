@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class NoteManager : MonoBehaviour
 {
+    [SerializeField] private GameObject clearWin;
+
     public RectTransform tfNteAppear = null;
     public RectTransform ghostTfNteAppear = null;
     [SerializeField] int bpm = 0;
@@ -21,16 +23,19 @@ public class NoteManager : MonoBehaviour
     {
         currentTime += Time.deltaTime;
 
-        if (currentTime >= 60d / bpm)
+        if (!clearWin.activeSelf)
         {
-            var t_note = Managers.Resource.Instantiate("Note/Note_0", tfNteAppear);
-            var ghost_note = Managers.Resource.Instantiate("Note/Note_1", ghostTfNteAppear);
-            t_note.transform.SetParent(this.transform);
-            ghost_note.transform.SetParent(this.transform);
-            timingManager.boxNoteList.Add(t_note);
-            timingManager.ghostNoteList.Add(ghost_note);
+            if (currentTime >= 60d / bpm)
+            {
+                var t_note = Managers.Resource.Instantiate("Note/Note_0", tfNteAppear);
+                var ghost_note = Managers.Resource.Instantiate("Note/Note_1", ghostTfNteAppear);
+                t_note.transform.SetParent(this.transform);
+                ghost_note.transform.SetParent(this.transform);
+                timingManager.boxNoteList.Add(t_note);
+                timingManager.ghostNoteList.Add(ghost_note);
 
-            currentTime -= 60d / bpm;
+                currentTime -= 60d / bpm;
+            }
         }
     }
 
@@ -38,14 +43,17 @@ public class NoteManager : MonoBehaviour
     {
         if (collision.CompareTag("Note"))
         {
-            if (collision.GetComponent<Note>().GetNoteFlag())
+            if (!clearWin.activeSelf)
             {
-                EffectManager.Instance.JudgementEffect();
-                if (!timingManager.isLobby) if (!collision.GetComponent<Note>().isGhost) Player.Instance.Damage();
-                noteCount++;
-                if (noteCount == 2)
+                if (collision.GetComponent<Note>().GetNoteFlag())
                 {
-                    noteCount = 0;
+                    EffectManager.Instance.JudgementEffect();
+                    if (!timingManager.isLobby) if (!collision.GetComponent<Note>().isGhost) Player.Instance.Damage();
+                    noteCount++;
+                    if (noteCount == 2)
+                    {
+                        noteCount = 0;
+                    }
                 }
             }
 

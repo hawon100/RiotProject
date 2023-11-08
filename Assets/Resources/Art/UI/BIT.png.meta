@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: a9f191c03a7ce294bbb8dec73c8fbfbd
+guid: 7eca59c04af3f5349b0b9186d48e5c05
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -47,7 +47,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 24
+  spritePixelsToUnits: 100
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -117,106 +117,64 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: seting_chang_0
+      name: BIT_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 905
-        height: 805
+        x: 15
+        y: 80
+        width: 290
+        height: 285
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 22e30bda8a0698f4aab37129951f0f28
-      internalID: 260886553
+      spriteID: 3ba4c57a35508204aa7e5cfe93dbcf92
+      internalID: 609749759
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: seting_chang_1
+      name: BIT_1
       rect:
         serializedVersion: 2
-        x: 920
-        y: 630
-        width: 365
-        height: 40
+        x: 320
+        y: 80
+        width: 145
+        height: 285
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d2e1246a33f6a444c854d61476f804c9
-      internalID: -1203354303
+      spriteID: af28660a69a0d1c428c3ec7f2fe76fa0
+      internalID: 1644934572
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: seting_chang_2
+      name: BIT_2
       rect:
         serializedVersion: 2
-        x: 1305
-        y: 575
-        width: 75
-        height: 95
+        x: 480
+        y: 80
+        width: 145
+        height: 285
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: fb95f786e0c22054b8c2de0b3ac63df8
-      internalID: 2122832457
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: seting_chang_3
-      rect:
-        serializedVersion: 2
-        x: 920
-        y: 575
-        width: 365
-        height: 40
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: facbf13bc65ab43439351f9a294bec3b
-      internalID: -1926599678
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: seting_chang_4
-      rect:
-        serializedVersion: 2
-        x: 935
-        y: 400
-        width: 130
-        height: 145
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 8da185f5213121946be5e76b6330d308
-      internalID: -2128685454
+      spriteID: 49a87431287eaba418c504a842b31e9a
+      internalID: -114743001
       vertices: []
       indices: 
       edges: []
@@ -224,7 +182,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: f77b97f74ba16da478cd3e97b97e4c9d
+    spriteID: 6b1ce7d670c2df043a250f29393a115f
     internalID: 0
     vertices: []
     indices: 
@@ -232,11 +190,9 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      seting_chang_0: 260886553
-      seting_chang_1: -1203354303
-      seting_chang_2: 2122832457
-      seting_chang_3: -1926599678
-      seting_chang_4: -2128685454
+      BIT_0: 609749759
+      BIT_1: 1644934572
+      BIT_2: -114743001
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
