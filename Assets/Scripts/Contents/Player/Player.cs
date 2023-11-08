@@ -9,7 +9,7 @@ public class Player : Mob_Base
     public static Player Instance => _instance;
 
     [SerializeField] private AudioClip moveSound;
-    [SerializeField] GameObject dieWin;
+    [SerializeField] private GameObject dieWin;
     [SerializeField] private TextMeshProUGUI hpbar;
     [SerializeField] public int HP;
 
