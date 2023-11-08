@@ -8,6 +8,7 @@ public class MapGenerator : MonoBehaviour
     [SerializeField] private List<StageData> stageList;
     [SerializeField] private StageData curStage;
     [SerializeField] private Player player;
+    [SerializeField] private CameraMove cam;
     [SerializeField] private int stageIndex;
     [SerializeField] private int mapIndex;
 
@@ -16,8 +17,6 @@ public class MapGenerator : MonoBehaviour
     private List<GameObject> mapTile = new();
     private List<Obj_Base> mapObj = new();
     private List<Enemy_Base> mapEnemy = new();
-
-    private AudioClip bgm;
 
     private void Init()
     {
@@ -29,20 +28,13 @@ public class MapGenerator : MonoBehaviour
         }
 
         battleMapData = curStage.battleMapData.ToList();
-        // specialMapData = curStage.specialMapData.ToList();
         mapTile = curStage.mapTile.ToList();
         mapObj = curStage.mapObj.ToList();
         mapEnemy = curStage.mapEnemy.ToList();
     }
 
-    private void ChoiceMap(int count)
+    private void ChoiceMap()
     {
-        // if (count == stageIndex) { CreateMap(specialMapData[0]); return; }
-
-        // int ranMap = Random.Range(0, battleMapData.Count);
-        // CreateMap(battleMapData[ranMap]);
-        // battleMapData.Remove(battleMapData[ranMap]);
-
         player.HP = battleMapData[mapIndex].life;
         CreateMap(battleMapData[mapIndex]);
     }
@@ -51,6 +43,8 @@ public class MapGenerator : MonoBehaviour
     {
         int[,] curGroundData = LoadCSV.Load(curMap.groundMap);
         int[,] totalData = new int[curGroundData.GetLength(0), curGroundData.GetLength(1)];
+
+        cam.mapSize = totalData;
 
         for (int i = 0; i < curGroundData.GetLength(0); i++) for (int j = 0; j < curGroundData.GetLength(1); j++)
             {
@@ -119,6 +113,6 @@ public class MapGenerator : MonoBehaviour
     {
         player.Init();
         Init();
-        ChoiceMap(stageIndex);
+        ChoiceMap();
     }
 }
