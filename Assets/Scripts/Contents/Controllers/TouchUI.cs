@@ -19,7 +19,12 @@ public class TouchUI : MonoBehaviour
         {
             TitleScene.isDoubleTouch = true;
         }
-        
+
+        if (Input.GetKeyDown(KeyCode.S))
+        {
+            FadeLobby.Instance.fadeLobbyAnim.SetTrigger("OnFade");
+        }
+
         if (Input.touchCount == 1)
         {
             Touch touch = Input.GetTouch(0);
