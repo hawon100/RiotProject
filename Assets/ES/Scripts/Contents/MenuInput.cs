@@ -12,7 +12,7 @@ public class MenuInput : MonoBehaviour
 
     private bool isInfoWinActive;
     private bool isInputBackWinActive;
-    private bool isMute = false;
+    private bool isMute = true;
 
     public void Menu(string name)
     {
