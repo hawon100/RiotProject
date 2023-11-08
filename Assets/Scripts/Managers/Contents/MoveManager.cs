@@ -11,7 +11,9 @@ public class MoveManager : MonoBehaviour
     private static MoveManager _instance = null;
     public static MoveManager Instance => _instance;
 
+    [SerializeField] private CameraMove cam;
     public GameObject clearWin;
+
 
     private int[,] curGroundMap;
     private int[,] curObjMap;
@@ -102,6 +104,7 @@ public class MoveManager : MonoBehaviour
         curObj = _obj;
 
         moveObj = _moveObj.ToList();
+        cam.mapSize = new int[_curObjMap.GetLength(0),_curObjMap.GetLength(1)];
 
         for (int i = 0; i < _map.GetLength(0); i++)
             for (int j = 0; j < _map.GetLength(1); j++)

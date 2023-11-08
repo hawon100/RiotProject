@@ -8,7 +8,6 @@ public class MapGenerator : MonoBehaviour
     [SerializeField] private List<StageData> stageList;
     [SerializeField] private StageData curStage;
     [SerializeField] private Player player;
-    [SerializeField] private CameraMove cam;
     [SerializeField] private int stageIndex;
     [SerializeField] private int mapIndex;
 
@@ -43,8 +42,6 @@ public class MapGenerator : MonoBehaviour
     {
         int[,] curGroundData = LoadCSV.Load(curMap.groundMap);
         int[,] totalData = new int[curGroundData.GetLength(0), curGroundData.GetLength(1)];
-
-        cam.mapSize = totalData;
 
         for (int i = 0; i < curGroundData.GetLength(0); i++) for (int j = 0; j < curGroundData.GetLength(1); j++)
             {
