@@ -4,12 +4,13 @@ using UnityEngine;
 
 public class CenterFlame : MonoBehaviour
 {
-    AudioSource myAudio;
-    bool musicStart = false;
+    public static CenterFlame Instance;
+    public AudioSource myAudio;
+    private bool musicStart = false;
 
     private void Start()
     {
-        myAudio = Util.GetOrAddComponent<AudioSource>(gameObject);
+        Instance = this;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

@@ -17,6 +17,7 @@ public class Player : Mob_Base
     public List<Item_Base> attackItem = new();
     public List<Item_Base> moveItem = new();
     public bool isKey = false;
+    public bool isLobby = false;
 
     TimingManager timingManager;
 
