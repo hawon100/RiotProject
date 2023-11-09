@@ -21,10 +21,10 @@ public class NoteManager : MonoBehaviour
 
     private void Update()
     {
-        currentTime += Time.deltaTime;
-
-        if (!clearWin.activeSelf)
+        if (!Player.Instance.isDead)
         {
+            currentTime += Time.deltaTime;
+
             if (currentTime >= 60d / bpm)
             {
                 var t_note = Managers.Resource.Instantiate("Note/Note_0", tfNteAppear);
@@ -39,15 +39,15 @@ public class NoteManager : MonoBehaviour
         }
     }
 
-    private void OnTriggerExit2D(Collider2D collision)
+    private void OnTriggerStay2D(Collider2D collision)
     {
         if (collision.CompareTag("Note"))
         {
-            if (!clearWin.activeSelf)
+            if (!Player.Instance.isDead)
             {
                 if (collision.GetComponent<Note>().GetNoteFlag())
                 {
-                    EffectManager.Instance.JudgementEffect();
+                    EffectManager.Instance.MissEffect();
                     if (!timingManager.isLobby) if (!collision.GetComponent<Note>().isGhost) Player.Instance.Damage();
                     noteCount++;
                     if (noteCount == 2)
