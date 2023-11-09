@@ -20,6 +20,7 @@ public class MoveManager : MonoBehaviour
     private int[,] curMoveMap;
     private Enemy_Base[,] curMob;
     private Obj_Base[,] curObj;
+    public List<MoveEnemy_Base> moveEnemy;
     public List<MoveObj_Base> moveObj;
 
     private void Start()
@@ -61,15 +62,15 @@ public class MoveManager : MonoBehaviour
                 curMob[movePos.x, movePos.y].BackStep(plusPos);
                 return 2;
             }
-            else return 1;
+            else {
+                if(curMoveMap[movePos.x, movePos.y] == 1) Player.Instance.Damage();
+
+                return 1;
+            }
         }
         if (curObjMap[movePos.x, movePos.y] != 0)
         {
-            if (isPlayer)
-            {
-                Debug.Log($"CheckObj {curObj[movePos.x, movePos.y]} {curObjMap[movePos.x, movePos.y]}");
-                curObj[movePos.x, movePos.y].UseObj();
-            }
+            if (isPlayer) curObj[movePos.x, movePos.y].UseObj();
 
             if (!curObj[movePos.x, movePos.y].isCanMove) return 1;
         }

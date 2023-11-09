@@ -12,7 +12,7 @@ public class CameraMove : MonoBehaviour
     {
         transform.position = new Vector3
         (Mathf.Clamp(Player.Instance.transform.position.x, clampX, mapSize.GetLength(0) - clampX),
-        12, Mathf.Clamp(Player.Instance.transform.position.z, clampY, mapSize.GetLength(1) - clampY) - 10);
+        12, Mathf.Clamp(Player.Instance.transform.position.z, clampY, mapSize.GetLength(1) - clampY) - 13);
         transform.rotation = Quaternion.Euler(60, 0, 0);
     }
 }

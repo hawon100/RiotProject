@@ -4,17 +4,12 @@ using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.UI;
 
-public class Enemy_Base : Mob_Base
+public abstract class Enemy_Base : Mob_Base
 {
     [Header("Enemy_Base")]
     [SerializeField] private Slider _hpbar;
 
     [SerializeField] private bool cantDie;
-
-    protected override void Start()
-    {
-        base.Start();
-    }
 
     public void BackStep(Vector2Int plusPos)
     {
