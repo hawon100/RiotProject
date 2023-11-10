@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.UI;
@@ -8,8 +9,8 @@ public abstract class Enemy_Base : Mob_Base
 {
     [Header("Enemy_Base")]
     [SerializeField] private Slider _hpbar;
-
     [SerializeField] private bool cantDie;
+    public bool cantMove;
 
     public void BackStep(Vector2Int plusPos)
     {
@@ -22,6 +23,9 @@ public abstract class Enemy_Base : Mob_Base
         if (plusPos == Vector2Int.right) movePos = Vector3.right;
         if (plusPos == Vector2Int.left) movePos = Vector3.left;
 
+        Hit(plusPos);
+        if(cantMove) return;
+
         int action = MoveManager.Instance.MoveCheck(curPos, plusPos, false);
 
         switch (action)
@@ -31,6 +35,8 @@ public abstract class Enemy_Base : Mob_Base
             case 2: break;
         }
     }
+
+    protected virtual void Hit(Vector2Int pos){ }
 
     protected override void DieDestroy()
     {

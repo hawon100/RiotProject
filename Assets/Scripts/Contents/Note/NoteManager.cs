@@ -57,7 +57,7 @@ public class NoteManager : MonoBehaviour
                 }
             }
 
-            if (!collision.GetComponent<Note>().isGhost) MoveManager.Instance.MoveObj();
+            if (!collision.GetComponent<Note>().isGhost) MoveManager.Instance.nextTiming();
             timingManager.boxNoteList.Remove(collision.gameObject);
             timingManager.ghostNoteList.Remove(collision.gameObject);
             Managers.Resource.Destroy(collision.gameObject);

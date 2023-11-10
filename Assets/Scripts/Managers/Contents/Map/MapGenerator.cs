@@ -59,6 +59,7 @@ public class MapGenerator : MonoBehaviour
         Enemy_Base[,] map = new Enemy_Base[curMap.GetLength(0), curMap.GetLength(1)];
         Obj_Base[,] obj = new Obj_Base[curMap.GetLength(0), curMap.GetLength(1)];
         List<MoveObj_Base> moveObj = new();
+        List<MoveEnemy_Base> moveEnemy = new();
 
         int[,] curObjData = LoadCSV.Load(Map.objMap);
         int[,] curEnemyData = LoadCSV.Load(Map.enemyMap);
@@ -72,7 +73,7 @@ public class MapGenerator : MonoBehaviour
                 temp.curPos = new(i, j);
                 obj[i, j] = temp;
 
-                if(temp.TryGetComponent<MoveObj_Base>(out var m)) moveObj.Add(m);
+                if (temp.TryGetComponent<MoveObj_Base>(out var m)) moveObj.Add(m);
 
                 if (curObjData[i, j] == 1 || curObjData[i, j] == 2)
                 {
@@ -85,7 +86,7 @@ public class MapGenerator : MonoBehaviour
                             }
                     else
                     {
-                        if(temp.TryGetComponent<NextMap>(out var n))
+                        if (temp.TryGetComponent<NextMap>(out var n))
                         {
                             n.endStageCount = curStage.battleMapData.Count - 1;
                         }
@@ -96,14 +97,30 @@ public class MapGenerator : MonoBehaviour
 
         for (int i = 0; i < curEnemyData.GetLength(0); i++) for (int j = 0; j < curEnemyData.GetLength(1); j++)
             {
-                if (curEnemyData[i, j] == 0) continue; // void
+                if (curEnemyData[i, j] <= 1) continue; // void
 
-                var temp = Instantiate(mapEnemy[curEnemyData[i, j] - 1], new Vector3(i, 0, j), Quaternion.identity).GetComponent<Enemy_Base>();
+                var temp = Instantiate(mapEnemy[curEnemyData[i, j] - 2], new Vector3(i, 0, j), Quaternion.identity).GetComponent<Enemy_Base>();
                 temp.curPos = new(i, j);
+                if (temp.TryGetComponent<MoveEnemy_Base>(out var move))
+                {
+                    for (int k = -1; k <= 1; k++) for (int l = -1; l <= 1; l++)
+                        {
+                            if (k != 0 && l != 0) continue;
+
+                            int x = i + k;
+                            int y = j + l;
+
+                            if(curEnemyData[x, y] == 1) {
+                                move.attackPos = new(x, y);
+                                moveEnemy.Add(move);
+                            }
+                        }
+                }
+
                 map[i, j] = temp;
             }
 
-        MoveManager.Instance.MobInit(map, obj, moveObj, curObjData);
+        MoveManager.Instance.MobInit(map, obj, moveObj, moveEnemy, curObjData);
     }
 
     private void Awake()
