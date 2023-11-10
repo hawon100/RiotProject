@@ -6,9 +6,9 @@ public class LockBlock : Obj_Base
 {
     public override void UseObj()
     {
-        if(!Player.Instance.isKey) return;
+        if(Player.Instance.isKey <= 0) return;
 
-        Player.Instance.isKey = false;
+        Player.Instance.isKey--;
 
         MoveManager.Instance.InOutObj(curPos);
         Destroy(gameObject);

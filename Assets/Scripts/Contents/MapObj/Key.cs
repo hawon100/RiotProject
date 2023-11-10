@@ -6,7 +6,7 @@ public class Key : Obj_Base
 {
     public override void UseObj()
     {
-        Player.Instance.isKey = true;
+        Player.Instance.isKey++;
 
         MoveManager.Instance.InOutObj(curPos);
         Destroy(gameObject);

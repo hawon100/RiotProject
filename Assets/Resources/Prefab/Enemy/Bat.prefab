@@ -266,7 +266,6 @@ GameObject:
   - component: {fileID: 5726630053731334580}
   - component: {fileID: 4879784752839189181}
   - component: {fileID: 4879784752839189182}
-  - component: {fileID: 8323522100735834557}
   m_Layer: 6
   m_Name: Bat
   m_TagString: Enemy
@@ -340,19 +339,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &8323522100735834557
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4879784752839189155}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b9f57697b9796704b850fe2a843a8f06, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  IsUsing: 0
 --- !u!1 &5154042740967224100
 GameObject:
   m_ObjectHideFlags: 0

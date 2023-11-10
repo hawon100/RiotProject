@@ -16,7 +16,7 @@ public class Player : Mob_Base
     public List<Item_Base> statsItem = new();
     public List<Item_Base> attackItem = new();
     public List<Item_Base> moveItem = new();
-    public bool isKey = false;
+    public int isKey;
     public bool isLobby = false;
     public bool isDead = false;
 
