@@ -8,6 +8,7 @@ public class MapGenerator : MonoBehaviour
     [SerializeField] private List<StageData> stageList;
     [SerializeField] private StageData curStage;
     [SerializeField] private Player player;
+    [SerializeField] private NoteManager noteManager;
     [SerializeField] private int stageIndex;
     [SerializeField] private int mapIndex;
 
@@ -35,6 +36,7 @@ public class MapGenerator : MonoBehaviour
     private void ChoiceMap()
     {
         player.HP = battleMapData[mapIndex].life;
+        noteManager.bpm = battleMapData[mapIndex].bpm;
         CreateMap(battleMapData[mapIndex]);
     }
 

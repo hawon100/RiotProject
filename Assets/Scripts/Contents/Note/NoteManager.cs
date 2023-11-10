@@ -8,7 +8,7 @@ public class NoteManager : MonoBehaviour
 
     public RectTransform tfNteAppear = null;
     public RectTransform ghostTfNteAppear = null;
-    [SerializeField] int bpm = 0;
+    public int bpm;
     private int noteCount;
     double currentTime = 0d;
 

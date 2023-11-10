@@ -367,6 +367,7 @@ MonoBehaviour:
   moveItem: []
   isKey: 0
   isLobby: 1
+  isDead: 0
 --- !u!95 &191601820
 Animator:
   serializedVersion: 5
@@ -1692,6 +1693,7 @@ MonoBehaviour:
   stageList: []
   curStage: {fileID: 11400000, guid: df073fc1ebd347b439d2014e6ca81850, type: 2}
   player: {fileID: 191601819}
+  noteManager: {fileID: 2124523005}
   stageIndex: 0
   mapIndex: 0
 --- !u!114 &566828855
@@ -5690,6 +5692,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cam: {fileID: 820571347}
   clearWin: {fileID: 1916732068}
+  moveEnemy: []
   moveObj: []
 --- !u!4 &1889785125
 Transform:

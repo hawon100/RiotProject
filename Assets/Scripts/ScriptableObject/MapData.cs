@@ -7,6 +7,7 @@ using UnityEngine;
 public class MapData : ScriptableObject
 {
     public int life;
+    public int bpm;
     public TextAsset groundMap;
     public TextAsset enemyMap;
     public TextAsset objMap;

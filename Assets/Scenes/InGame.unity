@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.08995157, g: 0.28170916, b: 0.48593175, a: 1}
+  m_IndirectSpecularColor: {r: 0.08995176, g: 0.28170934, b: 0.48593175, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -3998,6 +3998,7 @@ MonoBehaviour:
   moveItem: []
   isKey: 0
   isLobby: 0
+  isDead: 0
 --- !u!1001 &885558944
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5875,6 +5876,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cam: {fileID: 1621368941}
   clearWin: {fileID: 885558945}
+  moveEnemy: []
   moveObj: []
 --- !u!4 &1231973002
 Transform:
@@ -6303,6 +6305,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 89df6d2b2f91d8f40961fef9c4c95d63, type: 2}
   curStage: {fileID: 11400000, guid: a7e88a8156022ae45b88e25bb85a202b, type: 2}
   player: {fileID: 868337177}
+  noteManager: {fileID: 627914899}
   stageIndex: 0
   mapIndex: 0
 --- !u!1 &1469280791
