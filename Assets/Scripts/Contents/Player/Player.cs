@@ -18,6 +18,7 @@ public class Player : Mob_Base
     public List<Item_Base> moveItem = new();
     public bool isKey = false;
     public bool isLobby = false;
+    public bool isDead = false;
 
     TimingManager timingManager;
 
@@ -99,7 +100,8 @@ public class Player : Mob_Base
         float elapsedTime = 0;
         Vector3 origPos = transform.position;
         Vector3 targetPos = origPos + direction;
-        anim.SetBool("isDash", true);
+        anim.SetTrigger("doDash");
+
         while (elapsedTime < sec)
         {
             transform.position = Vector3.Lerp(origPos, targetPos, (elapsedTime / sec));
@@ -109,12 +111,13 @@ public class Player : Mob_Base
 
         //move item trigger
         transform.position = targetPos;
-        anim.SetBool("isDash", false);
     }
 
     protected override void DieDestroy()
     {
-        dieWin.SetActive(true);
-        Debug.Log("Die");
+        anim.SetTrigger("doDeath");
+        isDead = true;
+        //dieWin.SetActive(true);
+        //Debug.Log("Die");
     }
 }
