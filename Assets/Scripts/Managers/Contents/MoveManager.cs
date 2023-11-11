@@ -57,12 +57,12 @@ public class MoveManager : MonoBehaviour
         {
             if (isPlayer)
             {
-                curMob[movePos.x, movePos.y].BackStep(plusPos);
                 if(curMob[movePos.x, movePos.y].TryGetComponent<MoveEnemy_Base>(out var e)){
                     if(e.dirMove)
                         if(e.cantMove) e.attackPos = curPos;
                         else e.attackPos = movePos;
                 }
+                curMob[movePos.x, movePos.y].BackStep(plusPos);
                 return 2;
             }
             else
@@ -79,7 +79,7 @@ public class MoveManager : MonoBehaviour
             }
         }
 
-        if (isNotMove)
+        if (!isNotMove)
         {
             curMob[movePos.x, movePos.y] = curMob[curPos.x, curPos.y];
             curMob[curPos.x, curPos.y] = null;
@@ -91,12 +91,16 @@ public class MoveManager : MonoBehaviour
         return 0;
     }
 
-    public void InOutObj(Vector2Int curPos, bool isEnemy = false, int index = 0)
+    public void InOutObj(Vector2Int curPos, int index = 0)
     {
-        if (isEnemy) { curMoveMap[curPos.x, curPos.y] = 0; return; }
-
         if (curObjMap[curPos.x, curPos.y] == 0) curObjMap[curPos.x, curPos.y] = index;
         else curObjMap[curPos.x, curPos.y] = 0;
+    }
+
+    public void DestroyEnemy(Vector2Int curPos, MoveEnemy_Base enemy = null)
+    {
+        curMoveMap[curPos.x, curPos.y] = 0;
+        if (enemy != null) moveEnemy.Remove(enemy);
     }
 
     public void MapInit(int[,] _curGroundMap)

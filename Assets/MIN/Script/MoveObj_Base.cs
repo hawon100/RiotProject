@@ -24,7 +24,7 @@ public abstract class MoveObj_Base : Obj_Base
         else
         {
             gameObject.SetActive(true);
-            MoveManager.Instance.InOutObj(curPos, false, index);
+            MoveManager.Instance.InOutObj(curPos, index);
         }
     }
 }

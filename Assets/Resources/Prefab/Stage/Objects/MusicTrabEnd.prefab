@@ -101,7 +101,8 @@ MonoBehaviour:
   curPos: {x: 0, y: 0}
   isCanMove: 1
   notMove: 0
-  timing: 1
+  curtiming: 0
+  endtiming: 2
 --- !u!1001 &4078116035926520998
 PrefabInstance:
   m_ObjectHideFlags: 0

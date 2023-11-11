@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: beac9481ab8b89948997a06959fed3f8, type: 3}
   m_Name: MapData 12
   m_EditorClassIdentifier: 
-  life: 33
-  bpm: 55
+  life: 32
+  bpm: 110
   groundMap: {fileID: 4900000, guid: 2d7670fd759ff634b9788b5d19583801, type: 3}
   enemyMap: {fileID: 4900000, guid: 9bb7301b5e5a6fb46a8063fcab4f5394, type: 3}
   objMap: {fileID: 4900000, guid: bae6ae2e77d198a47a6b0ef057f1d512, type: 3}

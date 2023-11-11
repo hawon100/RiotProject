@@ -558,7 +558,7 @@ GameObject:
   - component: {fileID: -2359885611559772231}
   - component: {fileID: 4739980763831881844}
   m_Layer: 0
-  m_Name: Skeleton
+  m_Name: Skeleton 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -627,13 +627,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   curPos: {x: 0, y: 0}
-  _hpbar: {fileID: 0}
   cantDie: 0
   cantMove: 0
   attackPos: {x: 0, y: 0}
   dirMove: 0
-  curtiming: 0
-  endtiming: 0
+  endtiming: 2
 --- !u!1 &3756370317388904299
 GameObject:
   m_ObjectHideFlags: 0

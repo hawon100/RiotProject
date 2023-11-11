@@ -22,7 +22,7 @@ public class SettingUI : MonoBehaviour
     {
         Time.timeScale = 1f;
         RoundData.Instance.Reset(0);
-        Managers.Map.LoadScene(Define.Scene.Lobby);
+        FadeLobby.Instance.fadeLobbyAnim.SetTrigger("OnFade");
     }
 
     private void QuitWinDoneBtn()

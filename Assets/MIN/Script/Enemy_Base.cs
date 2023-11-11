@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.UI;
@@ -8,7 +7,6 @@ using UnityEngine.UI;
 public abstract class Enemy_Base : Mob_Base
 {
     [Header("Enemy_Base")]
-    [SerializeField] private Slider _hpbar;
     [SerializeField] private bool cantDie;
     public bool cantMove;
 
@@ -40,7 +38,6 @@ public abstract class Enemy_Base : Mob_Base
 
     protected override void DieDestroy()
     {
-        MoveManager.Instance.InOutObj(curPos, true);
         Managers.Resource.Destroy(gameObject);
     }
 

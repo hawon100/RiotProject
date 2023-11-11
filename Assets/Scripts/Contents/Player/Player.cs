@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Player : Mob_Base
@@ -9,7 +10,6 @@ public class Player : Mob_Base
     public static Player Instance => _instance;
 
     [SerializeField] private AudioClip moveSound;
-    [SerializeField] private GameObject dieWin;
     [SerializeField] private TextMeshProUGUI hpbar;
     [SerializeField] public int HP;
 
@@ -30,7 +30,7 @@ public class Player : Mob_Base
     protected override void Start()
     {
         base.Start();
-        dieWin.SetActive(false);
+        isDead = false;
         timingManager = FindObjectOfType<TimingManager>();
     }
 
@@ -45,12 +45,15 @@ public class Player : Mob_Base
 
         if(HP <= 0)
         {
+            HP = 0;
             DieDestroy();
         }
     }
 
     public void Move(string type)
     {
+        if (isDead) return;
+
         switch (type)
         {
             case "Up": CheckMove(Vector3.forward); break;
@@ -117,7 +120,15 @@ public class Player : Mob_Base
     {
         anim.SetTrigger("doDeath");
         isDead = true;
-        //dieWin.SetActive(true);
-        //Debug.Log("Die");
+        StartCoroutine(DieDelay());
+    }
+
+    private IEnumerator DieDelay()
+    {
+        yield return new WaitForSeconds(2f);
+
+        FadeLobby.Instance.fadeInGameAnim.SetTrigger("OnFade");
+
+        yield return null;
     }
 }

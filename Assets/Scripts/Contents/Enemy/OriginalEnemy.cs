@@ -4,5 +4,9 @@ using UnityEngine;
 
 public class OriginalEnemy : Enemy_Base
 {
-    
+    protected override void DieDestroy()
+    {
+        MoveManager.Instance.DestroyEnemy(curPos);
+        base.DieDestroy();
+    }
 }

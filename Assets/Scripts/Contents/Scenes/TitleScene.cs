@@ -36,6 +36,6 @@ public class TitleScene : BaseScene
 
     public override void Clear()
     {
-        Debug.Log("LoginScene Clear!");
+
     }
 }
