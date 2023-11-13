@@ -68,15 +68,15 @@ public class MoveManager : MonoBehaviour
             else
             {
                 if (curMoveMap[movePos.x, movePos.y] == 1) return 2;
+                else return 1;
             }
         }
         if (curObjMap[movePos.x, movePos.y] != 0)
         {
             if (isPlayer)
-            {
                 curObj[movePos.x, movePos.y].UseObj();
-                if (!curObj[movePos.x, movePos.y].isCanMove) return 1;
-            }
+            
+            if (!curObj[movePos.x, movePos.y].isCanMove) return 1;
         }
 
         if (!isNotMove)
