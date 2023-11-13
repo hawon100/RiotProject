@@ -21,20 +21,23 @@ public class NoteManager : MonoBehaviour
 
     private void Update()
     {
-        if (!Player.Instance.isDead)
+        if (!MoveManager.Instance.clearWin.activeSelf)
         {
-            currentTime += Time.deltaTime;
-
-            if (currentTime >= 60d / bpm)
+            if (!Player.Instance.isDead)
             {
-                var t_note = Managers.Resource.Instantiate("Note/Note_0", tfNteAppear);
-                var ghost_note = Managers.Resource.Instantiate("Note/Note_1", ghostTfNteAppear);
-                t_note.transform.SetParent(this.transform);
-                ghost_note.transform.SetParent(this.transform);
-                timingManager.boxNoteList.Add(t_note);
-                timingManager.ghostNoteList.Add(ghost_note);
+                currentTime += Time.deltaTime;
 
-                currentTime -= 60d / bpm;
+                if (currentTime >= 60d / bpm)
+                {
+                    var t_note = Managers.Resource.Instantiate("Note/Note_0", tfNteAppear);
+                    var ghost_note = Managers.Resource.Instantiate("Note/Note_1", ghostTfNteAppear);
+                    t_note.transform.SetParent(this.transform);
+                    ghost_note.transform.SetParent(this.transform);
+                    timingManager.boxNoteList.Add(t_note);
+                    timingManager.ghostNoteList.Add(ghost_note);
+
+                    currentTime -= 60d / bpm;
+                }
             }
         }
     }
@@ -43,16 +46,19 @@ public class NoteManager : MonoBehaviour
     {
         if (collision.CompareTag("Note"))
         {
-            if (!Player.Instance.isDead)
+            if (!MoveManager.Instance.clearWin.activeSelf)
             {
-                if (collision.GetComponent<Note>().GetNoteFlag())
+                if (!Player.Instance.isDead)
                 {
-                    EffectManager.Instance.MissEffect();
-                    if (!timingManager.isLobby) if (!collision.GetComponent<Note>().isGhost) Player.Instance.Damage();
-                    noteCount++;
-                    if (noteCount == 2)
+                    if (collision.GetComponent<Note>().GetNoteFlag())
                     {
-                        noteCount = 0;
+                        EffectManager.Instance.MissEffect();
+                        if (!timingManager.isLobby) if (!collision.GetComponent<Note>().isGhost) Player.Instance.Damage();
+                        noteCount++;
+                        if (noteCount == 2)
+                        {
+                            noteCount = 0;
+                        }
                     }
                 }
             }

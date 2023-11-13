@@ -16,12 +16,15 @@ public class MenuInput : MonoBehaviour
 
     public void Menu(string name)
     {
-        switch (name)
+        if(!Player.Instance.isDead)
         {
-            case "Info": Info(); break;
-            case "InputKey": InputKey(); break;
-            case "Setting": Setting(); break;
-            case "Mute": Mute(); break; 
+            switch (name)
+            {
+                case "Info": Info(); break;
+                case "InputKey": InputKey(); break;
+                case "Setting": Setting(); break;
+                case "Mute": Mute(); break;
+            }
         }
     }
 

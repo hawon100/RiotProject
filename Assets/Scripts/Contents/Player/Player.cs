@@ -10,6 +10,8 @@ public class Player : Mob_Base
     public static Player Instance => _instance;
 
     [SerializeField] private AudioClip moveSound;
+    [SerializeField] private AudioClip attackSound;
+    [SerializeField] private AudioClip dieSound;
     [SerializeField] private TextMeshProUGUI hpbar;
     [SerializeField] public int HP;
 
@@ -93,12 +95,13 @@ public class Player : Mob_Base
 
     void Attack()
     {
+        Managers.Sound.Play(attackSound);
         anim.SetTrigger("doAttack");
     }
 
     private IEnumerator MovePlayer(Vector3 direction, float sec)
     {
-        Managers.Sound.Play(moveSound, Define.Sound.Effect);
+        Managers.Sound.Play(moveSound);
 
         float elapsedTime = 0;
         Vector3 origPos = transform.position;
@@ -118,6 +121,7 @@ public class Player : Mob_Base
 
     protected override void DieDestroy()
     {
+        Managers.Sound.Play(dieSound);
         anim.SetTrigger("doDeath");
         isDead = true;
         StartCoroutine(DieDelay());

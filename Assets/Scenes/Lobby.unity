@@ -359,6 +359,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   curPos: {x: 0, y: 0}
   moveSound: {fileID: 8300000, guid: 1780f53627d9f864ab8451655bd6ce20, type: 3}
+  attackSound: {fileID: 8300000, guid: 5bccafb19b55fde40a2ef5ae4a45be03, type: 3}
+  dieSound: {fileID: 8300000, guid: 0e6fe065cbacfd04c84d0f3cd3de37e3, type: 3}
   hpbar: {fileID: 275296428}
   HP: 0
   statsItem: []
