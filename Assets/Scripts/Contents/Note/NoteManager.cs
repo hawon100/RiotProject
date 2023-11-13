@@ -61,6 +61,7 @@ public class NoteManager : MonoBehaviour
                 {
                     var t_note = Managers.Resource.Instantiate(noteInfo.note, tfNteAppear);
                     var ghost_note = Managers.Resource.Instantiate(noteInfo.ghostNote, ghostTfNteAppear);
+
                     t_note.GetComponent<UnityEngine.UI.Image>().enabled = true;
                     ghost_note.GetComponent<UnityEngine.UI.Image>().enabled = true;
 

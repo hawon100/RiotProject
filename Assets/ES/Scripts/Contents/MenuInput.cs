@@ -8,7 +8,7 @@ public class MenuInput : MonoBehaviour
     [SerializeField] private GameObject infoWin;
     [SerializeField] private GameObject settingWin;
     [SerializeField] private GameObject muteIcon;
-    [SerializeField] private GameObject audioListener;
+    [SerializeField] private AudioSource audioSource;
 
     private bool isInfoWinActive;
     private bool isInputBackWinActive;
@@ -32,7 +32,7 @@ public class MenuInput : MonoBehaviour
     {
         isMute = !isMute;
         muteIcon.SetActive(isMute);
-        audioListener.GetComponent<AudioListener>().enabled = isMute;
+        audioSource.mute = !isMute;
     }
 
     private void Info()

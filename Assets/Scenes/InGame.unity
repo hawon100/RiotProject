@@ -1925,7 +1925,7 @@ MonoBehaviour:
   infoWin: {fileID: 1503339603}
   settingWin: {fileID: 170394931}
   muteIcon: {fileID: 1675141768}
-  audioListener: {fileID: 1621368933}
+  audioSource: {fileID: 1175168730}
 --- !u!114 &280993431
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3327,8 +3327,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   clearWin: {fileID: 885558945}
   noteInfo:
-    note: {fileID: 5933153094413367392, guid: 52b0377745e6f9442888803ad0175afe, type: 3}
-    ghostNote: {fileID: 3433277335280625506, guid: 6ac832693c8f33341a442d7e4d0f0aed,
+    note: {fileID: 5389926546054727594, guid: 52b0377745e6f9442888803ad0175afe, type: 3}
+    ghostNote: {fileID: 8217140785532726374, guid: 6ac832693c8f33341a442d7e4d0f0aed,
       type: 3}
     noteCount: 50
   tfNteAppear: {fileID: 1667403793}
