@@ -19,7 +19,9 @@ public class Note : MonoBehaviour
 
     private void Start()
     {
-        noteImage = gameObject.GetOrAddComponent<Image>();
+        if(noteImage == null) noteImage = GetComponent<Image>();
+
+        noteImage.enabled = true;
     }
 
     private void Update()

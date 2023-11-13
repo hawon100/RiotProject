@@ -18,6 +18,14 @@ public class ResourceManager
         return Resources.Load<T>(path);
     }
 
+    public GameObject Instantiate(GameObject prfab, Transform parent = null)
+    {
+        if (prfab.GetComponent<Poolable>() != null) return Managers.Pool.Pop(prfab, parent).gameObject;
+        GameObject go = Object.Instantiate(prfab, parent);
+        go.name = prfab.name;
+        return go;
+    }
+
     public GameObject Instantiate(string path, Transform parent = null)
     {
         GameObject original = Load<GameObject>($"Prefab/{path}");
