@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class NextMap : Obj_Base
+public class nextMap : Obj_Base
 {
     public int endStageCount;
 

@@ -87,7 +87,7 @@ public class MapGenerator : MonoBehaviour
                             }
                     else
                     {
-                        if (temp.TryGetComponent<NextMap>(out var n))
+                        if (temp.TryGetComponent<nextMap>(out var n))
                         {
                             n.endStageCount = curStage.battleMapData.Count - 1;
                         }
