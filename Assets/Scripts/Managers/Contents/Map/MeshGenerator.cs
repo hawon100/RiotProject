@@ -158,7 +158,7 @@ public class MeshGenerator : MonoBehaviour
 
         if(!up) for(int i = 0; i < 6; i++) triangles[i + 12] = 0;
         if(!down) for(int i = 0; i < 6; i++) triangles[i + 18] = 0;
-        if(!left) for(int i = 0; i < 6; i++) triangles[i] = 0;
+        if(!left) for(int i = 0; i < 6; i++) triangles[i + 6] = 0;
         if(!right) for(int i = 0; i < 6; i++) triangles[i + 24] = 0;
                 
         return triangles;

@@ -59,12 +59,12 @@ public class MapGenerator : MonoBehaviour
 
         for (int i = 0; i < curGroundData.GetLength(0); i++) for (int j = 0; j < curGroundData.GetLength(1); j++)
             {
-                if (totalData[i, j] == 1) {
-                    
-                    if(totalData[i, j + 1] != 0) groundMap[i, j].up = false;
-                    if(totalData[i, j - 1] != 0) groundMap[i, j].down = false;
-                    if(totalData[i - 1, j] != 0) groundMap[i, j].left = false;
-                    if(totalData[i + 1, j] != 0) groundMap[i, j].right = false;
+                if (curGroundData[i, j] == 1) {
+                    Debug.Log($"{curGroundData[i, j]} {curGroundData[i, j + 1]} {curGroundData[i, j - 1]} {curGroundData[i + 1, j]} {curGroundData[i - 1, j]}");
+                    if(curGroundData[i, j + 1] != 0) groundMap[i, j].up = false;
+                    if(curGroundData[i, j - 1] != 0) groundMap[i, j].down = false;
+                    if(curGroundData[i - 1, j] != 0) groundMap[i, j].left = false;
+                    if(curGroundData[i + 1, j] != 0) groundMap[i, j].right = false;
 
                     groundMap[i, j].MeshGeneration();
                 }

@@ -1222,7 +1222,6 @@ MonoBehaviour:
   infoWin: {fileID: 1014307554}
   settingWin: {fileID: 1280020189}
   muteIcon: {fileID: 308234377}
-  audioSource: {fileID: 1279793084}
 --- !u!114 &460214932
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1299,6 +1298,7 @@ GameObject:
   - component: {fileID: 566828853}
   - component: {fileID: 566828855}
   - component: {fileID: 566828854}
+  - component: {fileID: 566828856}
   m_Layer: 0
   m_Name: Map
   m_TagString: Untagged
@@ -1351,6 +1351,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f39409e6db03e5419054ff8e4e98eee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!33 &566828856
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 566828852}
+  m_Mesh: {fileID: 0}
 --- !u!1 &569640516
 GameObject:
   m_ObjectHideFlags: 0
