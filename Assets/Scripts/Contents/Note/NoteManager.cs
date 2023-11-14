@@ -89,6 +89,7 @@ public class NoteManager : MonoBehaviour
                     if (collision.GetComponent<Note>().GetNoteFlag())
                     {
                         EffectManager.Instance.MissEffect();
+                        DamageUI.Instance.Damage();
                         if (!timingManager.isLobby) if (!collision.GetComponent<Note>().isGhost) Player.Instance.Damage();
                         noteCount++;
                         if (noteCount == 2)

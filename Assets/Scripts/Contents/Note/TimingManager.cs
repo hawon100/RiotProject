@@ -42,7 +42,11 @@ public class TimingManager : MonoBehaviour
                 }
         }
 
-        if (!isLobby) Player.Instance.Damage();
+        if (!isLobby)
+        {
+            Player.Instance.Damage();
+            DamageUI.Instance.Damage();
+        }
         EffectManager.Instance.MissEffect();
         return false;
     }
