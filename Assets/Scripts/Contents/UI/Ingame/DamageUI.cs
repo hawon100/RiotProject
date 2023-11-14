@@ -21,7 +21,7 @@ public class DamageUI : MonoBehaviour
     {
         if (isDamage)
         {
-            damage_ui.color = new Color(1, 1, 1, curAlpha);
+            damage_ui.color = new Color(1, 0, 0, curAlpha);
             curAlpha-=Time.deltaTime;
             if(curAlpha <= 0)
                 isDamage = false;
