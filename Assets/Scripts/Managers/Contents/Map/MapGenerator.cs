@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class MapGenerator : MonoBehaviour
@@ -43,12 +44,30 @@ public class MapGenerator : MonoBehaviour
     {
         int[,] curGroundData = LoadCSV.Load(curMap.groundMap);
         int[,] totalData = new int[curGroundData.GetLength(0), curGroundData.GetLength(1)];
+        MeshGenerator[,] groundMap = new MeshGenerator[curGroundData.GetLength(0), curGroundData.GetLength(1)];
+
 
         for (int i = 0; i < curGroundData.GetLength(0); i++) for (int j = 0; j < curGroundData.GetLength(1); j++)
             {
                 if (curGroundData[i, j] == 0) continue; // void
-                Instantiate(mapTile[curGroundData[i, j] - 1], new Vector3(i, -1, j), Quaternion.identity, transform);
+                var temp = Instantiate(mapTile[curGroundData[i, j] - 1],
+                new Vector3(i, -1, j), Quaternion.identity, transform).GetComponent<MeshGenerator>();
+                groundMap[i, j] = temp;
+    
                 totalData[i, j] = 1;
+            }
+
+        for (int i = 0; i < curGroundData.GetLength(0); i++) for (int j = 0; j < curGroundData.GetLength(1); j++)
+            {
+                if (totalData[i, j] == 1) {
+                    
+                    if(totalData[i, j + 1] != 0) groundMap[i, j].up = false;
+                    if(totalData[i, j - 1] != 0) groundMap[i, j].down = false;
+                    if(totalData[i - 1, j] != 0) groundMap[i, j].left = false;
+                    if(totalData[i + 1, j] != 0) groundMap[i, j].right = false;
+
+                    groundMap[i, j].MeshGeneration();
+                }
             }
 
         MoveManager.Instance.MapInit(curGroundData);
@@ -107,6 +126,7 @@ public class MapGenerator : MonoBehaviour
                     for (int k = -1; k <= 1; k++) for (int l = -1; l <= 1; l++)
                         {
                             if (k != 0 && l != 0) continue;
+                            else if(k == 0 && l == 0) continue;
 
                             int x = i + k;
                             int y = j + l;
