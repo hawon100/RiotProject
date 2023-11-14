@@ -10,5 +10,6 @@ public class NextStage : Obj_Base
     {
         RoundData.Instance.Reset(stageIndex);
         FadeLobby.Instance.fadeInGameAnim.SetTrigger("OnFade");
+        Managers.Sound.Play(FadeLobby.Instance.fadeSound);
     }
 }

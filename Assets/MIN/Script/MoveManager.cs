@@ -14,7 +14,6 @@ public class MoveManager : MonoBehaviour
     [SerializeField] private CameraMove cam;
     public GameObject clearWin;
 
-
     private int[,] curGroundMap;
     private int[,] curObjMap;
     private int[,] curMoveMap;

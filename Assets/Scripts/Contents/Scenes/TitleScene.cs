@@ -9,6 +9,7 @@ public class TitleScene : BaseScene
     [SerializeField] private RoundData data;
     [SerializeField] private Transform directorCamPos;
     [SerializeField] private Camera cam;
+    [SerializeField] private AudioClip bgmclip;
 
     public static bool isDoubleTouch;
 
@@ -18,6 +19,8 @@ public class TitleScene : BaseScene
         data.InitData();
         SceneType = Define.Scene.Title;
         isDoubleTouch = false;
+
+        Managers.Sound.Play(bgmclip, Define.Sound.Bgm);
     }
 
     private void Update()
@@ -26,6 +29,7 @@ public class TitleScene : BaseScene
         {
             //direction
             directorPlayer.SetTrigger("OnDirector");
+            Managers.Sound.Clear();
             panel.SetActive(false);
             cam.gameObject.transform.position = directorCamPos.position;
             cam.gameObject.transform.rotation = directorCamPos.rotation;

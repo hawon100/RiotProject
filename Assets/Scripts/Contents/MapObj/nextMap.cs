@@ -12,6 +12,7 @@ public class NextMap : Obj_Base
         {
             RoundData.Instance.mapIndex++;
             FadeLobby.Instance.fadeInGameAnim.SetTrigger("OnFade");
+            Managers.Sound.Play(FadeLobby.Instance.fadeSound);
         }
         else
         {

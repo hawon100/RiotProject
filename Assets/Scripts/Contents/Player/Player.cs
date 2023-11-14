@@ -13,8 +13,8 @@ public class Player : Mob_Base
     [SerializeField] private AudioClip attackSound;
     [SerializeField] private AudioClip dieSound;
     [SerializeField] private TextMeshProUGUI hpbar;
-    [SerializeField] public int HP;
 
+    public int HP;
     public List<Item_Base> statsItem = new();
     public List<Item_Base> attackItem = new();
     public List<Item_Base> moveItem = new();
@@ -132,6 +132,7 @@ public class Player : Mob_Base
         yield return new WaitForSeconds(2f);
 
         FadeLobby.Instance.fadeInGameAnim.SetTrigger("OnFade");
+        Managers.Sound.Play(FadeLobby.Instance.fadeSound);
 
         yield return null;
     }
