@@ -14,6 +14,20 @@ public class FadeLobby : MonoBehaviour
         Instance = this;
     }
 
+    public void OnPlayGameScene()
+    {
+        StartCoroutine(playGame());
+    }
+
+    private IEnumerator playGame()
+    {
+        yield return new WaitForSeconds(4f);
+
+        Managers.Map.LoadScene(Define.Scene.InGame);
+
+        yield return null;
+    }
+
     public void OnNextScene()
     {
         Managers.Map.LoadScene(Define.Scene.InGame);

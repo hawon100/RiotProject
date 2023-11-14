@@ -29,6 +29,7 @@ public class TitleScene : BaseScene
         {
             //direction
             directorPlayer.SetTrigger("OnDirector");
+            Managers.Sound.Clear();
             panel.SetActive(false);
             cam.gameObject.transform.position = directorCamPos.position;
             cam.gameObject.transform.rotation = directorCamPos.rotation;

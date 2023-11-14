@@ -132,7 +132,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 99776419}
-  - component: {fileID: 99776418}
   - component: {fileID: 99776417}
   m_Layer: 0
   m_Name: Manager
@@ -150,23 +149,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 99776416}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e67e2b990cecec24eb9f09ce87cb9ee9, type: 3}
+  m_Script: {fileID: 11500000, guid: 998b79badab6df648bdfc538bcd67c29, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveManager: {fileID: 1889785122}
-  curMap: {fileID: 8300000, guid: ce41558585627a247b61bf7716105914, type: 3}
---- !u!114 &99776418
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 99776416}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5c622d7f917880542b1f1c70545b4f0c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  moveManager: {fileID: 1889785126}
 --- !u!4 &99776419
 Transform:
   m_ObjectHideFlags: 0
@@ -5814,7 +5800,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1889785125}
-  - component: {fileID: 1889785122}
+  - component: {fileID: 1889785126}
   m_Layer: 0
   m_Name: Move
   m_TagString: Untagged
@@ -5822,22 +5808,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1889785122
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1889785121}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3f378188cbf273b478a57304f8a52c3e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cam: {fileID: 820571347}
-  clearWin: {fileID: 259438758}
-  moveEnemy: []
-  moveObj: []
 --- !u!4 &1889785125
 Transform:
   m_ObjectHideFlags: 0
@@ -5853,6 +5823,22 @@ Transform:
   m_Father: {fileID: 99776419}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1889785126
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1889785121}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5a7ddcf8ab98f44e82c2885ea038c42, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cam: {fileID: 820571347}
+  clearWin: {fileID: 259438758}
+  moveEnemy: []
+  moveObj: []
 --- !u!1 &1977186220
 GameObject:
   m_ObjectHideFlags: 0
@@ -6644,7 +6630,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c58b8012f3e0ad4cb7d5004d86645d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  clearWin: {fileID: 259438758}
   noteInfo:
     note: {fileID: 5389926546054727594, guid: 52b0377745e6f9442888803ad0175afe, type: 3}
     ghostNote: {fileID: 8217140785532726374, guid: 6ac832693c8f33341a442d7e4d0f0aed,

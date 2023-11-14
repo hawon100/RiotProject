@@ -4,11 +4,17 @@ using UnityEngine;
 
 public class AudioPlay : MonoBehaviour
 {
+    public static AudioPlay Instance { get; private set; }
+    public bool musicStart = false;
+    public AudioSource myAudio;
+    private Define.Scene type;
+
     private void Start()
     {
-        var objs = FindObjectsOfType<AudioPlay>();
-        if (objs.Length == 1)
+        if (Instance == null)
         {
+            Instance = this;
+            myAudio = GetComponent<AudioSource>();
             DontDestroyOnLoad(gameObject);
         }
         else

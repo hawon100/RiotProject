@@ -8,8 +8,6 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance => _instance;
     [SerializeField] private MoveManager moveManager;
 
-    public AudioClip curMap;
-
     private void Awake() {
         Init();
         moveManager.Init(); 
@@ -18,10 +16,5 @@ public class GameManager : MonoBehaviour
     public void Init()
     {
         _instance = this;
-    }
-
-    public void Setting()
-    {
-        Managers.Sound.Play(curMap, Define.Sound.Effect);
     }
 }

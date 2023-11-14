@@ -5,8 +5,6 @@ using UnityEngine;
 public class CenterFlame : MonoBehaviour
 {
     public static CenterFlame Instance;
-    public AudioSource myAudio;
-    private bool musicStart = false;
 
     private void Start()
     {
@@ -15,12 +13,12 @@ public class CenterFlame : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (!musicStart)
+        if (!AudioPlay.Instance.musicStart)
         {
             if (collision.CompareTag("Note"))
             {
-                myAudio.Play();
-                musicStart = true;
+                AudioPlay.Instance.myAudio.Play();
+                AudioPlay.Instance.musicStart = true;
             }
         }
     }
