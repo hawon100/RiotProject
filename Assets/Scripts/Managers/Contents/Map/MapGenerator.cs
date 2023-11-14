@@ -12,7 +12,6 @@ public class MapGenerator : MonoBehaviour
     [SerializeField] private int stageIndex;
     [SerializeField] private int mapIndex;
 
-
     private List<MapData> battleMapData = new();
     private List<GameObject> mapTile = new();
     private List<Obj_Base> mapObj = new();

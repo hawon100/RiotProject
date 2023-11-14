@@ -52,14 +52,17 @@ public class MoveManager : MonoBehaviour
         try { if (curGroundMap[movePos.x, movePos.y] == 0) { } /*map out check*/}
         catch { return 1; }
 
+        if (curObjMap[curPos.x, curPos.y] != 0 && isPlayer) curObj[curPos.x, curPos.y].UseObj();
+
         if (curGroundMap[movePos.x, movePos.y] != 1) return 1;
         if (curMoveMap[movePos.x, movePos.y] != 0)
         {
             if (isPlayer)
             {
-                if(curMob[movePos.x, movePos.y].TryGetComponent<MoveEnemy_Base>(out var e)){
-                    if(e.dirMove)
-                        if(e.cantMove) e.attackPos = curPos;
+                if (curMob[movePos.x, movePos.y].TryGetComponent<MoveEnemy_Base>(out var e))
+                {
+                    if (e.dirMove)
+                        if (e.cantMove) e.attackPos = curPos;
                         else e.attackPos = movePos;
                 }
                 curMob[movePos.x, movePos.y].BackStep(plusPos);
@@ -75,7 +78,7 @@ public class MoveManager : MonoBehaviour
         {
             if (isPlayer)
                 curObj[movePos.x, movePos.y].UseObj();
-            
+
             if (!curObj[movePos.x, movePos.y].isCanMove) return 1;
         }
 
