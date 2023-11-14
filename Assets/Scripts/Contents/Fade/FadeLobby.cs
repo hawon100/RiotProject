@@ -7,6 +7,7 @@ public class FadeLobby : MonoBehaviour
     public static FadeLobby Instance { get; private set; }
     public Animator fadeInGameAnim;
     public Animator fadeLobbyAnim;
+    public AudioClip fadeSound;
 
     private void Awake()
     {

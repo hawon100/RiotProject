@@ -12,8 +12,6 @@ public class NoteInfo
 
 public class NoteManager : MonoBehaviour
 {
-    [SerializeField] private GameObject clearWin;
-
     public NoteInfo noteInfo;
     public RectTransform tfNteAppear = null;
     public RectTransform ghostTfNteAppear = null;

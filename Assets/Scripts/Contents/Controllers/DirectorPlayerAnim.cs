@@ -5,10 +5,13 @@ using UnityEngine;
 public class DirectorPlayerAnim : MonoBehaviour
 {
     [SerializeField] private Animator fadeAnim;
+    [SerializeField] private AudioClip fadeSound;
 
     public void OnTitle()
     {
         fadeAnim.SetTrigger("OnFade");
+
+        Managers.Sound.Play(fadeSound);
 
         StartCoroutine(NextScene());
     }
