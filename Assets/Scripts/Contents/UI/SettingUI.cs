@@ -15,6 +15,7 @@ public class SettingUI : MonoBehaviour
             case "QuitWinCancel": QuitWinCancel(); break;
             case "QuitWinDoneBtn": QuitWinDoneBtn(); break;
             case "LobbyQuitWinDoneBtn": LobbyQuitWinDoneBtn(); break;
+            case "ReStart": ReStart(); break;
         }
     }
 
@@ -39,5 +40,12 @@ public class SettingUI : MonoBehaviour
     private void QuitBtn()
     {
         quitWin.SetActive(true);
+    }
+
+    private void ReStart()
+    {
+        Time.timeScale = 1f;
+        FadeLobby.Instance.fadeInGameAnim.SetTrigger("OnFade");
+        Managers.Sound.Play(FadeLobby.Instance.fadeSound);
     }
 }
