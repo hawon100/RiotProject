@@ -49,9 +49,10 @@ public class Player : Mob_Base
         else hpbar.text = new("∞");
     }
 
-    public void Damage()
+    public void Damage(bool isAttack)
     {
-        DamageUI.Instance.Damage();
+        if(isAttack) DamageUI.Instance.Damage();
+
         if (!isEasy)
         {
             HP -= 1;
@@ -147,6 +148,4 @@ public class Player : Mob_Base
 
         transform.position = targetPos;
     }
-
-    
 }

@@ -6,6 +6,6 @@ public class Trap : MoveObj_Base
 {
     public override void UseObj()
     {
-        Player.Instance.Damage();
+        Player.Instance.Damage(true);
     }
 }

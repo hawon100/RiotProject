@@ -20,7 +20,7 @@ public class AttackEnemy : MoveEnemy_Base
         {
             case 0: break;
             case 1: break;
-            case 2: Player.Instance.Damage(); break;
+            case 2: Player.Instance.Damage(true); break;
         }
     }
 
