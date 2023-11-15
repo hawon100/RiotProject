@@ -35,7 +35,7 @@ public class MapGenerator : MonoBehaviour
 
     private void ChoiceMap()
     {
-        player.HP = battleMapData[mapIndex].life;
+        player.Setting(battleMapData[mapIndex].life);
         noteManager.bpm = battleMapData[mapIndex].bpm;
         CreateMap(battleMapData[mapIndex]);
     }
@@ -60,7 +60,6 @@ public class MapGenerator : MonoBehaviour
         for (int i = 0; i < curGroundData.GetLength(0); i++) for (int j = 0; j < curGroundData.GetLength(1); j++)
             {
                 if (curGroundData[i, j] == 1) {
-                    Debug.Log($"{curGroundData[i, j]} {curGroundData[i, j + 1]} {curGroundData[i, j - 1]} {curGroundData[i + 1, j]} {curGroundData[i - 1, j]}");
                     if(curGroundData[i, j + 1] != 0) groundMap[i, j].up = false;
                     if(curGroundData[i, j - 1] != 0) groundMap[i, j].down = false;
                     if(curGroundData[i - 1, j] != 0) groundMap[i, j].left = false;

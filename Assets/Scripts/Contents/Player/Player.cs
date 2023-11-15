@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.PlayerLoop;
 using UnityEngine.UI;
 
 public class Player : Mob_Base
@@ -20,8 +21,9 @@ public class Player : Mob_Base
     public List<Item_Base> attackItem = new();
     public List<Item_Base> moveItem = new();
     public int isKey;
-    public bool isLobby = false;
-    public bool isDead = false;
+    public bool isLobby;
+    public bool isDead;
+    public bool isEasy;
 
     TimingManager timingManager;
 
@@ -37,16 +39,22 @@ public class Player : Mob_Base
         timingManager = FindObjectOfType<TimingManager>();
     }
 
-    private void Update()
-    {
-        hpbar.text = HP.ToString();
+    public void Setting(int hp){
+        isEasy = RoundData.Instance.isEasy;
+
+        if(!isEasy) hpbar.text = HP.ToString();
+        else hpbar.text = new("∞");
     }
 
     public void Damage()
     {
-        HP -= 1;
+        if (!isEasy)
+        {
+            HP -= 1;
+            hpbar.text = HP.ToString();
+        }else return;
 
-        if(HP <= 0)
+        if (HP <= 0)
         {
             HP = 0;
             DieDestroy();

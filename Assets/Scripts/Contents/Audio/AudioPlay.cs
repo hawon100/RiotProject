@@ -9,7 +9,7 @@ public class AudioPlay : MonoBehaviour
     public AudioSource myAudio;
     private Define.Scene type;
 
-    private void Start()
+    public void Start()
     {
         if (Instance == null)
         {
