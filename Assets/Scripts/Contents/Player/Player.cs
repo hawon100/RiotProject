@@ -42,12 +42,16 @@ public class Player : Mob_Base
     public void Setting(int hp){
         isEasy = RoundData.Instance.isEasy;
 
-        if(!isEasy) hpbar.text = HP.ToString();
+        if(!isEasy) {
+            HP = hp;
+            hpbar.text = HP.ToString();
+        }
         else hpbar.text = new("∞");
     }
 
     public void Damage()
     {
+        DamageUI.Instance.Damage();
         if (!isEasy)
         {
             HP -= 1;
@@ -76,7 +80,7 @@ public class Player : Mob_Base
 
     private void CheckMove(Vector3 movePos)
     {
-        if (!timingManager.CheckTiming()) { Debug.Log("Miss"); return; } //멈추는 이펙트 추가하면 좋을 듯
+        if (!timingManager.CheckTiming()) { return; } //멈추는 이펙트 추가하면 좋을 듯
 
         Vector2Int plusPos = Vector2Int.zero;
 
@@ -86,6 +90,7 @@ public class Player : Mob_Base
         if (movePos == Vector3.left) plusPos = Vector2Int.left;
 
         RookPlayer(movePos);
+        Managers.Sound.Play(moveSound);
 
         int action = MoveManager.Instance.MoveCheck(curPos, plusPos, true);
 
@@ -108,26 +113,6 @@ public class Player : Mob_Base
         anim.SetTrigger("doAttack");
     }
 
-    private IEnumerator MovePlayer(Vector3 direction, float sec)
-    {
-        Managers.Sound.Play(moveSound);
-
-        float elapsedTime = 0;
-        Vector3 origPos = transform.position;
-        Vector3 targetPos = origPos + direction;
-        anim.SetTrigger("doDash");
-
-        while (elapsedTime < sec)
-        {
-            transform.position = Vector3.Lerp(origPos, targetPos, (elapsedTime / sec));
-            elapsedTime += Time.deltaTime;
-            yield return null;
-        }
-
-        //move item trigger
-        transform.position = targetPos;
-    }
-
     protected override void DieDestroy()
     {
         Managers.Sound.Play(dieSound);
@@ -145,4 +130,23 @@ public class Player : Mob_Base
 
         yield return null;
     }
+
+    private IEnumerator MovePlayer(Vector3 direction, float sec)
+    {
+        float elapsedTime = 0;
+        Vector3 origPos = transform.position;
+        Vector3 targetPos = origPos + direction;
+        anim.SetTrigger("doDash");
+
+        while (elapsedTime < sec)
+        {
+            transform.position = Vector3.Lerp(origPos, targetPos, (elapsedTime / sec));
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+
+        transform.position = targetPos;
+    }
+
+    
 }

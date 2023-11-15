@@ -51,8 +51,6 @@ public class MoveManager : MonoBehaviour
         try { if (curGroundMap[movePos.x, movePos.y] == 0) { } /*map out check*/}
         catch { return 1; }
 
-        if (curObjMap[curPos.x, curPos.y] != 0 && isPlayer) curObj[curPos.x, curPos.y].UseObj();
-
         if (curGroundMap[movePos.x, movePos.y] != 1) return 1;
         if (curMoveMap[movePos.x, movePos.y] != 0)
         {

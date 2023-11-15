@@ -8,10 +8,6 @@ public abstract class MoveObj_Base : Obj_Base
     [SerializeField] private int curtiming;
     [SerializeField] private int endtiming;
 
-    protected virtual void Start() {
-        nextTiming();
-    }
-
     public void nextTiming()
     {
         if (notMove) return;
@@ -23,12 +19,13 @@ public abstract class MoveObj_Base : Obj_Base
         if (gameObject.activeSelf)
         {
             gameObject.SetActive(false);
-            MoveManager.Instance.InOutObj(curPos);
+            MoveManager.Instance.InOutObj(curPos, index);
         }
         else
         {
             gameObject.SetActive(true);
-            MoveManager.Instance.InOutObj(curPos, index);
+            if(MoveManager.Instance.MoveCheck(curPos, new(0,0), false, true) == 2) UseObj();
+            MoveManager.Instance.InOutObj(curPos);
         }
     }
 }
