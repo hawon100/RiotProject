@@ -15,6 +15,7 @@ public class AudioPlay : MonoBehaviour
         {
             Instance = this;
             myAudio = GetComponent<AudioSource>();
+            myAudio.loop = true;
             DontDestroyOnLoad(gameObject);
         }
         else
