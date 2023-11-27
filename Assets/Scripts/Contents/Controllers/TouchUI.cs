@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class TouchUI : MonoBehaviour
 {
-    [SerializeField] private Define.EndType type = Define.EndType.None;
     private float lastTouchTime;
     private const float doubleTouchDelay = 0.5f;
 

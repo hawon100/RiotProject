@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
 
 public class ResourceManager
@@ -28,7 +29,7 @@ public class ResourceManager
 
     public GameObject Instantiate(string path, Transform parent = null)
     {
-        GameObject original = Load<GameObject>($"Prefab/{path}");
+        GameObject original = Load<GameObject>($"Prefabs/{path}");
         if (original == null)
         {
             Debug.Log($"Failed to load prefab : {path}");

@@ -4,12 +4,20 @@ using UnityEngine;
 
 public class Define
 {
+    public enum Layer
+    {
+        None,
+        Basic,
+        Block,
+        Enemy,
+    }
+
     public enum Scene
     {
         None,
+        InGame,
         Title,
         Lobby,
-        InGame,
     }
 
     public enum Sound
@@ -19,34 +27,14 @@ public class Define
         MaxCount,
     }
 
-    public enum Layer
+    public enum MouseEvent
     {
-        None = 6,
-        Enemy = 7,
-        Block = 8,
-
+        Press,
+        Click,
     }
 
     public enum CameraMode
     {
-        None,
         QuarterView,
-    }
-
-    public enum KeyType
-    {
-        None,
-        Up,
-        Down,
-        Right,
-        Left,
-    }
-
-    public enum EndType
-    {
-        None,
-        Victory,
-        Clear,
-        Over,
     }
 }
