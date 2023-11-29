@@ -10,7 +10,7 @@ public abstract class MoveEnemy_Base : Enemy_Base
     private int curtiming;
     [SerializeField] private int endtiming;
 
-    public void nextTiming()
+    public void NextTiming()
     {
         if (curtiming < endtiming) { curtiming++; return; }
 

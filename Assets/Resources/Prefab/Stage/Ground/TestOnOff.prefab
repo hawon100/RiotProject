@@ -13,8 +13,9 @@ GameObject:
   - component: {fileID: 3508237110260542952}
   - component: {fileID: 963677965813367715}
   - component: {fileID: 57181825876965500}
+  - component: {fileID: 356494074236601996}
   m_Layer: 0
-  m_Name: Ground
+  m_Name: TestOnOff
   m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -110,7 +111,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c4b22a6e61e91134493ed251ac251b35, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  up: 1
-  down: 1
-  left: 1
-  right: 1
+  up: 0
+  down: 0
+  left: 0
+  right: 0
+--- !u!114 &356494074236601996
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4189690835450586684}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 07c44622f96f2ce4e947b09b7c92a0aa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  curPos: {x: 0, y: 0}
+  isMove: 0
+  index: 0
+  isOff: 1

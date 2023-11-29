@@ -4,10 +4,10 @@ using System.Collections.Generic;
 
 public class MeshGenerator : MonoBehaviour
 {
-    public bool up = true;
-    public bool down = true;
-    public bool left = true;
-    public bool right = true;
+    public bool up = false;
+    public bool down = false;
+    public bool left = false;
+    public bool right = false;
 
     private float cubeLength;
     private float cubeWidth;
@@ -26,15 +26,15 @@ public class MeshGenerator : MonoBehaviour
 
     private Vector3[] GetVertices()
     {
-        Vector3 vertice_0 = new Vector3(-cubeLength * .5f, -cubeWidth * .5f, cubeHeight * .5f);
-        Vector3 vertice_1 = new Vector3(cubeLength * .5f, -cubeWidth * .5f, cubeHeight * .5f);
-        Vector3 vertice_2 = new Vector3(cubeLength * .5f, -cubeWidth * .5f, -cubeHeight * .5f);
-        Vector3 vertice_3 = new Vector3(-cubeLength * .5f, -cubeWidth * .5f, -cubeHeight * .5f);
+        Vector3 vertice_0 = new(-cubeLength * .5f, -cubeWidth * .5f, cubeHeight * .5f);
+        Vector3 vertice_1 = new(cubeLength * .5f, -cubeWidth * .5f, cubeHeight * .5f);
+        Vector3 vertice_2 = new(cubeLength * .5f, -cubeWidth * .5f, -cubeHeight * .5f);
+        Vector3 vertice_3 = new(-cubeLength * .5f, -cubeWidth * .5f, -cubeHeight * .5f);
 
-        Vector3 vertice_4 = new Vector3(-cubeLength * .5f, cubeWidth * .5f, cubeHeight * .5f);
-        Vector3 vertice_5 = new Vector3(cubeLength * .5f, cubeWidth * .5f, cubeHeight * .5f);
-        Vector3 vertice_6 = new Vector3(cubeLength * .5f, cubeWidth * .5f, -cubeHeight * .5f);
-        Vector3 vertice_7 = new Vector3(-cubeLength * .5f, cubeWidth * .5f, -cubeHeight * .5f);
+        Vector3 vertice_4 = new(-cubeLength * .5f, cubeWidth * .5f, cubeHeight * .5f);
+        Vector3 vertice_5 = new(cubeLength * .5f, cubeWidth * .5f, cubeHeight * .5f);
+        Vector3 vertice_6 = new(cubeLength * .5f, cubeWidth * .5f, -cubeHeight * .5f);
+        Vector3 vertice_7 = new(-cubeLength * .5f, cubeWidth * .5f, -cubeHeight * .5f);
 
         Vector3[] vertices = new Vector3[]
 				{

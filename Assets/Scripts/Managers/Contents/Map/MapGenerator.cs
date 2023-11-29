@@ -10,6 +10,7 @@ public class MapGenerator : MonoBehaviour
     [SerializeField] private StageData curStage;
     [SerializeField] private Player player;
     [SerializeField] private NoteManager noteManager;
+    [SerializeField] private MoveManager moveManager;
     [SerializeField] private int stageIndex;
     [SerializeField] private int mapIndex;
 
@@ -45,7 +46,8 @@ public class MapGenerator : MonoBehaviour
         int[,] curGroundData = LoadCSV.Load(curMap.groundMap);
         int[,] totalData = new int[curGroundData.GetLength(0), curGroundData.GetLength(1)];
         MeshGenerator[,] groundMap = new MeshGenerator[curGroundData.GetLength(0), curGroundData.GetLength(1)];
-
+        List<MoveGround_Base> moveGround = new();
+        List<MoveGround_Base> onOff = new();
 
         for (int i = 0; i < curGroundData.GetLength(0); i++) for (int j = 0; j < curGroundData.GetLength(1); j++)
             {
@@ -53,23 +55,33 @@ public class MapGenerator : MonoBehaviour
                 var temp = Instantiate(mapTile[curGroundData[i, j] - 1],
                 new Vector3(i, -1, j), Quaternion.identity, transform).GetComponent<MeshGenerator>();
                 groundMap[i, j] = temp;
-    
-                totalData[i, j] = 1;
+
+                if(temp.TryGetComponent<MoveGround_Base>(out var move))
+                {
+                    move.curPos = new(i, j);
+                    move.index = curGroundData[i, j];
+
+                    if(move.TryGetComponent<OnOff>(out var t)) onOff.Add(t);
+                    else moveGround.Add(move);
+                }
+
+                totalData[i, j] = 2;
             }
 
         for (int i = 0; i < curGroundData.GetLength(0); i++) for (int j = 0; j < curGroundData.GetLength(1); j++)
             {
-                if (curGroundData[i, j] == 1) {
-                    if(curGroundData[i, j + 1] != 0) groundMap[i, j].up = false;
-                    if(curGroundData[i, j - 1] != 0) groundMap[i, j].down = false;
-                    if(curGroundData[i - 1, j] != 0) groundMap[i, j].left = false;
-                    if(curGroundData[i + 1, j] != 0) groundMap[i, j].right = false;
+                if (curGroundData[i, j] == 1)
+                {
+                    if (curGroundData[i, j + 1] != 1) groundMap[i, j].up = true;
+                    if (curGroundData[i, j - 1] != 1) groundMap[i, j].down = true;
+                    if (curGroundData[i - 1, j] != 1) groundMap[i, j].left = true;
+                    if (curGroundData[i + 1, j] != 1) groundMap[i, j].right = true;
 
                     groundMap[i, j].MeshGeneration();
                 }
             }
 
-        MoveManager.Instance.MapInit(curGroundData);
+        moveManager.MapInit(curGroundData, moveGround, onOff);
         Spawn(curMap, totalData);
     }
 
@@ -88,11 +100,14 @@ public class MapGenerator : MonoBehaviour
                 if (curObjData[i, j] == 0) continue; // void
                 var temp = Instantiate(mapObj[curObjData[i, j] - 1], new Vector3(i, 0, j),
                 Quaternion.identity, transform).GetComponent<Obj_Base>();
-                temp.index = curObjData[i, j];
                 temp.curPos = new(i, j);
                 obj[i, j] = temp;
 
-                if (temp.TryGetComponent<MoveObj_Base>(out var m)) moveObj.Add(m);
+                if (temp.TryGetComponent<MoveObj_Base>(out var move))
+                {
+                    move.index = curObjData[i, j];
+                    moveObj.Add(move);
+                }
 
                 if (curObjData[i, j] == 1 || curObjData[i, j] == 2)
                 {
@@ -125,12 +140,13 @@ public class MapGenerator : MonoBehaviour
                     for (int k = -1; k <= 1; k++) for (int l = -1; l <= 1; l++)
                         {
                             if (k != 0 && l != 0) continue;
-                            else if(k == 0 && l == 0) continue;
+                            else if (k == 0 && l == 0) continue;
 
                             int x = i + k;
                             int y = j + l;
 
-                            if(curEnemyData[x, y] == 1) {
+                            if (curEnemyData[x, y] == 1)
+                            {
                                 move.attackPos = new(x, y);
                                 moveEnemy.Add(move);
                             }
@@ -140,12 +156,13 @@ public class MapGenerator : MonoBehaviour
                 map[i, j] = temp;
             }
 
-        MoveManager.Instance.MobInit(map, obj, moveObj, moveEnemy, curObjData);
+        moveManager.MobInit(map, obj, moveObj, moveEnemy, curObjData);
     }
 
     private void Awake()
     {
         player.Init();
+        moveManager.Init();
         Init();
         ChoiceMap();
     }

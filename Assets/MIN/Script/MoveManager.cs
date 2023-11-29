@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using System.Linq;
 using TMPro;
+using Unity.VisualScripting;
 
 public class MoveManager : MonoBehaviour
 {
@@ -19,23 +20,25 @@ public class MoveManager : MonoBehaviour
     private int[,] curMoveMap;
     private Enemy_Base[,] curMob;
     private Obj_Base[,] curObj;
-    public List<MoveEnemy_Base> moveEnemy;
-    public List<MoveObj_Base> moveObj;
-
-    private void Start()
-    {
-        Init();
-    }
+    private List<MoveEnemy_Base> moveEnemy;
+    private List<MoveObj_Base> moveObj;
+    private List<MoveGround_Base> moveGround;
+    [SerializeField] private List<MoveGround_Base> onOffGround;
 
     public void Init()
     {
         _instance = this;
     }
 
-    public void nextTiming()
+    public void NextTiming()
     {
-        foreach (var obj in moveObj) obj.nextTiming();
-        foreach (var enemy in moveEnemy) enemy.nextTiming();
+        foreach (var obj in moveObj) obj.NextTiming();
+        foreach (var enemy in moveEnemy) enemy.NextTiming();
+    }
+
+    public void OnOff()
+    {
+        foreach (var onoff in onOffGround) onoff.NextTiming();
     }
 
     /// <summary>
@@ -51,7 +54,7 @@ public class MoveManager : MonoBehaviour
         try { if (curGroundMap[movePos.x, movePos.y] == 0) { } /*map out check*/}
         catch { return 1; }
 
-        if (curGroundMap[movePos.x, movePos.y] != 1) return 1;
+        if (curGroundMap[movePos.x, movePos.y] == 0) return 1;
         if (curMoveMap[movePos.x, movePos.y] != 0)
         {
             if (isPlayer)
@@ -91,10 +94,20 @@ public class MoveManager : MonoBehaviour
         return 0;
     }
 
-    public void InOutObj(Vector2Int curPos, int index = 0)
+    public void InOutIndex(Vector2Int curPos, Define.MapType map, int index = 0)
     {
-        if (curObjMap[curPos.x, curPos.y] == 0) curObjMap[curPos.x, curPos.y] = index;
-        else curObjMap[curPos.x, curPos.y] = 0;
+        switch (map)
+        {
+            case Define.MapType.Ground:
+                if (curGroundMap[curPos.x, curPos.y] == 0) curGroundMap[curPos.x, curPos.y] = index;
+                else curGroundMap[curPos.x, curPos.y] = 0;
+                break;
+
+            case Define.MapType.Obj:
+                if (curObjMap[curPos.x, curPos.y] == 0) curObjMap[curPos.x, curPos.y] = index;
+                else curObjMap[curPos.x, curPos.y] = 0;
+                break;
+        }
     }
 
     public void DestroyEnemy(Vector2Int curPos, MoveEnemy_Base enemy = null)
@@ -103,9 +116,12 @@ public class MoveManager : MonoBehaviour
         if (enemy != null) moveEnemy.Remove(enemy);
     }
 
-    public void MapInit(int[,] _curGroundMap)
+    public void MapInit(int[,] _curGroundMap, List<MoveGround_Base> _moveGround, List<MoveGround_Base> _onoff)
     {
         curGroundMap = _curGroundMap;
+        moveGround = _moveGround;
+        onOffGround = _onoff;
+
         curMoveMap = new int[_curGroundMap.GetLength(0), _curGroundMap.GetLength(1)];
     }
 

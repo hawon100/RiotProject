@@ -49,4 +49,11 @@ public class Define
         Clear,
         Over,
     }
+
+    public enum MapType
+    {
+        Ground,
+        Obj,
+        Enemy,
+    }
 }

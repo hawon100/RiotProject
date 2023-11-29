@@ -12,7 +12,8 @@ public class RoundData : ScriptableObject
     public int stageIndex;
     public int mapIndex;
     public bool isEasy = false;
-    public bool isSound = true;
+    public bool isTop = false;
+    public bool isMute = true;
 
 
     public void Reset(int index)

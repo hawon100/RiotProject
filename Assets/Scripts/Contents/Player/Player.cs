@@ -17,9 +17,6 @@ public class Player : Mob_Base
     [SerializeField] private TextMeshProUGUI hpbar;
 
     public int HP;
-    public List<Item_Base> statsItem = new();
-    public List<Item_Base> attackItem = new();
-    public List<Item_Base> moveItem = new();
     public int isKey;
     public bool isLobby;
     public bool isDead;
