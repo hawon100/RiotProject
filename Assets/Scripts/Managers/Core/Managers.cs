@@ -10,7 +10,6 @@ public class Managers : MonoBehaviour
     static Managers Instance { get { Init(); return s_instance; } }
         
     //Content
-    GameManager _game = new GameManager();
     TalkManager _talk = new TalkManager();
 
     //Core
@@ -21,7 +20,6 @@ public class Managers : MonoBehaviour
     DataManager _data = new DataManager();
 
     //Content
-    public static GameManager Game { get { return Instance._game; } }
     public static TalkManager Talk { get { return Instance._talk; } }
 
     //Core
