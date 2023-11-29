@@ -10,6 +10,7 @@ public class MapManager
     public void LoadScene(Define.Scene type)
     {
         Managers.Clear();
+
         SceneManager.LoadScene(GetSceneName(type));
     }
 
