@@ -5,8 +5,8 @@ using UnityEngine;
 public abstract class MoveGround_Base : MonoBehaviour
 {
     public Vector2Int curPos;
-    public bool isMove;
+    public bool isUse;
     public int index;
 
-    public abstract void NextTiming();
+    public abstract void Use();
 }

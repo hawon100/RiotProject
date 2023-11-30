@@ -18,7 +18,7 @@ public class OnOff : MoveGround_Base
         }
     }
 
-    public override void NextTiming()
+    public override void Use()
     {
         if (isOff)
         {

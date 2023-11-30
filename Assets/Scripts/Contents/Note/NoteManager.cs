@@ -78,6 +78,12 @@ public class NoteManager : MonoBehaviour
         }
     }
 
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (Player.Instance.cantMove && !collision.GetComponent<Note>().isGhost)
+            Player.Instance.ForcedMovement();
+    }
+
     private void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.CompareTag("Note"))
@@ -88,8 +94,13 @@ public class NoteManager : MonoBehaviour
                 {
                     if (collision.GetComponent<Note>().GetNoteFlag())
                     {
-                        EffectManager.Instance.MissEffect();
-                        if (!timingManager.isLobby) if (!collision.GetComponent<Note>().isGhost) Player.Instance.Damage(true);
+                        if (!Player.Instance.cantMove)
+                        {
+                            EffectManager.Instance.MissEffect();
+                            if (!timingManager.isLobby && !collision.GetComponent<Note>().isGhost)
+                                Player.Instance.Damage(true);
+                        }
+
                         noteCount++;
                         if (noteCount == 2)
                         {

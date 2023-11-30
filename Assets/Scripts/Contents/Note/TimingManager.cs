@@ -21,7 +21,7 @@ public class TimingManager : MonoBehaviour
         }
     }
 
-    public bool CheckTiming()
+    public bool CheckTiming(bool isNotCheck = false)
     {
         for (int i = 0; i < boxNoteList.Count; i++)
         {
@@ -29,7 +29,7 @@ public class TimingManager : MonoBehaviour
 
             for (int x = 0; x < timingRect.Length; x++)
             {
-                if (timingBox[x].x <= t_notePosX && t_notePosX <= timingBox[x].y)
+                if (timingBox[x].x <= t_notePosX && t_notePosX <= timingBox[x].y || isNotCheck)
                 {
                     EffectManager.Instance.PerfectEffect();
                     boxNoteList[i].GetComponent<Note>().HideNote();
@@ -38,8 +38,8 @@ public class TimingManager : MonoBehaviour
                     ghostNoteList.RemoveAt(i);
                     if (!isLobby) Player.Instance.Damage(false);
                     return true;
-            }
                 }
+            }
         }
 
         if (!isLobby) Player.Instance.Damage(true);
