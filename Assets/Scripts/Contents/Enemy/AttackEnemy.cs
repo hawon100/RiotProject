@@ -15,6 +15,7 @@ public class AttackEnemy : MoveEnemy_Base
         int check = MoveManager.Instance.MoveCheck(curPos, attackPos, false, true);
 
         anim.SetTrigger("OnAttack");
+        Debug.Log("AttackEnemy Script Active");
 
         switch (check)
         {

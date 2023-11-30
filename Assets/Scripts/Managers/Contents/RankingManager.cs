@@ -29,7 +29,7 @@ public class RankingManager : MonoBehaviour
 
         for(int i = 0; i < 5; i++)
         {
-            Managers.Data.LoadData<RankData>("RankData").Rank[i].bestScore = bestScore[i];
+            Managers.Data.LoadData<RankData>("RankData").Rank[i + 1].bestScore = bestScore[i + 1];
         }
     }
 }
