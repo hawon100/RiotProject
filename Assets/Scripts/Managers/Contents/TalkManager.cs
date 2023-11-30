@@ -14,9 +14,9 @@ public class TalkManager : MonoBehaviour
 
     public void ShowDialogue()
     {
-        ONOFF(true); //´ëÈ­°¡ ½ÃÀÛµÊ
+        ONOFF(true); //ï¿½ï¿½È­ï¿½ï¿½ ï¿½ï¿½ï¿½Ûµï¿½
         count = 0;
-        NextDialogue(); //È£ÃâµÇÀÚ¸¶ÀÚ ´ë»ç°¡ ÁøÇàµÉ ¼ö ÀÖµµ·Ï 
+        NextDialogue(); //È£ï¿½ï¿½ï¿½ï¿½Ú¸ï¿½ï¿½ï¿½ ï¿½ï¿½ç°¡ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½Öµï¿½ï¿½ï¿½ 
     }
 
     private void ONOFF(bool _flag)
@@ -29,19 +29,19 @@ public class TalkManager : MonoBehaviour
 
     private void NextDialogue()
     {
-        //Ã¹¹øÂ° ´ë»ç¿Í Ã¹¹øÂ° cgºÎÅÍ °è¼Ó ´ÙÀ½ cg·Î ÁøÇàµÇ¸é¼­ È­¸é¿¡ º¸ÀÌ°Ô µÈ´Ù. 
+        //Ã¹ï¿½ï¿½Â° ï¿½ï¿½ï¿½ï¿½ Ã¹ï¿½ï¿½Â° cgï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ cgï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ç¸é¼­ È­ï¿½é¿¡ ï¿½ï¿½ï¿½Ì°ï¿½ ï¿½È´ï¿½. 
         txt_Dialogue.text = Managers.Data.LoadData<TalkData>("Talk/TalkData").dialogue[count].sentence;
         sprite_StandingCG.sprite = Managers.Data.LoadData<TalkData>("Talk/TalkData").dialogue[count].cg;
-        count++; //´ÙÀ½ ´ë»ç¿Í cg°¡ ³ª¿Àµµ·Ï 
+        count++; //ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ cgï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ 
     }
 
     public void OnDialogue()
     {
-        if (isDialogue) //È°¼ºÈ­°¡ µÇ¾úÀ» ¶§¸¸ ´ë»ç°¡ ÁøÇàµÇµµ·Ï
+        if (isDialogue) //È°ï¿½ï¿½È­ï¿½ï¿½ ï¿½Ç¾ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ç°¡ ï¿½ï¿½ï¿½ï¿½Çµï¿½ï¿½ï¿½
         {
             if (Input.GetKeyDown(KeyCode.Space))
             {
-                if (count < Managers.Data.LoadData<TalkData>("Talk/TalkData").dialogue.Length) NextDialogue(); //´ÙÀ½ ´ë»ç°¡ ÁøÇàµÊ
+                if (count < Managers.Data.LoadData<TalkData>("Talk/TalkData").dialogue.Length) NextDialogue(); //ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ç°¡ ï¿½ï¿½ï¿½ï¿½ï¿½
                 else ONOFF(false); 
             }
         }

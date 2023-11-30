@@ -11,6 +11,7 @@ public class Managers : MonoBehaviour
         
     //Content
     TalkManager _talk = new TalkManager();
+    RankingManager _rank = new RankingManager();
 
     //Core
     PoolManager _pool = new PoolManager();
@@ -21,6 +22,7 @@ public class Managers : MonoBehaviour
 
     //Content
     public static TalkManager Talk { get { return Instance._talk; } }
+    public static RankingManager Ranking { get { return Instance._rank; } }
 
     //Core
     public static PoolManager Pool { get { return Instance._pool; } }
