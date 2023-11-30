@@ -16,11 +16,15 @@ public class Player : Mob_Base
     [SerializeField] private AudioClip dieSound;
     [SerializeField] private TextMeshProUGUI hpbar;
 
-    public int HP;
+    [SerializeField] private int HP;
+    [SerializeField] private bool isEasy;
+
     public int isKey;
     public bool isLobby;
     public bool isDead;
-    public bool isEasy;
+
+    private Vector2Int plusPos;
+    public bool cantMove;
 
     TimingManager timingManager;
 
@@ -33,13 +37,16 @@ public class Player : Mob_Base
     {
         base.Start();
         isDead = false;
+        cantMove = false;
         timingManager = FindObjectOfType<TimingManager>();
     }
 
-    public void Setting(int hp){
+    public void Setting(int hp)
+    {
         isEasy = RoundData.Instance.isEasy;
 
-        if(!isEasy) {
+        if (!isEasy)
+        {
             HP = hp;
             hpbar.text = HP.ToString();
         }
@@ -48,13 +55,14 @@ public class Player : Mob_Base
 
     public void Damage(bool isAttack)
     {
-        if(isAttack) DamageUI.Instance.Damage();
+        if (isAttack) DamageUI.Instance.Damage();
 
         if (!isEasy)
         {
             HP -= 1;
             hpbar.text = HP.ToString();
-        }else return;
+        }
+        else return;
 
         if (HP <= 0)
         {
@@ -65,7 +73,7 @@ public class Player : Mob_Base
 
     public void Move(string type)
     {
-        if (isDead) return;
+        if (isDead || cantMove) return;
 
         switch (type)
         {
@@ -80,12 +88,14 @@ public class Player : Mob_Base
     {
         if (!timingManager.CheckTiming()) { return; } //멈추는 이펙트 추가하면 좋을 듯
 
-        Vector2Int plusPos = Vector2Int.zero;
+        Vector2Int _plusPos = Vector2Int.zero;
 
-        if (movePos == Vector3.forward) plusPos = Vector2Int.up;
-        if (movePos == Vector3.back) plusPos = Vector2Int.down;
-        if (movePos == Vector3.right) plusPos = Vector2Int.right;
-        if (movePos == Vector3.left) plusPos = Vector2Int.left;
+        if (movePos == Vector3.forward) _plusPos = Vector2Int.up;
+        if (movePos == Vector3.back) _plusPos = Vector2Int.down;
+        if (movePos == Vector3.right) _plusPos = Vector2Int.right;
+        if (movePos == Vector3.left) _plusPos = Vector2Int.left;
+
+        plusPos = _plusPos;
 
         RookPlayer(movePos);
         Managers.Sound.Play(moveSound);
@@ -97,6 +107,29 @@ public class Player : Mob_Base
             case 0: curPos = curPos + plusPos; StartCoroutine(MovePlayer(movePos, 0.2f)); break;
             case 1: break;
             case 2: Attack(); break;
+        }
+    }
+
+    public void ForcedMovement()
+    {
+        Vector3 movePos = new();
+
+        if (plusPos == Vector2Int.up) movePos = Vector3.forward;
+        if (plusPos == Vector2Int.down) movePos = Vector3.back;
+        if (plusPos == Vector2Int.right) movePos = Vector3.right;
+        if (plusPos == Vector2Int.left) movePos = Vector3.left;
+
+        int action = MoveManager.Instance.MoveCheck(curPos, plusPos, true);
+
+        switch (action)
+        {
+            case 0:
+                timingManager.CheckTiming(true);
+                Managers.Sound.Play(moveSound);
+                curPos = curPos + plusPos;
+                StartCoroutine(MovePlayer(movePos, 0.2f)); break;
+            case 1: cantMove = false; break;
+            case 2: cantMove = false; break;
         }
     }
 

@@ -45,43 +45,44 @@ public class MapGenerator : MonoBehaviour
     {
         int[,] curGroundData = LoadCSV.Load(curMap.groundMap);
         int[,] totalData = new int[curGroundData.GetLength(0), curGroundData.GetLength(1)];
-        MeshGenerator[,] groundMap = new MeshGenerator[curGroundData.GetLength(0), curGroundData.GetLength(1)];
+        MoveGround_Base[,] groundMap = new MoveGround_Base[curGroundData.GetLength(0), curGroundData.GetLength(1)];
+        MeshGenerator[,] groundMashMap = new MeshGenerator[curGroundData.GetLength(0), curGroundData.GetLength(1)];
         List<MoveGround_Base> moveGround = new();
         List<MoveGround_Base> onOff = new();
 
         for (int i = 0; i < curGroundData.GetLength(0); i++) for (int j = 0; j < curGroundData.GetLength(1); j++)
             {
                 if (curGroundData[i, j] == 0) continue; // void
+
                 var temp = Instantiate(mapTile[curGroundData[i, j] - 1],
                 new Vector3(i, -1, j), Quaternion.identity, transform).GetComponent<MeshGenerator>();
-                groundMap[i, j] = temp;
+                groundMashMap[i, j] = temp;
 
-                if(temp.TryGetComponent<MoveGround_Base>(out var move))
+                if (temp.TryGetComponent<MoveGround_Base>(out var move))
                 {
                     move.curPos = new(i, j);
                     move.index = curGroundData[i, j];
 
-                    if(move.TryGetComponent<OnOff>(out var t)) onOff.Add(t);
+                    if (move.TryGetComponent<OnOff>(out var t)) onOff.Add(t);
+                    else if(move.isUse) { curGroundData[i, j] = 99; groundMap[i, j] = move;}
                     else moveGround.Add(move);
                 }
-
-                totalData[i, j] = 2;
             }
 
         for (int i = 0; i < curGroundData.GetLength(0); i++) for (int j = 0; j < curGroundData.GetLength(1); j++)
             {
                 if (curGroundData[i, j] == 1)
                 {
-                    if (curGroundData[i, j + 1] != 1) groundMap[i, j].up = true;
-                    if (curGroundData[i, j - 1] != 1) groundMap[i, j].down = true;
-                    if (curGroundData[i - 1, j] != 1) groundMap[i, j].left = true;
-                    if (curGroundData[i + 1, j] != 1) groundMap[i, j].right = true;
+                    if (curGroundData[i, j + 1] != 1) groundMashMap[i, j].up = true;
+                    if (curGroundData[i, j - 1] != 1) groundMashMap[i, j].down = true;
+                    if (curGroundData[i - 1, j] != 1) groundMashMap[i, j].left = true;
+                    if (curGroundData[i + 1, j] != 1) groundMashMap[i, j].right = true;
 
-                    groundMap[i, j].MeshGeneration();
+                    groundMashMap[i, j].MeshGeneration();
                 }
             }
 
-        moveManager.MapInit(curGroundData, moveGround, onOff);
+        moveManager.MapInit(groundMap, curGroundData, moveGround, onOff);
         Spawn(curMap, totalData);
     }
 
@@ -108,25 +109,6 @@ public class MapGenerator : MonoBehaviour
                     move.index = curObjData[i, j];
                     moveObj.Add(move);
                 }
-
-                if (curObjData[i, j] == 1 || curObjData[i, j] == 2)
-                {
-                    curMap[i, j] = 0;
-                    if (curObjData[i, j] == 1)
-                        for (int k = -1; k <= 1; k++) for (int l = -1; l <= 1; l++)
-                            {
-                                try { curMap[i + k, j + l] = 0; }
-                                catch { continue; }
-                            }
-                    else
-                    {
-                        if (temp.TryGetComponent<nextMap>(out var n))
-                        {
-                            n.endStageCount = curStage.battleMapData.Count - 1;
-                        }
-                    }
-                }
-                else { curMap[i, j] = 0; }
             }
 
         for (int i = 0; i < curEnemyData.GetLength(0); i++) for (int j = 0; j < curEnemyData.GetLength(1); j++)

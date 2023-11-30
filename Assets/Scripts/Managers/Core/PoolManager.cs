@@ -32,7 +32,7 @@ public class PoolManager
         public void Push(Poolable poolable)
         {
             if (poolable == null) return;
-            poolable.transform.parent = Root;
+            poolable.transform.SetParent(Root);
             poolable.gameObject.SetActive(false);
             poolable.IsUsing = false;
             _poolStack.Push(poolable);
@@ -46,7 +46,7 @@ public class PoolManager
             else poolable = Create();
             poolable.gameObject.SetActive(true);
 
-            poolable.transform.parent = parent;
+            poolable.transform.SetParent(parent);
             poolable.IsUsing = true;
             return poolable;
         }
