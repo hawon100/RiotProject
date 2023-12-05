@@ -58,7 +58,7 @@ public class MoveManager : MonoBehaviour
         if (curGroundMap[movePos.x, movePos.y] != 1)
         {
             if (curGroundMap[movePos.x, movePos.y] == 0) return 1;
-            else if (curGroundMap[movePos.x, movePos.y] == 99) curMap[movePos.x, movePos.y].Use();
+            else if (isPlayer && curGroundMap[movePos.x, movePos.y] == 99) curMap[movePos.x, movePos.y].Use();
         }
 
         if (curMoveMap[movePos.x, movePos.y] != 0)

@@ -7,10 +7,10 @@ using UnityEngine.UI;
 public abstract class Enemy_Base : Mob_Base
 {
     [Header("Enemy_Base")]
-    [SerializeField] private bool cantDie;
+    [SerializeField] protected bool cantDie;
     public bool cantMove;
 
-    public void BackStep(Vector2Int plusPos)
+    public virtual void BackStep(Vector2Int plusPos)
     {
         transform.LookAt(Player.Instance.transform);
 
@@ -41,7 +41,7 @@ public abstract class Enemy_Base : Mob_Base
         Managers.Resource.Destroy(gameObject);
     }
 
-    private IEnumerator MoveEnemy(Vector3 direction, float sec)
+    protected IEnumerator MoveEnemy(Vector3 direction, float sec)
     {
         float elapsedTime = 0;
         Vector3 origPos = transform.position;
