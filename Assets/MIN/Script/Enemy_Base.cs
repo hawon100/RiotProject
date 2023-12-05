@@ -49,7 +49,7 @@ public abstract class Enemy_Base : Mob_Base
 
         while (elapsedTime < sec)
         {
-            transform.position = Vector3.Lerp(origPos, targetPos, (elapsedTime / sec));
+            transform.position = Vector3.Lerp(origPos, targetPos, elapsedTime / sec);
             elapsedTime += Time.deltaTime;
             yield return null;
         }

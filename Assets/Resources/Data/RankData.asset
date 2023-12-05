@@ -12,12 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a0df0b694f81324b9bc3c4e6eb927fe, type: 3}
   m_Name: RankData
   m_EditorClassIdentifier: 
-  bestScore:
-  - bestScore: 0
-  - bestScore: 0
-  - bestScore: 0
-  - bestScore: 0
-  - bestScore: 0
+  Rank:
   - bestScore: 0
   - bestScore: 0
   - bestScore: 0

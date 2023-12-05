@@ -1230,8 +1230,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   curPos: {x: 0, y: 0}
-  _hpbar: {fileID: 0}
   cantDie: 0
+  cantMove: 0
+  attackPos: {x: 0, y: 0}
+  dirMove: 0
+  endtiming: 1
 --- !u!1 &8817284497358235827
 GameObject:
   m_ObjectHideFlags: 0
