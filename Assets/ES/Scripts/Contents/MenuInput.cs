@@ -6,14 +6,11 @@ public class MenuInput : MonoBehaviour
 {
     [SerializeField] private CameraMove cam;
     [SerializeField] private GameObject inputBackWin;
-    [SerializeField] private GameObject infoWin;
     [SerializeField] private GameObject settingWin;
     [SerializeField] private GameObject muteIcon;
     [SerializeField] private GameObject topIcon;
     [SerializeField] private GameObject easyIcon;
 
-    private bool isInfoWinActive;
-    private bool isInputBackWinActive;
     private bool isMute;
     private bool isTop;
     private bool isEasy;
@@ -24,8 +21,6 @@ public class MenuInput : MonoBehaviour
         {
             switch (name)
             {
-                case "Info": Info(); break;
-                case "InputKey": InputKey(); break;
                 case "Setting": Setting(); break;
                 case "Mute": Mute(); break;
                 case "Top": Top(); break;
@@ -68,22 +63,6 @@ public class MenuInput : MonoBehaviour
         isEasy = !isEasy;   
         easyIcon.SetActive(isEasy);
         RoundData.Instance.isEasy = isEasy;
-    }
-
-    private void Info()
-    {
-        isInputBackWinActive = false;
-        isInfoWinActive = true;
-        inputBackWin.SetActive(isInputBackWinActive);
-        infoWin.SetActive(isInfoWinActive);
-    }
-
-    private void InputKey()
-    {
-        isInputBackWinActive = true;
-        isInfoWinActive = false;
-        inputBackWin.SetActive(isInputBackWinActive);
-        infoWin.SetActive(isInfoWinActive);
     }
 
     private void Setting()
