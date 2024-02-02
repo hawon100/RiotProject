@@ -18,11 +18,10 @@ public class MoveManager : MonoBehaviour
     private int[,] curGroundMap;
     private int[,] curObjMap;
     private int[,] curMoveMap;
-    private MoveGround_Base[,] curMap;
     private Enemy_Base[,] curMob;
     private Obj_Base[,] curObj;
-    private List<MoveEnemy_Base> moveEnemy;
     private List<MoveObj_Base> moveObj;
+    private List<MoveEnemy_Base> moveEnemy;
     private List<MoveGround_Base> moveGround; //이동식 땅 임시 리스트
     private List<MoveGround_Base> onOffGround;
 
@@ -60,11 +59,13 @@ public class MoveManager : MonoBehaviour
             if (curGroundMap[movePos.x, movePos.y] == 0) return 1;
             else if (isPlayer && curGroundMap[movePos.x, movePos.y] == 99) curMap[movePos.x, movePos.y].Use();
         }
-
+        
         if (curMoveMap[movePos.x, movePos.y] != 0)
         {
             if (isPlayer)
             {
+                if (Player.Instance.cantMove) return 1;
+
                 if (curMob[movePos.x, movePos.y].TryGetComponent<MoveEnemy_Base>(out var e))
                 {
                     if (e.dirMove)
@@ -80,6 +81,14 @@ public class MoveManager : MonoBehaviour
                 else return 1;
             }
         }
+
+        if (curGroundMap[movePos.x, movePos.y] != 1)
+        {
+            if (curGroundMap[movePos.x, movePos.y] == 0) return 1;
+            else if (mob != null) { mob.cantMove = true; moveMob.Add(mob); }
+        }
+        else if (mob != null) { mob.cantMove = false; moveMob.Remove(mob); }
+
         if (curObjMap[movePos.x, movePos.y] != 0)
         {
             if (isPlayer)
@@ -122,9 +131,8 @@ public class MoveManager : MonoBehaviour
         if (enemy != null) moveEnemy.Remove(enemy);
     }
 
-    public void MapInit(MoveGround_Base[,] _curMap, int[,] _curGroundMap, List<MoveGround_Base> _moveGround, List<MoveGround_Base> _onoff)
+    public void MapInit(int[,] _curGroundMap, List<MoveGround_Base> _moveGround, List<MoveGround_Base> _onoff)
     {
-        curMap = _curMap;
         curGroundMap = _curGroundMap;
         moveGround = _moveGround;
         onOffGround = _onoff;

@@ -126,7 +126,7 @@ public class Player : Mob_Base
             case 0:
                 timingManager.CheckTiming(true);
                 Managers.Sound.Play(moveSound);
-                curPos = curPos + plusPos;
+                curPos += plusPos;
                 StartCoroutine(MovePlayer(movePos, 0.2f)); break;
             case 1: cantMove = false; break;
             case 2: cantMove = false; break;

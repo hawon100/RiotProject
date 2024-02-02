@@ -12,7 +12,7 @@ public class OriginalEnemy : Enemy_Base
     {
         base.Start();
         originalEnemyAnim = gameObject.GetOrAddComponent<Animator>();
-        transform.LookAt(Vector3.back);
+        //transform.LookAt(Vector3.back);
         isoriginalEnemy = true;
     }
 

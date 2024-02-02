@@ -11,10 +11,12 @@ public class PushRock : Enemy_Base
         Vector3 movePos = new();
         Vector3 vector3PlusPos = new();
 
-        if (plusPos == Vector2Int.up) vector3PlusPos = Vector3.forward;
-        if (plusPos == Vector2Int.down) vector3PlusPos = Vector3.back;
-        if (plusPos == Vector2Int.right) vector3PlusPos = Vector3.right;
-        if (plusPos == Vector2Int.left) vector3PlusPos = Vector3.left;
+        if (plusPos == Vector2Int.up) movePos = Vector3.forward;
+        if (plusPos == Vector2Int.down) movePos = Vector3.back;
+        if (plusPos == Vector2Int.right) movePos = Vector3.right;
+        if (plusPos == Vector2Int.left) movePos = Vector3.left;
+
+        transform.LookAt(-movePos);
 
         Hit(plusPos);
 

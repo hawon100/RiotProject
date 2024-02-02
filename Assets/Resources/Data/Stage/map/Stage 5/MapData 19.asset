@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: beac9481ab8b89948997a06959fed3f8, type: 3}
+  m_Name: MapData 19
+  m_EditorClassIdentifier: 
+  life: 30
+  bpm: 110
+  groundMap: {fileID: 4900000, guid: 6fdf548224e9d0241a605ddbb815be82, type: 3}
+  enemyMap: {fileID: 4900000, guid: 1fff628b3081c8246b640695b87baccb, type: 3}
+  objMap: {fileID: 4900000, guid: 21f25f316627b1e449cd70bd5860c997, type: 3}

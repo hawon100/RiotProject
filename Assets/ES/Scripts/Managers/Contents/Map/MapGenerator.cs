@@ -45,7 +45,6 @@ public class MapGenerator : MonoBehaviour
     {
         int[,] curGroundData = LoadCSV.Load(curMap.groundMap);
         int[,] totalData = new int[curGroundData.GetLength(0), curGroundData.GetLength(1)];
-        MoveGround_Base[,] groundMap = new MoveGround_Base[curGroundData.GetLength(0), curGroundData.GetLength(1)];
         MeshGenerator[,] groundMashMap = new MeshGenerator[curGroundData.GetLength(0), curGroundData.GetLength(1)];
         List<MoveGround_Base> moveGround = new();
         List<MoveGround_Base> onOff = new();
@@ -64,7 +63,7 @@ public class MapGenerator : MonoBehaviour
                     move.index = curGroundData[i, j];
 
                     if (move.TryGetComponent<OnOff>(out var t)) onOff.Add(t);
-                    else if(move.isUse) { curGroundData[i, j] = 99; groundMap[i, j] = move;}
+                    else if(move.isUse) curGroundData[i, j] = 2;
                     else moveGround.Add(move);
                 }
             }
@@ -82,7 +81,7 @@ public class MapGenerator : MonoBehaviour
                 }
             }
 
-        moveManager.MapInit(groundMap, curGroundData, moveGround, onOff);
+        moveManager.MapInit(curGroundData, moveGround, onOff);
         Spawn(curMap, totalData);
     }
 
