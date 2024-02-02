@@ -111,10 +111,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8aa32f11708023448898a94907d21cbc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  index: 0
   curPos: {x: 0, y: 0}
   isCanMove: 0
-  stageIndex: 0
+  stageIndex: 5
 --- !u!1001 &8560642337510295027
 PrefabInstance:
   m_ObjectHideFlags: 0

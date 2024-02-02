@@ -62,7 +62,7 @@ public class MapGenerator : MonoBehaviour
                     move.index = 1;
 
                     if(curGroundData[i, j] > 1){
-                        if (move.TryGetComponent<OnOff>(out var t)) onOff.Add(t);
+                        if (move.TryGetComponent<OnOff_Base>(out var t)) onOff.Add(t);
 
                         if(move.isUse) {
                             curGroundData[i, j] = 2;

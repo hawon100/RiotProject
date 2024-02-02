@@ -2,15 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class OnOff : MoveGround_Base
+public class Original_OnOff : OnOff_Base
 {
-    [SerializeField] private bool isOff;
-    Material material;
-
-    private void Start()
+    protected override void Start()
     {
-        material = GetComponent<Renderer>().material;
-
+        base.Start();
+        
         if (isOff)
         {
             material.color = new Color(0.35f, 0.35f, 0.35f);
@@ -30,6 +27,6 @@ public class OnOff : MoveGround_Base
             material.color = new Color(0.35f, 0.35f, 0.35f);
             MoveManager.Instance.InOutIndex(curPos, Define.MapType.Ground);
         }
-        isOff = !isOff;
+        base.Use();
     }
 }
