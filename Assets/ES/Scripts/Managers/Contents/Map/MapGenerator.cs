@@ -46,7 +46,6 @@ public class MapGenerator : MonoBehaviour
         int[,] curGroundData = LoadCSV.Load(curMap.groundMap);
         int[,] totalData = new int[curGroundData.GetLength(0), curGroundData.GetLength(1)];
         MeshGenerator[,] groundMashMap = new MeshGenerator[curGroundData.GetLength(0), curGroundData.GetLength(1)];
-        List<MoveGround_Base> moveGround = new();
         List<MoveGround_Base> onOff = new();
 
         for (int i = 0; i < curGroundData.GetLength(0); i++) for (int j = 0; j < curGroundData.GetLength(1); j++)
@@ -60,17 +59,22 @@ public class MapGenerator : MonoBehaviour
                 if (temp.TryGetComponent<MoveGround_Base>(out var move))
                 {
                     move.curPos = new(i, j);
-                    move.index = curGroundData[i, j];
+                    move.index = 1;
 
-                    if (move.TryGetComponent<OnOff>(out var t)) onOff.Add(t);
-                    else if(move.isUse) curGroundData[i, j] = 2;
-                    else moveGround.Add(move);
+                    if(curGroundData[i, j] > 1){
+                        if (move.TryGetComponent<OnOff>(out var t)) onOff.Add(t);
+
+                        if(move.isUse) {
+                            curGroundData[i, j] = 2;
+                            move.index = 2;
+                        }
+                    }
                 }
             }
 
         for (int i = 0; i < curGroundData.GetLength(0); i++) for (int j = 0; j < curGroundData.GetLength(1); j++)
             {
-                if (curGroundData[i, j] == 1)
+                if (curGroundData[i, j] != 0)
                 {
                     if (curGroundData[i, j + 1] != 1) groundMashMap[i, j].up = true;
                     if (curGroundData[i, j - 1] != 1) groundMashMap[i, j].down = true;
@@ -81,7 +85,7 @@ public class MapGenerator : MonoBehaviour
                 }
             }
 
-        moveManager.MapInit(curGroundData, moveGround, onOff);
+        moveManager.MapInit(curGroundData, onOff);
         Spawn(curMap, totalData);
     }
 

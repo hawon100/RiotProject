@@ -8,6 +8,7 @@ public class nextMap : Obj_Base
 
     public override void UseObj()
     {
+        MoveManager.Instance.allStop = true;
         if (RoundData.Instance.mapIndex < endStageCount)
         {
             RoundData.Instance.mapIndex++;

@@ -14,6 +14,7 @@ public class MoveManager : MonoBehaviour
 
     [SerializeField] private CameraMove cam;
     public GameObject clearWin;
+    [HideInInspector] public bool allStop;
 
     private int[,] curGroundMap;
     private int[,] curObjMap;
@@ -22,7 +23,6 @@ public class MoveManager : MonoBehaviour
     private Obj_Base[,] curObj;
     private List<MoveObj_Base> moveObj;
     private List<MoveEnemy_Base> moveEnemy;
-    private List<MoveGround_Base> moveGround; //이동식 땅 임시 리스트
     private List<MoveGround_Base> onOffGround;
 
     public void Init()
@@ -32,6 +32,8 @@ public class MoveManager : MonoBehaviour
 
     public void NextTiming()
     {
+        if(allStop) return;
+
         foreach (var obj in moveObj) obj.NextTiming();
         foreach (var enemy in moveEnemy) enemy.NextTiming();
     }
@@ -49,6 +51,8 @@ public class MoveManager : MonoBehaviour
     /// <returns></returns>
     public int MoveCheck(Vector2Int curPos, Vector2Int plusPos, bool isPlayer = false, bool isNotMove = false)
     {
+        if(allStop) return 1;
+
         Vector2Int movePos = curPos + plusPos;
 
         try { if (curGroundMap[movePos.x, movePos.y] == 0) { } /*map out check*/}
@@ -125,10 +129,9 @@ public class MoveManager : MonoBehaviour
         if (enemy != null) moveEnemy.Remove(enemy);
     }
 
-    public void MapInit(int[,] _curGroundMap, List<MoveGround_Base> _moveGround, List<MoveGround_Base> _onoff)
+    public void MapInit(int[,] _curGroundMap, List<MoveGround_Base> _onoff)
     {
         curGroundMap = _curGroundMap;
-        moveGround = _moveGround;
         onOffGround = _onoff;
 
         curMoveMap = new int[_curGroundMap.GetLength(0), _curGroundMap.GetLength(1)];

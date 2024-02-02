@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 57181825876965500}
   - component: {fileID: 356494074236601996}
   m_Layer: 0
-  m_Name: TestOnOff
+  m_Name: OnOff_Ice
   m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -64,7 +64,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 750709fdc13008143a263ef34ae07c0a, type: 2}
+  - {fileID: 2100000, guid: 9e6bce8a6e9a97f459fb26331c496892, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -128,6 +128,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   curPos: {x: 0, y: 0}
-  isMove: 0
+  isUse: 1
   index: 0
   isOff: 1

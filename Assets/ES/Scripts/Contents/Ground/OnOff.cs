@@ -14,7 +14,7 @@ public class OnOff : MoveGround_Base
         if (isOff)
         {
             material.color = new Color(0.35f, 0.35f, 0.35f);
-            //MoveManager.Instance.InOutIndex(curPos, Define.MapType.Ground);
+            MoveManager.Instance.InOutIndex(curPos, Define.MapType.Ground);
         }
     }
 
