@@ -53,12 +53,6 @@ public class MoveManager : MonoBehaviour
 
         try { if (curGroundMap[movePos.x, movePos.y] == 0) { } /*map out check*/}
         catch { return 1; }
-
-        if (curGroundMap[movePos.x, movePos.y] != 1)
-        {
-            if (curGroundMap[movePos.x, movePos.y] == 0) return 1;
-            else if (isPlayer && curGroundMap[movePos.x, movePos.y] == 99) curMap[movePos.x, movePos.y].Use();
-        }
         
         if (curMoveMap[movePos.x, movePos.y] != 0)
         {
@@ -85,9 +79,9 @@ public class MoveManager : MonoBehaviour
         if (curGroundMap[movePos.x, movePos.y] != 1)
         {
             if (curGroundMap[movePos.x, movePos.y] == 0) return 1;
-            else if (mob != null) { mob.cantMove = true; moveMob.Add(mob); }
+            else if (isPlayer) { Player.Instance.cantMove = true; }
         }
-        else if (mob != null) { mob.cantMove = false; moveMob.Remove(mob); }
+        else if (isPlayer && Player.Instance.cantMove) { Player.Instance.cantMove = false; }
 
         if (curObjMap[movePos.x, movePos.y] != 0)
         {
